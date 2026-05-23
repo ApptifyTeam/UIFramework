@@ -30,12 +30,12 @@ jobs:
         run: |
           VERSION="${GITHUB_REF_NAME#v}"
           echo "Publishing version: $VERSION"
-          pnpm -r --filter "@apptify/*" exec npm version "$VERSION" --no-git-tag-version --allow-same-version
+          pnpm -r --filter "@apptify-labs/*" exec npm version "$VERSION" --no-git-tag-version --allow-same-version
 
       - run: pnpm build
 
       - name: Publish to npm
-        run: pnpm -r --filter "@apptify/*" publish --access public --no-git-checks
+        run: pnpm -r --filter "@apptify-labs/*" publish --access public --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           NPM_CONFIG_PROVENANCE: "true"
