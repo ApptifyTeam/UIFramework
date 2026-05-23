@@ -1,71 +1,55 @@
-# @apptify/ui
+# @apptify-labs/ui
 
-แพ็กเกจนี้คือ **Shared UI Framework** สำหรับใช้งานในแอปพลิเคชันและโปรเจกต์ต่างๆ 
-โดยถูกพัฒนาต่อยอดมาจาก `shadcn/ui` และ `Tailwind CSS` เพื่อใช้เป็น **Enterprise Design System** แบบรวมศูนย์ 
+**Shared UI Component Library** ของ Apptify — React components สร้างบน [Radix UI](https://www.radix-ui.com/) + [Tailwind CSS](https://tailwindcss.com/) ใช้ design tokens จาก [`@apptify-labs/tokens`](../tokens)
 
-> **สำคัญ:** แพ็กเกจนี้ถูกออกแบบให้ใช้งานในรูปแบบ **NPM Package** ที่มี Versioning ดังนั้นโค้ดของ Component ต่างๆ จะถูกล็อกอยู่ใน `node_modules` เพื่อรักษามาตรฐานและ Design ให้ตรงกันทุกโปรเจกต์ (Centralized Updates) จะแตกต่างจากการใช้งาน `shadcn/ui` แบบปกติที่คุณคัดลอกโค้ดมาปรับแต่งเองได้
+> ออกแบบให้ใช้งานในรูปแบบ **NPM Package** ที่มี versioning — โค้ด component ถูกล็อกใน `node_modules` เพื่อให้ทุกโปรเจกต์ของทีมใช้ design system เดียวกัน (centralized updates) แตกต่างจาก `shadcn/ui` ปกติที่ copy โค้ดมา customize เอง
 
----
-
-## 📦 การติดตั้ง (Installation)
-
-สำหรับการนำไปใช้ในโปรเจกต์ภายนอก ให้ทำการติดตั้งแพ็กเกจผ่าน Package Manager ที่คุณใช้งาน:
+## Installation
 
 ```bash
-npm install @apptify/ui
+pnpm add @apptify-labs/ui
 # หรือ
-pnpm add @apptify/ui
+npm install @apptify-labs/ui
 # หรือ
-yarn add @apptify/ui
+yarn add @apptify-labs/ui
 ```
 
----
+## Setup
 
-## 🚀 การตั้งค่าและเรียกใช้งาน (Setup & Usage)
+### 1. ตั้งค่า Tailwind CSS
 
-เนื่องจาก `@apptify/ui` ใช้ Tailwind CSS เป็นแกนหลัก คุณจำเป็นต้องตั้งค่าโปรเจกต์ของคุณเล็กน้อย เพื่อให้แอปพลิเคชันของคุณอ่านคลาสต่างๆ ได้อย่างถูกต้อง
+เพิ่ม path ของ package เข้าใน `content` ของ `tailwind.config.js` เพื่อไม่ให้ class ถูก purge ตอน build:
 
-### 1. การตั้งค่า Tailwind CSS
-
-คุณต้องเพิ่ม Path ของไฟล์จากแพ็กเกจนี้เข้าไปใน `content` ของไฟล์ `tailwind.config.js` ในโปรเจกต์ของคุณ เพื่อไม่ให้คลาสของ Component ถูกลบออก (Purge) ตอน Build
-
-```javascript
+```js
 // tailwind.config.js
 module.exports = {
   content: [
     "./src/**/*.{js,ts,jsx,tsx}",
-    
-    // สำคัญ: สแกนหา class จาก package @apptify/ui ที่ติดตั้งผ่าน npm
-    "./node_modules/@apptify/ui/dist/**/*.{js,mjs}",
+    "./node_modules/@apptify-labs/ui/dist/**/*.{js,mjs}",
   ],
-  theme: {
-    extend: {},
-  },
+  theme: { extend: {} },
   plugins: [],
-}
+};
 ```
 
-### 2. การนำเข้า Styles (CSS)
+### 2. Import Styles
 
-ในไฟล์ CSS หลักของแอปคุณ (เช่น `globals.css` สำหรับ Next.js หรือ `index.css` สำหรับ React/Vite) ให้ทำการ import stylesheet ของ UI Framework เข้ามาด้วย:
+ในไฟล์ CSS หลัก (เช่น `globals.css` หรือ `index.css`):
 
 ```css
-@import "@apptify/ui/styles.css";
+@import "@apptify-labs/ui/styles.css";
 
-/* โค้ด CSS เดิมของโปรเจกต์... */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 ```
 
-### 3. การเรียกใช้งาน Components
-
-คุณสามารถ import components ต่างๆ ที่มีให้ใช้งานในแพ็กเกจ และนำไปใช้ได้ทันที:
+### 3. ใช้งาน Components
 
 ```tsx
-import { Card, CardHeader, CardTitle, CardContent, Input, Label } from "@apptify/ui";
+import { Card, CardHeader, CardTitle, CardContent, Input, Label } from "@apptify-labs/ui";
 
-export default function MyPage() {
+export default function LoginForm() {
   return (
     <Card className="max-w-md mx-auto mt-10">
       <CardHeader>
@@ -82,26 +66,34 @@ export default function MyPage() {
 }
 ```
 
----
+## Available Components
 
-## 🛠️ การแก้ไขและ Customization
+- `Card`, `CardHeader`, `CardTitle`, `CardContent` — ดูที่ [src/components/card](./src/components/card)
+- `Input` — ดูที่ [src/components/input](./src/components/input)
+- `Label` — ดูที่ [src/components/label](./src/components/label)
+- `Separator` — ดูที่ [src/components/separator](./src/components/separator)
 
-- หากคุณต้องการปรับแต่งสไตล์ย่อยๆ ของ Component ในหน้าเว็บนั้นๆ สามารถส่ง Prop `className` เข้าไปเพื่อ Override คลาสผ่าน Tailwind ได้ (ระบบใช้ `tailwind-merge` จัดการคลาสที่ซ้ำซ้อนให้แล้ว)
-- หากต้องการเปลี่ยนแปลงโครงสร้างหลัก หรือแก้บัคของ Component คุณจะต้องทำการแก้ไขที่ Source Code ของโปรเจกต์ `@apptify/ui` ต้นทาง ทำการ Build และ **Publish Version ใหม่** เพื่อให้โปรเจกต์อื่นๆ กดอัปเดตเวอร์ชันนำไปใช้งานต่อ
+Utility:
+- `cn(...classes)` — รวม class names พร้อม `tailwind-merge` (export จาก [src/utils/cn](./src/utils/cn))
 
----
+## Customization
 
-## 💻 สำหรับนักพัฒนาแพ็กเกจนี้ (Development & Publishing)
+- ส่ง prop `className` เพื่อ override style ของแต่ละ component ได้ทันที — `tailwind-merge` จัดการ class ซ้ำซ้อนให้
+- ถ้าต้องการเปลี่ยน design tokens (สี, spacing, ฯลฯ) แก้ที่ [`@apptify-labs/tokens`](../tokens) แล้วเปลี่ยน reference ใน [tailwind.config.js](./tailwind.config.js) ของ package นี้
 
-หากคุณเป็นผู้พัฒนา UI Framework ตัวนี้ และต้องการ Build โค้ดเพื่อ Publish:
+## Development
 
-1. ติดตั้ง Dependencies ใน Workspace: `pnpm install`
-2. ทำการ Build ตัวแพ็กเกจ:
-   ```bash
-   pnpm run build --filter @apptify/ui
-   ```
-3. อัปเดตเลขเวอร์ชันใน `package.json` (เช่น `1.0.0` เป็น `1.0.1`)
-4. สั่ง Publish ขึ้นสู่ NPM Registry หรือ Private Registry ขององค์กร:
-   ```bash
-   npm publish
-   ```
+ดู [คู่มือพัฒนา monorepo](../../README.md#development) สำหรับ setup พื้นฐาน
+
+ภายในโฟลเดอร์นี้:
+```bash
+pnpm dev               # watch build
+pnpm build             # one-shot build
+pnpm lint              # type-check
+pnpm storybook         # เปิด Storybook ที่ port 6006
+pnpm build-storybook   # build static storybook
+```
+
+## Release
+
+ดู [RELEASING.md](../../RELEASING.md) — ทุก release ปล่อยผ่าน GitHub Actions โดย push git tag
