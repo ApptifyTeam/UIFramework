@@ -29,7 +29,7 @@ importers:
 
   packages/ui:
     dependencies:
-      '@apptify/tokens':
+      '@apptify-labs/tokens':
         specifier: workspace:*
         version: link:../tokens
       '@radix-ui/react-dialog':

@@ -1,4 +1,4 @@
-const { colors, radius, shadows, fontFamilies } = require("@apptify/tokens");
+const { colors, radius, shadows, fontFamilies } = require("@apptify-labs/tokens");
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
