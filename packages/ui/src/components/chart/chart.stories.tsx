@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "./chart";
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid } from "recharts";
 import * as React from "react";

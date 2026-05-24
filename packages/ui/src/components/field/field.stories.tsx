@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Field, FieldLabel, FieldContent, FieldDescription, FieldError } from "./field";
 import { Input } from "@/components/input";
 import * as React from "react";

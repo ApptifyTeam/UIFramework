@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Toggle } from "./toggle";
 import { Bold } from "lucide-react";
 import * as React from "react";

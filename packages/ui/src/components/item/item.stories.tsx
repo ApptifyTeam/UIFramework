@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Item, ItemMedia, ItemContent, ItemTitle, ItemDescription, ItemActions } from "./item";
 import { User, Shield, ChevronRight } from "lucide-react";
 import * as React from "react";
