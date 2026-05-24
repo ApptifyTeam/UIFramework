@@ -5,11 +5,12 @@ import { Label } from "@/components/label";
 import * as React from "react";
 
 const meta = {
+  title: "Components/Checkbox",
   component: Checkbox,
   parameters: {
     layout: "centered",
   },
-  tags: ["ai-generated"],
+  tags: ["autodocs"],
 } satisfies Meta<typeof Checkbox>;
 
 export default meta;

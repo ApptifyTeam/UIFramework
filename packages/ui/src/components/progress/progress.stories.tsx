@@ -4,11 +4,12 @@ import { Progress } from "./progress";
 import * as React from "react";
 
 const meta = {
+  title: "Components/Progress",
   component: Progress,
   parameters: {
     layout: "centered",
   },
-  tags: ["ai-generated"],
+  tags: ["autodocs"],
 } satisfies Meta<typeof Progress>;
 
 export default meta;

@@ -4,11 +4,12 @@ import { Avatar, AvatarImage, AvatarFallback } from "./avatar";
 import * as React from "react";
 
 const meta = {
+  title: "Components/Avatar",
   component: Avatar,
   parameters: {
     layout: "centered",
   },
-  tags: ["ai-generated"],
+  tags: ["autodocs"],
 } satisfies Meta<typeof Avatar>;
 
 export default meta;

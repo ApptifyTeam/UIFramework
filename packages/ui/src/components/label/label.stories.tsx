@@ -4,11 +4,12 @@ import { Label } from './label';
 import * as React from 'react';
 
 const meta = {
+  title: 'Components/Label',
   component: Label,
   parameters: {
     layout: 'centered',
   },
-  tags: ['ai-generated'],
+  tags: ['autodocs'],
 } satisfies Meta<typeof Label>;
 
 export default meta;

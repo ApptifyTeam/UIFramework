@@ -4,11 +4,12 @@ import { Separator } from './separator';
 import * as React from 'react';
 
 const meta = {
+  title: 'Components/Separator',
   component: Separator,
   parameters: {
     layout: 'centered',
   },
-  tags: ['ai-generated'],
+  tags: ['autodocs'],
 } satisfies Meta<typeof Separator>;
 
 export default meta;

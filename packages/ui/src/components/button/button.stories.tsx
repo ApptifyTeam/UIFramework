@@ -4,11 +4,12 @@ import { Button } from "./button";
 import * as React from "react";
 
 const meta = {
+  title: "Components/Button",
   component: Button,
   parameters: {
     layout: "centered",
   },
-  tags: ["ai-generated"],
+  tags: ["autodocs"],
   argTypes: {
     variant: {
       control: "select",

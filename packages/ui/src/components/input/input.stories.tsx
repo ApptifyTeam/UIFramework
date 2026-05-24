@@ -4,11 +4,12 @@ import { Input } from './input';
 import * as React from 'react';
 
 const meta = {
+  title: 'Components/Input',
   component: Input,
   parameters: {
     layout: 'centered',
   },
-  tags: ['ai-generated'],
+  tags: ['autodocs'],
 } satisfies Meta<typeof Input>;
 
 export default meta;
