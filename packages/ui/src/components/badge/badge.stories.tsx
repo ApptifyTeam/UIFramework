@@ -4,15 +4,24 @@ import { Badge } from "./badge";
 import * as React from "react";
 
 const meta = {
+  title: "Components/Badge",
   component: Badge,
   parameters: {
     layout: "centered",
   },
-  tags: ["ai-generated"],
+  tags: ["autodocs"],
   argTypes: {
     variant: {
       control: "select",
-      options: ["default", "secondary", "destructive", "outline", "success", "warning", "info"],
+      options: [
+        "default",
+        "secondary",
+        "destructive",
+        "outline",
+        "success",
+        "warning",
+        "info",
+      ],
     },
   },
 } satisfies Meta<typeof Badge>;
