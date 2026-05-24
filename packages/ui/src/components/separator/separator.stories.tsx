@@ -1,14 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { expect } from 'storybook/test';
 import { Separator } from './separator';
 import * as React from 'react';
 
 const meta = {
-  title: 'Components/Separator',
   component: Separator,
   parameters: {
     layout: 'centered',
   },
-  tags: ['autodocs'],
+  tags: ['ai-generated'],
 } satisfies Meta<typeof Separator>;
 
 export default meta;
@@ -33,4 +33,8 @@ export const Default: Story = {
       </div>
     </div>
   ),
+  play: async ({ canvas }) => {
+    await expect(canvas.getByText("Radix Primitives")).toBeVisible();
+    await expect(canvas.getByText("Blog")).toBeVisible();
+  },
 };

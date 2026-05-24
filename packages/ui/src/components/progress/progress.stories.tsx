@@ -1,14 +1,14 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect } from "storybook/test";
 import { Progress } from "./progress";
 import * as React from "react";
 
 const meta = {
-  title: "Components/Progress",
   component: Progress,
   parameters: {
     layout: "centered",
   },
-  tags: ["autodocs"],
+  tags: ["ai-generated"],
 } satisfies Meta<typeof Progress>;
 
 export default meta;
@@ -18,6 +18,12 @@ export const Default: Story = {
   args: {
     value: 60,
     className: "w-[300px]",
+  },
+  play: async ({ canvas }) => {
+    const progress = canvas.getByRole("progressbar");
+    await expect(progress).toBeVisible();
+    const indicator = progress.firstElementChild;
+    await expect(indicator).toHaveStyle("transform: matrix(1, 0, 0, 1, -120, 0)");
   },
 };
 

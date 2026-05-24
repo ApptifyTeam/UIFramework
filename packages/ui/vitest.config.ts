@@ -1,5 +1,6 @@
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { createRequire } from 'node:module';
 
 import { defineConfig } from 'vitest/config';
 
@@ -10,8 +11,23 @@ import { playwright } from '@vitest/browser-playwright';
 const dirname =
   typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url));
 
+const require = createRequire(import.meta.url);
+const reactPath = path.dirname(require.resolve('react'));
+const reactDomPath = path.dirname(require.resolve('react-dom'));
+
 // More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
 export default defineConfig({
+  resolve: {
+    alias: {
+      '@': path.resolve(dirname, './src'),
+      'react': reactPath,
+      'react-dom': reactDomPath,
+    },
+    dedupe: ['react', 'react-dom'],
+  },
+  optimizeDeps: {
+    exclude: ['react', 'react-dom'],
+  },
   test: {
     projects: [
       {

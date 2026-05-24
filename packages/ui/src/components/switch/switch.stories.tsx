@@ -1,15 +1,15 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect } from "storybook/test";
 import { Switch } from "./switch";
 import { Label } from "@/components/label";
 import * as React from "react";
 
 const meta = {
-  title: "Components/Switch",
   component: Switch,
   parameters: {
     layout: "centered",
   },
-  tags: ["autodocs"],
+  tags: ["ai-generated"],
 } satisfies Meta<typeof Switch>;
 
 export default meta;
@@ -22,6 +22,12 @@ export const Default: Story = {
       <Label htmlFor="airplane-mode">Airplane Mode</Label>
     </div>
   ),
+  play: async ({ canvas, userEvent }) => {
+    const toggle = canvas.getByRole("switch");
+    await expect(toggle).toHaveAttribute("aria-checked", "false");
+    await userEvent.click(toggle);
+    await expect(toggle).toHaveAttribute("aria-checked", "true");
+  },
 };
 
 export const Disabled: Story = {

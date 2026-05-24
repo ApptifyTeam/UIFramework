@@ -11,6 +11,7 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
   SidebarMenuBadge,
+  SidebarProvider,
 } from "./sidebar";
 import { LayoutDashboard, Users, Settings, Bell, HelpCircle, LogOut } from "lucide-react";
 import * as React from "react";
@@ -22,6 +23,13 @@ const meta = {
     layout: "fullscreen",
   },
   tags: ["autodocs"],
+  decorators: [
+    (Story) => (
+      <SidebarProvider>
+        <Story />
+      </SidebarProvider>
+    ),
+  ],
 } satisfies Meta<typeof Sidebar>;
 
 export default meta;

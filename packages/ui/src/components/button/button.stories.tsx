@@ -1,14 +1,14 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect } from "storybook/test";
 import { Button } from "./button";
 import * as React from "react";
 
 const meta = {
-  title: "Components/Button",
   component: Button,
   parameters: {
     layout: "centered",
   },
-  tags: ["autodocs"],
+  tags: ["ai-generated"],
   argTypes: {
     variant: {
       control: "select",
@@ -29,6 +29,17 @@ export const Default: Story = {
     children: "Button",
     variant: "default",
     size: "default",
+  },
+  play: async ({ canvas }) => {
+    await expect(canvas.getByRole("button", { name: /button/i })).toBeVisible();
+  },
+};
+
+export const CssCheck: Story = {
+  args: { children: "Submit" },
+  play: async ({ canvas }) => {
+    const button = canvas.getByRole("button", { name: /submit/i });
+    await expect(getComputedStyle(button).backgroundColor).toBe("rgb(71, 114, 255)");
   },
 };
 
@@ -66,3 +77,4 @@ export const Link: Story = {
     variant: "link",
   },
 };
+

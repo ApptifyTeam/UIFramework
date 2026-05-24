@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect } from "storybook/test";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "./tabs";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/card";
 import { Button } from "@/components/button";
@@ -7,12 +8,11 @@ import { Label } from "@/components/label";
 import * as React from "react";
 
 const meta = {
-  title: "Components/Tabs",
   component: Tabs,
   parameters: {
     layout: "centered",
   },
-  tags: ["autodocs"],
+  tags: ["ai-generated"],
 } satisfies Meta<typeof Tabs>;
 
 export default meta;
@@ -73,4 +73,15 @@ export const Default: Story = {
       </TabsContent>
     </Tabs>
   ),
+  play: async ({ canvas, userEvent }) => {
+    // Assert active tab content is visible initially
+    await expect(canvas.getByText("Make changes to your account here. Click save when you're done.")).toBeVisible();
+    
+    // Switch to Password tab
+    const passwordTab = canvas.getByRole("tab", { name: /password/i });
+    await userEvent.click(passwordTab);
+    
+    // Assert password tab content is visible
+    await expect(canvas.getByText("Change your password here. After saving, you'll be logged out.")).toBeVisible();
+  },
 };

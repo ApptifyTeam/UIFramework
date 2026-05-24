@@ -16,6 +16,9 @@ function getAbsolutePath(value: string): any {
   return dirname(require.resolve(join(value, "package.json")));
 }
 
+const reactPath = dirname(require.resolve("react"));
+const reactDomPath = dirname(require.resolve("react-dom"));
+
 const config: StorybookConfig = {
   stories: ["../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
   staticDirs: ["../public"],
@@ -36,7 +39,24 @@ const config: StorybookConfig = {
     config.resolve.alias = {
       ...config.resolve.alias,
       "@": resolve(__dirname, "../src"),
+      "react": reactPath,
+      "react-dom": reactDomPath,
     };
+    config.resolve.dedupe = config.resolve.dedupe || [];
+    if (!config.resolve.dedupe.includes("react")) {
+      config.resolve.dedupe.push("react");
+    }
+    if (!config.resolve.dedupe.includes("react-dom")) {
+      config.resolve.dedupe.push("react-dom");
+    }
+    config.optimizeDeps = config.optimizeDeps || {};
+    config.optimizeDeps.exclude = config.optimizeDeps.exclude || [];
+    if (!config.optimizeDeps.exclude.includes("react")) {
+      config.optimizeDeps.exclude.push("react");
+    }
+    if (!config.optimizeDeps.exclude.includes("react-dom")) {
+      config.optimizeDeps.exclude.push("react-dom");
+    }
     return config;
   }
 };

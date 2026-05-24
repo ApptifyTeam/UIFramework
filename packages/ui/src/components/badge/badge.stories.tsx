@@ -1,14 +1,14 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect } from "storybook/test";
 import { Badge } from "./badge";
 import * as React from "react";
 
 const meta = {
-  title: "Components/Badge",
   component: Badge,
   parameters: {
     layout: "centered",
   },
-  tags: ["autodocs"],
+  tags: ["ai-generated"],
   argTypes: {
     variant: {
       control: "select",
@@ -24,6 +24,9 @@ export const Default: Story = {
   args: {
     children: "Badge",
     variant: "default",
+  },
+  play: async ({ canvas }) => {
+    await expect(canvas.getByText("Badge")).toBeVisible();
   },
 };
 
