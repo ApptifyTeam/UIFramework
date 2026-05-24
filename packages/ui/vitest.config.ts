@@ -20,13 +20,22 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(dirname, './src'),
-      'react': reactPath,
-      'react-dom': reactDomPath,
+      'react': path.resolve(dirname, 'node_modules/react'),
+      'react/jsx-runtime': path.resolve(dirname, 'node_modules/react/jsx-runtime.js'),
+      'react/jsx-dev-runtime': path.resolve(dirname, 'node_modules/react/jsx-dev-runtime.js'),
+      'react-dom': path.resolve(dirname, 'node_modules/react-dom'),
+      'react-dom/client': path.resolve(dirname, 'node_modules/react-dom/client.js'),
     },
     dedupe: ['react', 'react-dom'],
   },
   optimizeDeps: {
-    exclude: ['react', 'react-dom'],
+    include: [
+      'react',
+      'react/jsx-runtime',
+      'react/jsx-dev-runtime',
+      'react-dom',
+      'react-dom/client'
+    ],
   },
   test: {
     projects: [

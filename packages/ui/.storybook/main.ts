@@ -39,23 +39,32 @@ const config: StorybookConfig = {
     config.resolve.alias = {
       ...config.resolve.alias,
       "@": resolve(__dirname, "../src"),
-      "react": reactPath,
-      "react-dom": reactDomPath,
+      "react": resolve(__dirname, "../node_modules/react"),
+      "react/jsx-runtime": resolve(__dirname, "../node_modules/react/jsx-runtime.js"),
+      "react/jsx-dev-runtime": resolve(__dirname, "../node_modules/react/jsx-dev-runtime.js"),
+      "react-dom": resolve(__dirname, "../node_modules/react-dom"),
+      "react-dom/client": resolve(__dirname, "../node_modules/react-dom/client.js"),
     };
     config.resolve.dedupe = config.resolve.dedupe || [];
-    if (!config.resolve.dedupe.includes("react")) {
-      config.resolve.dedupe.push("react");
-    }
-    if (!config.resolve.dedupe.includes("react-dom")) {
-      config.resolve.dedupe.push("react-dom");
+    const dedupeList = ["react", "react-dom"];
+    for (const item of dedupeList) {
+      if (!config.resolve.dedupe.includes(item)) {
+        config.resolve.dedupe.push(item);
+      }
     }
     config.optimizeDeps = config.optimizeDeps || {};
-    config.optimizeDeps.exclude = config.optimizeDeps.exclude || [];
-    if (!config.optimizeDeps.exclude.includes("react")) {
-      config.optimizeDeps.exclude.push("react");
-    }
-    if (!config.optimizeDeps.exclude.includes("react-dom")) {
-      config.optimizeDeps.exclude.push("react-dom");
+    config.optimizeDeps.include = config.optimizeDeps.include || [];
+    const includeList = [
+      "react",
+      "react/jsx-runtime",
+      "react/jsx-dev-runtime",
+      "react-dom",
+      "react-dom/client"
+    ];
+    for (const item of includeList) {
+      if (!config.optimizeDeps.include.includes(item)) {
+        config.optimizeDeps.include.push(item);
+      }
     }
     return config;
   }
