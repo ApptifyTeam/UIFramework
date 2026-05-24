@@ -1,5 +1,5 @@
 import type { StorybookConfig } from "@storybook/react-vite";
-import { join, dirname } from "path";
+import { join, dirname, resolve } from "path";
 
 /**
  * This function is used to resolve the absolute path of a package.
@@ -22,6 +22,14 @@ const config: StorybookConfig = {
   },
   docs: {
     autodocs: "tag",
+  },
+  async viteFinal(config) {
+    config.resolve = config.resolve || {};
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      "@": resolve(__dirname, "../src"),
+    };
+    return config;
   },
 };
 export default config;
