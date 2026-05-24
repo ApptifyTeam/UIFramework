@@ -1,7 +1,13 @@
 import type { Preview } from "@storybook/react-vite";
 import "../src/styles.css";
+import MockDate from "mockdate";
+import { initialize, mswLoader } from "msw-storybook-addon";
+import { mswHandlers } from "./msw-handlers";
+
+initialize({ onUnhandledRequest: "bypass" });
 
 const preview: Preview = {
+  loaders: [mswLoader],
   parameters: {
     controls: {
       matchers: {
@@ -9,6 +15,10 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
+    msw: { handlers: mswHandlers },
+  },
+  async beforeEach() {
+    MockDate.set("2024-04-01T12:00:00Z");
   },
 };
 
