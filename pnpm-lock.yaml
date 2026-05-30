@@ -162,6 +162,9 @@ importers:
         specifier: ^1.1.2
         version: 1.1.2(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
     devDependencies:
+      '@storybook/addon-a11y':
+        specifier: ^10.4.1
+        version: 10.4.1(storybook@10.4.1(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@testing-library/dom@10.4.0)(@types/react@19.2.14)(prettier@3.8.3)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))
       '@storybook/addon-docs':
         specifier: ^10.4.1
         version: 10.4.1(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(esbuild@0.27.7)(rollup@4.60.4)(storybook@10.4.1(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@testing-library/dom@10.4.0)(@types/react@19.2.14)(prettier@3.8.3)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(vite@6.4.2(@types/node@25.9.0)(jiti@1.21.7))
@@ -1833,6 +1836,11 @@ packages:
   '@standard-schema/spec@1.1.0':
     resolution: {integrity: sha512-l2aFy5jALhniG5HgqrD6jXLi/rUWrKvqN/qJx6yoJsgKhblVd+iqqU4RCXavm/jPityDo5TCvKMnpjKnOriy0w==}
 
+  '@storybook/addon-a11y@10.4.1':
+    resolution: {integrity: sha512-MGft/IXjJ20a9KbaSVG9bHTAAoanbucKrgEiJJRNqpim8DsXA01+XTdSk17LmiOCB203Rrq9mWgdQ6+79cc8iA==}
+    peerDependencies:
+      storybook: ^10.4.1
+
   '@storybook/addon-docs@10.4.1':
     resolution: {integrity: sha512-IYqUdjoZe4VO2LFZlKL/gwy7DsQSWCq6hX+zc1MBmZo04yycDASk1tte57n9pdlW3ajw9yYMF/+lVBi+xQjyvw==}
     peerDependencies:
@@ -2209,6 +2217,10 @@ packages:
     hasBin: true
     peerDependencies:
       postcss: ^8.1.0
+
+  axe-core@4.11.4:
+    resolution: {integrity: sha512-KunSNx+TVpkAw/6ULfhnx+HWRecjqZGTOyquAoWHYLRSdK1tB5Ihce1ZW+UY3fj33bYAFWPu7W/GRSmmrCGuxA==}
+    engines: {node: '>=4'}
 
   balanced-match@4.0.4:
     resolution: {integrity: sha512-BLrgEcRTwX2o6gGxGOCNyMvGSp35YofuYzw9h1IMTRmKqttAZZVU67bdb9Pr2vUHA8+j3i2tJfjO6C6+4myGTA==}
@@ -4838,6 +4850,12 @@ snapshots:
 
   '@standard-schema/spec@1.1.0': {}
 
+  '@storybook/addon-a11y@10.4.1(storybook@10.4.1(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@testing-library/dom@10.4.0)(@types/react@19.2.14)(prettier@3.8.3)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))':
+    dependencies:
+      '@storybook/global': 5.0.0
+      axe-core: 4.11.4
+      storybook: 10.4.1(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@testing-library/dom@10.4.0)(@types/react@19.2.14)(prettier@3.8.3)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
+
   '@storybook/addon-docs@10.4.1(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(esbuild@0.27.7)(rollup@4.60.4)(storybook@10.4.1(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@testing-library/dom@10.4.0)(@types/react@19.2.14)(prettier@3.8.3)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(vite@6.4.2(@types/node@25.9.0)(jiti@1.21.7))':
     dependencies:
       '@mdx-js/react': 3.1.1(@types/react@19.2.14)(react@19.2.6)
@@ -5268,6 +5286,8 @@ snapshots:
       picocolors: 1.1.1
       postcss: 8.5.14
       postcss-value-parser: 4.2.0
+
+  axe-core@4.11.4: {}
 
   balanced-match@4.0.4: {}
 

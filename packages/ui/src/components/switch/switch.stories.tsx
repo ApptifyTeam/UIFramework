@@ -5,11 +5,12 @@ import { Label } from "@/components/label";
 import * as React from "react";
 
 const meta = {
+  title: "Components/Switch",
   component: Switch,
   parameters: {
     layout: "centered",
   },
-  tags: ["ai-generated"],
+  tags: ["autodocs"],
 } satisfies Meta<typeof Switch>;
 
 export default meta;
