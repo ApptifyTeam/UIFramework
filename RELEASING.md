@@ -32,33 +32,36 @@ Lint → Build → Publish to npm
   - **Minor** (`1.0.0` → `1.1.0`): เพิ่ม feature, backward compatible
   - **Major** (`1.0.0` → `2.0.0`): breaking change
 
-แก้ไฟล์ให้เป็น version ใหม่:
-- [packages/ui/package.json](./packages/ui/package.json)
+### 2. รันคำสั่ง Release อัตโนมัติ
 
-```jsonc
-{
-  "name": "@apptify-labs/ui",
-  "version": "1.0.3",   // ← เปลี่ยนตรงนี้
-  // ...
-}
-```
-
-### 3. Commit + Tag + Push
+คุณสามารถรันคำสั่งเดียวเพื่ออัปเดตเวอร์ชัน, สร้าง commit/tag, และ push ไปที่ GitHub ทันที:
 
 ```bash
-git add packages/ui/package.json
+pnpm release <patch | minor | major | เวอร์ชันระบุตรงๆ>
+# ตัวอย่าง:
+pnpm release patch
+# หรือ:
+pnpm release 1.0.4
+```
+
+สคริปต์นี้จะทำงานดังนี้:
+1. ตรวจสอบว่ากิ่งปัจจุบันคือ `main` และ git working directory สะอาด
+2. รัน `npm version` เพื่อแก้เวอร์ชันใน `package.json` พร้อมทำ Git commit & tag
+3. รัน `git push origin main --follow-tags` เพื่อส่งขึ้นรีโมทและยิง pipeline release ทันที
+
+---
+
+### สำหรับกรณีต้องการจัดการด้วยตัวเอง (Manual)
+
+1. แก้ไขเวอร์ชันใหม่ใน [package.json](./package.json)
+2. Commit + Tag + Push ด้วยคำสั่ง:
+```bash
+git add package.json
 git commit -m "chore: release v1.0.3"
 
 git tag -a v1.0.3 -m "Release v1.0.3"
 
 git push origin main --follow-tags
-```
-
-หรือถ้าอยากให้ CI บน main รันแยกจาก release (ดู workflow ทีละตัว):
-```bash
-git push origin main       # ยิง ci.yml
-# รอ CI ผ่าน
-git push origin v1.0.3     # ยิง release.yml
 ```
 
 ### 4. ตรวจผลที่ GitHub Actions

@@ -27,7 +27,8 @@
     "lint": "tsc --noEmit",
     "format": "prettier --write \"**/*.{ts,tsx,md,json}\"",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "release": "bash scripts/release.sh"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.12",
