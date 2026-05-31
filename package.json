@@ -113,9 +113,5 @@
     "workerDirectory": [
       "public"
     ]
-  },
-  "onlyBuiltDependencies": [
-    "esbuild",
-    "msw"
-  ]
+  }
 }
