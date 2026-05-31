@@ -49,11 +49,22 @@ In your main CSS file (e.g., `globals.css` or `index.css`):
 You can import both UI components and design tokens from the same package:
 
 ```tsx
-import { Card, CardHeader, CardTitle, CardContent, Input, Label, colors } from "@apptify-labs/ui";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardContent,
+  Input,
+  Label,
+  colors,
+} from "@apptify-labs/ui";
 
 export default function LoginForm() {
   return (
-    <Card className="max-w-md mx-auto mt-10" style={{ borderColor: colors.primary[500] }}>
+    <Card
+      className="max-w-md mx-auto mt-10"
+      style={{ borderColor: colors.primary[500] }}
+    >
       <CardHeader>
         <CardTitle>Login</CardTitle>
       </CardHeader>
@@ -76,20 +87,20 @@ export default function LoginForm() {
 - `Separator` — See [src/components/separator](./src/components/separator)
 
 Utility:
-- `cn(...classes)` — Merge class names using `tailwind-merge` (exported from [src/utils/cn](./src/utils/cn))
 
+- `cn(...classes)` — Merge class names using `tailwind-merge` (exported from [src/utils/cn](./src/utils/cn))
 
 ## Design Tokens
 
 `@apptify-labs/ui` comes with built-in design tokens exported directly from the package:
 
-| Module | Description | Source |
-|---|---|---|
-| `colors` | Brand palette (primary, secondary) + semantic (success, warning, danger, info) with shades from `50` to `900` | [src/tokens/colors.ts](./src/tokens/colors.ts) |
-| `spacing` | Spacing scale from `0` to `40` (following Tailwind convention) e.g., `spacing[4]` = `1rem` | [src/tokens/spacing.ts](./src/tokens/spacing.ts) |
-| `fontFamilies`, `fontSizes`, `fontWeights`, `lineHeights` | Typography configurations for fonts, sizes, weights, and line heights | [src/tokens/typography.ts](./src/tokens/typography.ts) |
-| `radius` | Border radius (`sm`, `md`, `lg`, `xl`, `full`) | [src/tokens/radius.ts](./src/tokens/radius.ts) |
-| `shadows` | Box shadow (`sm`, `md`, `lg`, `xl`) | [src/tokens/shadows.ts](./src/tokens/shadows.ts) |
+| Module                                                    | Description                                                                                                   | Source                                                 |
+| --------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ |
+| `colors`                                                  | Brand palette (primary, secondary) + semantic (success, warning, danger, info) with shades from `50` to `900` | [src/tokens/colors.ts](./src/tokens/colors.ts)         |
+| `spacing`                                                 | Spacing scale from `0` to `40` (following Tailwind convention) e.g., `spacing[4]` = `1rem`                    | [src/tokens/spacing.ts](./src/tokens/spacing.ts)       |
+| `fontFamilies`, `fontSizes`, `fontWeights`, `lineHeights` | Typography configurations for fonts, sizes, weights, and line heights                                         | [src/tokens/typography.ts](./src/tokens/typography.ts) |
+| `radius`                                                  | Border radius (`sm`, `md`, `lg`, `xl`, `full`)                                                                | [src/tokens/radius.ts](./src/tokens/radius.ts)         |
+| `shadows`                                                 | Box shadow (`sm`, `md`, `lg`, `xl`)                                                                           | [src/tokens/shadows.ts](./src/tokens/shadows.ts)       |
 
 ### Using Design Tokens in Code
 
@@ -97,11 +108,11 @@ Utility:
 import { colors, spacing, radius, shadows, fontSizes } from "@apptify-labs/ui";
 
 const buttonStyle = {
-  backgroundColor: colors.primary[500],   // "#4B76FF"
-  padding: spacing[4],                     // "1rem"
+  backgroundColor: colors.primary[500], // "#4B76FF"
+  padding: spacing[4], // "1rem"
   borderRadius: radius.md,
   boxShadow: shadows.sm,
-  fontSize: fontSizes.base,                // "1rem"
+  fontSize: fontSizes.base, // "1rem"
 };
 ```
 
@@ -115,12 +126,14 @@ const buttonStyle = {
 See the [monorepo development guide](../../README.md#development) for the basic setup.
 
 Inside this folder:
+
 ```bash
 pnpm dev               # watch build
 pnpm build             # one-shot build
 pnpm lint              # type-check
 pnpm storybook         # run Storybook on port 6006
 pnpm build-storybook   # build static storybook
+pnpm release patch     # release new patch version
 ```
 
 ## Release
