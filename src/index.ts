@@ -58,3 +58,4 @@ export * from "./components/sidebar";
 export * from "./components/sonner";
 export * from "./components/toast";
 export * from "./utils/cn";
+export * from "./tokens";

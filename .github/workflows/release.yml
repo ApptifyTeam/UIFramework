@@ -46,7 +46,7 @@ jobs:
         run: |
           VERSION="${GITHUB_REF_NAME#v}"
           echo "Building version: $VERSION"
-          pnpm -r --filter "@apptify-labs/*" exec npm version "$VERSION" --no-git-tag-version --allow-same-version
+          npm version "$VERSION" --no-git-tag-version --allow-same-version
 
       - run: pnpm build
 
@@ -55,8 +55,8 @@ jobs:
         with:
           name: packages-dist
           path: |
-            packages/*/dist
-            packages/*/package.json
+            dist
+            package.json
           retention-days: 1
 
   publish:
@@ -87,7 +87,7 @@ jobs:
           name: packages-dist
 
       - name: Publish to npm
-        run: pnpm -r --filter "@apptify-labs/*" publish --access public --no-git-checks
+        run: pnpm publish --access public --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           NPM_CONFIG_PROVENANCE: "true"

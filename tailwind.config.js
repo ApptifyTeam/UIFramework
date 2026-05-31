@@ -1,4 +1,5 @@
-const { colors, radius, shadows, fontFamilies } = require("@apptify-labs/tokens");
+const jiti = require("jiti")(__filename);
+const { colors, radius, shadows, fontFamilies } = jiti("./src/tokens");
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
