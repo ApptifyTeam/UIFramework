@@ -2,7 +2,9 @@
 
 **Shared UI Component Library** by Apptify — React components built on [Radix UI](https://www.radix-ui.com/) + [Tailwind CSS](https://tailwindcss.com/) with integrated design tokens (colors, spacing, typography, radius, shadows) for seamless usage.
 
-> Designed to be used as an **NPM Package** with versioning — component code is locked in `node_modules` to ensure all project teams use the same design system (centralized updates). This differs from typical `shadcn/ui` where code is copied and customized individually.
+This project uses the components and styling principles of [shadcn/ui](https://ui.shadcn.com/) as its base foundation.
+
+> **Architectural Difference**: Traditionally, `shadcn/ui` is designed to have components copied and pasted directly into your repository for full customization. In contrast, `@apptify-labs/ui` packages these shadcn-based components into a versioned **NPM Package** to enforce design system consistency and enable centralized updates across multiple projects.
 
 ## Installation
 
