@@ -8,7 +8,16 @@ import { withThemeByClassName } from "@storybook/addon-themes";
 import { DocsContainer } from "@storybook/addon-docs/blocks";
 import { themes } from "storybook/theming";
 
-initialize({ onUnhandledRequest: "bypass" });
+// Detect if running on GitHub Pages to adjust the Service Worker path
+const isGitHubPages = window.location.hostname.endsWith("github.io");
+const serviceWorkerUrl = isGitHubPages ? "/UIFramework/mockServiceWorker.js" : "/mockServiceWorker.js";
+
+initialize({
+  onUnhandledRequest: "bypass",
+  serviceWorker: {
+    url: serviceWorkerUrl,
+  },
+});
 
 const preview: Preview = {
   loaders: [mswLoader],
