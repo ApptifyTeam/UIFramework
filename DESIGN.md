@@ -13,48 +13,48 @@ foundation: "shadcn/ui + Radix UI + Tailwind CSS v3"
 # ── Colors ──────────────────────────────────────────────────────
 colors:
   # Brand — Primary & Secondary (flat keys for linter compatibility)
-  primary: "#54C2DF"             # Main brand — Sky Cyan
+  primary: "#54C2DF" # Main brand — Sky Cyan
   primary-50: "#EEF9FB"
   primary-100: "#D5F0F6"
   primary-200: "#ABE1ED"
   primary-300: "#80D2E4"
   primary-400: "#54C2DF"
-  primary-600: "#3AADC9"         # Hover state
-  primary-700: "#2D8FA6"         # Pressed/active state
+  primary-600: "#3AADC9" # Hover state
+  primary-700: "#2D8FA6" # Pressed/active state
   primary-800: "#246F82"
   primary-900: "#1A4F5E"
 
-  secondary: "#F3B255"           # Main secondary — Warm Orange
+  secondary: "#F3B255" # Main secondary — Warm Orange
   secondary-50: "#FEF7EC"
   secondary-100: "#FDECD0"
   secondary-200: "#FBDAA3"
   secondary-300: "#F7C77C"
   secondary-400: "#F3B255"
-  secondary-600: "#DA9A3E"       # Hover state
-  secondary-700: "#B87E2F"       # Pressed/active state
+  secondary-600: "#DA9A3E" # Hover state
+  secondary-700: "#B87E2F" # Pressed/active state
   secondary-800: "#946324"
   secondary-900: "#70491A"
 
   # Semantic
-  success: "#10B981"             # Emerald
+  success: "#10B981" # Emerald
   success-50: "#ECFDF5"
   success-100: "#D1FAE5"
   success-600: "#059669"
   success-700: "#047857"
 
-  warning: "#F59E0B"             # Amber
+  warning: "#F59E0B" # Amber
   warning-50: "#FFFBEB"
   warning-100: "#FEF3C7"
   warning-600: "#D97706"
   warning-700: "#B45309"
 
-  danger: "#EF4444"              # Rose-Red
+  danger: "#EF4444" # Rose-Red
   danger-50: "#FEF2F2"
   danger-100: "#FEE2E2"
   danger-600: "#DC2626"
   danger-700: "#B91C1C"
 
-  info: "#0EA5E9"                # Sky
+  info: "#0EA5E9" # Sky
   info-50: "#F0F9FF"
   info-100: "#E0F2FE"
   info-600: "#0284C7"
@@ -74,7 +74,7 @@ colors:
   neutral-950: "#020617"
 
   # Theme surface & utility colors (Light)
-  background: "#FFFFFF"
+  background: "#F8FAFC"
   foreground: "#030712"
   card: "#FFFFFF"
   border: "#E2E8F0"
@@ -157,15 +157,15 @@ typography:
     sans: 'Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif'
     mono: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace'
   fontSize:
-    xs: "0.75rem"      # 12px — captions, badges
-    sm: "0.875rem"     # 14px — secondary text, table cells
-    base: "1rem"       # 16px — body text
-    lg: "1.125rem"     # 18px — sub-headings
-    xl: "1.25rem"      # 20px — section titles
-    2xl: "1.5rem"      # 24px — page sub-titles
-    3xl: "1.875rem"    # 30px — page titles
-    4xl: "2.25rem"     # 36px — hero numbers / KPIs
-    5xl: "3rem"        # 48px — dashboard hero values
+    xs: "0.75rem" # 12px — captions, badges
+    sm: "0.875rem" # 14px — secondary text, table cells
+    base: "1rem" # 16px — body text
+    lg: "1.125rem" # 18px — sub-headings
+    xl: "1.25rem" # 20px — section titles
+    2xl: "1.5rem" # 24px — page sub-titles
+    3xl: "1.875rem" # 30px — page titles
+    4xl: "2.25rem" # 36px — hero numbers / KPIs
+    5xl: "3rem" # 48px — dashboard hero values
   fontWeight:
     light: 300
     regular: 400
@@ -183,36 +183,36 @@ typography:
 
 # ── Spacing ─────────────────────────────────────────────────────
 spacing:
-  unit: "4px"          # Base unit — all spacing is multiples of 4px
+  unit: "4px" # Base unit — all spacing is multiples of 4px
   scale:
     0: "0px"
-    0.5: "0.125rem"    # 2px
-    1: "0.25rem"       # 4px
-    1.5: "0.375rem"    # 6px
-    2: "0.5rem"        # 8px
-    3: "0.75rem"       # 12px
-    4: "1rem"          # 16px
-    5: "1.25rem"       # 20px
-    6: "1.5rem"        # 24px
-    8: "2rem"          # 32px
-    10: "2.5rem"       # 40px
-    12: "3rem"         # 48px
-    16: "4rem"         # 64px
-    20: "5rem"         # 80px
-    24: "6rem"         # 96px
+    0.5: "0.125rem" # 2px
+    1: "0.25rem" # 4px
+    1.5: "0.375rem" # 6px
+    2: "0.5rem" # 8px
+    3: "0.75rem" # 12px
+    4: "1rem" # 16px
+    5: "1.25rem" # 20px
+    6: "1.5rem" # 24px
+    8: "2rem" # 32px
+    10: "2.5rem" # 40px
+    12: "3rem" # 48px
+    16: "4rem" # 64px
+    20: "5rem" # 80px
+    24: "6rem" # 96px
 
 # ── Border Radius ───────────────────────────────────────────────
 rounded:
   none: "0px"
-  xs: "0.125rem"       # 2px
-  sm: "0.25rem"        # 4px
-  md: "0.375rem"       # 6px
-  DEFAULT: "0.75rem"   # 12px — default component radius
-  lg: "0.5rem"         # 8px
-  xl: "0.75rem"        # 12px
-  2xl: "1rem"          # 16px
-  3xl: "1.5rem"        # 24px
-  full: "9999px"       # Pills, circular avatars
+  xs: "0.125rem" # 2px
+  sm: "0.25rem" # 4px
+  md: "0.375rem" # 6px
+  DEFAULT: "0.75rem" # 12px — default component radius
+  lg: "0.5rem" # 8px
+  xl: "0.75rem" # 12px
+  2xl: "1rem" # 16px
+  3xl: "1.5rem" # 24px
+  full: "9999px" # Pills, circular avatars
 
 # ── Shadows ─────────────────────────────────────────────────────
 shadows:
@@ -238,7 +238,6 @@ animations:
     - fade-out
     - slide-in-from-top
     - slide-in-from-bottom
-
 ---
 
 ## Overview
@@ -272,14 +271,14 @@ The reference designs show a **SaaS analytics / business intelligence** dashboar
 
 ### Brand Palette
 
-| Token | Hex | Usage |
-|---|---|---|
-| `primary.500` | `#54C2DF` | Main brand — Sky Cyan. Buttons, active links, focus rings, interactive states, chart fills |
-| `primary.100` | `#D5F0F6` | Hover/selected backgrounds for rows and list items |
-| `primary.700` | `#2D8FA6` | Pressed/active state for primary buttons |
-| `secondary.500` | `#F3B255` | Secondary brand — Warm Orange. CTAs, goal markers, upgrade banners, secondary chart data |
-| `secondary.100` | `#FDECD0` | Hover/selected backgrounds for secondary elements |
-| `secondary.700` | `#B87E2F` | Pressed/active state for secondary buttons |
+| Token           | Hex       | Usage                                                                                      |
+| --------------- | --------- | ------------------------------------------------------------------------------------------ |
+| `primary.500`   | `#54C2DF` | Main brand — Sky Cyan. Buttons, active links, focus rings, interactive states, chart fills |
+| `primary.100`   | `#D5F0F6` | Hover/selected backgrounds for rows and list items                                         |
+| `primary.700`   | `#2D8FA6` | Pressed/active state for primary buttons                                                   |
+| `secondary.500` | `#F3B255` | Secondary brand — Warm Orange. CTAs, goal markers, upgrade banners, secondary chart data   |
+| `secondary.100` | `#FDECD0` | Hover/selected backgrounds for secondary elements                                          |
+| `secondary.700` | `#B87E2F` | Pressed/active state for secondary buttons                                                 |
 
 ### Semantic Palette
 
@@ -292,10 +291,10 @@ The reference designs show a **SaaS analytics / business intelligence** dashboar
 
 The primary and secondary brand colours **double as the data visualisation accent pair**. This ensures visual unity between UI chrome and chart content:
 
-| Role | Colour | Hex | Usage |
-|---|---|---|---|
-| Primary data | Sky Cyan | `#54C2DF` | Bar charts, area fills, line charts, map markers, progress bars, timeline highlights |
-| Secondary data | Warm Orange | `#F3B255` | Goal bars, comparison series, upgrade banners, tier-up indicators |
+| Role           | Colour      | Hex       | Usage                                                                                |
+| -------------- | ----------- | --------- | ------------------------------------------------------------------------------------ |
+| Primary data   | Sky Cyan    | `#54C2DF` | Bar charts, area fills, line charts, map markers, progress bars, timeline highlights |
+| Secondary data | Warm Orange | `#F3B255` | Goal bars, comparison series, upgrade banners, tier-up indicators                    |
 
 Because the brand colours are already used for data, avoid using `success`, `warning`, or `danger` as chart fill colours — reserve semantics for status indicators only.
 
@@ -314,15 +313,15 @@ The system uses HSL CSS custom properties on `:root` (light) and `.dark` (dark).
 
 ### Hierarchy Rules
 
-| Level | Token | Size | Weight | Use |
-|---|---|---|---|---|
-| Hero value | `5xl` | 48px | `bold (700)` | Dashboard headline KPIs (e.g., "$347,500") |
-| Page title | `3xl` | 30px | `semibold (600)` | Page headings ("Sales Insights", "Comparison") |
-| Section title | `xl` | 20px | `semibold (600)` | Card titles, widget labels |
-| Sub-heading | `lg` | 18px | `medium (500)` | Card sub-categories, secondary titles |
-| Body | `base` | 16px | `regular (400)` | Paragraphs, descriptions, form labels |
-| Small | `sm` | 14px | `regular (400)` | Table cells, sidebar nav items, metadata |
-| Caption | `xs` | 12px | `medium (500)` | Badges, timestamps, chart axis labels |
+| Level         | Token  | Size | Weight           | Use                                            |
+| ------------- | ------ | ---- | ---------------- | ---------------------------------------------- |
+| Hero value    | `5xl`  | 48px | `bold (700)`     | Dashboard headline KPIs (e.g., "$347,500")     |
+| Page title    | `3xl`  | 30px | `semibold (600)` | Page headings ("Sales Insights", "Comparison") |
+| Section title | `xl`   | 20px | `semibold (600)` | Card titles, widget labels                     |
+| Sub-heading   | `lg`   | 18px | `medium (500)`   | Card sub-categories, secondary titles          |
+| Body          | `base` | 16px | `regular (400)`  | Paragraphs, descriptions, form labels          |
+| Small         | `sm`   | 14px | `regular (400)`  | Table cells, sidebar nav items, metadata       |
+| Caption       | `xs`   | 12px | `medium (500)`   | Badges, timestamps, chart axis labels          |
 
 ### Typography Constraints
 
@@ -338,28 +337,31 @@ The system uses HSL CSS custom properties on `:root` (light) and `.dark` (dark).
 
 All spacing follows a **4px base unit**. Use only tokens from the spacing scale — never arbitrary pixel values.
 
-| Purpose | Token | Value |
-|---|---|---|
-| Tight element gap | `1` | 4px |
-| Input padding, badge padding | `2` | 8px |
-| Intra-card element gap | `3` | 12px |
-| Standard component padding | `4` | 16px |
-| Card internal padding | `5–6` | 20–24px |
-| Section gap (between cards) | `6–8` | 24–32px |
-| Page section separation | `12–16` | 48–64px |
+| Purpose                      | Token   | Value   |
+| ---------------------------- | ------- | ------- |
+| Tight element gap            | `1`     | 4px     |
+| Input padding, badge padding | `2`     | 8px     |
+| Intra-card element gap       | `3`     | 12px    |
+| Standard component padding   | `4`     | 16px    |
+| Card internal padding        | `5–6`   | 20–24px |
+| Section gap (between cards)  | `6–8`   | 24–32px |
+| Page section separation      | `12–16` | 48–64px |
 
-### Layout Patterns (from design references)
+### Background & Container Hierarchy
 
-1. **Sidebar + Main + Right panel** — The primary layout is a three-column grid:
-   - Left sidebar: `240px` fixed, contains nav + upgrade CTA
-   - Main area: Flexible, contains 2-column card grid
-   - Right panel: `280–320px`, contains KPI summaries and quick stats
+The fundamental principle of Apptify's layout is a completely flat hierarchy using borders rather than shadows.
+- **Main Background and Card Backgrounds MUST be identical.** (e.g., `#FFFFFF` or `#F8FAFC`).
+- Cards rely **exclusively** on a very faint, 1px semi-transparent border (e.g., `border-black/5` or `border-white/5`) for separation.
+- **No drop shadows** should be used on standard structural cards. Shadows are reserved for floating elements (popovers, dropdowns).
 
-2. **Card Grid** — Content is always organised in cards laid out on a responsive grid. Cards should have:
+### Layout Modules
+- **Sidebar**: Clean, left-aligned sidebar. The active state MUST use a light tint of the primary color for the background pill (e.g. `bg-primary/10`) and solid primary color for the text/icon (`text-primary`).
+- **Main Content & Cards**: Content is always organised in cards laid out on a responsive grid. Cards should have:
    - `padding: spacing[6]` (24px) internal
    - `gap: spacing[6]` (24px) between cards
-   - `border: 1px solid neutral.200`
+   - `border: 1px solid rgba(0,0,0,0.05)` (Light) or `rgba(255,255,255,0.05)` (Dark)
    - `border-radius: radius.xl` (12px)
+   - **No box-shadow.**
 
 3. **Filters Bar** — Appears at the top of data views with dropdowns for date range, location, and search. Uses pill-shaped inputs with `radius.full`.
 
@@ -369,16 +371,16 @@ All spacing follows a **4px base unit**. Use only tokens from the spacing scale 
 
 The default component radius (`--radius`) is **0.75rem (12px)**. This gives a modern, approachable feel.
 
-| Element | Radius |
-|---|---|
-| Buttons | `lg` (8px) |
-| Cards, Dialogs | `xl` (12px) |
-| Inputs, Selects | `lg` (8px) |
-| Badges | `full` (pill) |
-| Avatars | `full` (circle) |
-| Filter chips | `full` (pill) |
+| Element            | Radius          |
+| ------------------ | --------------- |
+| Buttons            | `lg` (8px)      |
+| Cards, Dialogs     | `xl` (12px)     |
+| Inputs, Selects    | `lg` (8px)      |
+| Badges             | `full` (pill)   |
+| Avatars            | `full` (circle) |
+| Filter chips       | `full` (pill)   |
 | Charts/map markers | `full` (circle) |
-| Tooltips | `md` (6px) |
+| Tooltips           | `md` (6px)      |
 
 ---
 
@@ -386,14 +388,14 @@ The default component radius (`--radius`) is **0.75rem (12px)**. This gives a mo
 
 Shadows are used **sparingly**. The design references show a largely flat aesthetic with borders preferred over elevation.
 
-| Context | Shadow Token |
-|---|---|
-| Default cards | `none` or `sm` — prefer border over shadow |
-| Elevated dialogs & popovers | `lg` |
-| Dropdowns & menus | `md` |
-| Floating tooltip | `md` |
-| Map marker callouts | `md` |
-| Sidebar overlay (mobile) | `xl` |
+| Context                     | Shadow Token                               |
+| --------------------------- | ------------------------------------------ |
+| Default cards               | `none` or `sm` — prefer border over shadow |
+| Elevated dialogs & popovers | `lg`                                       |
+| Dropdowns & menus           | `md`                                       |
+| Floating tooltip            | `md`                                       |
+| Map marker callouts         | `md`                                       |
+| Sidebar overlay (mobile)    | `xl`                                       |
 
 ---
 
@@ -410,7 +412,8 @@ Shadows are used **sparingly**. The design references show a largely flat aesthe
 
 ### Cards
 
-- White background (`card` token), 1px border (`border` token), `xl` radius
+- White background (`card` token), ultra-faint border (`border-black/5` in light, `border-white/5` in dark), `xl` radius
+- Shadow: Custom soft shadow `shadow-[0_4px_24px_rgba(0,0,0,0.04)]` in light mode, `shadow-none` in dark mode.
 - Internal padding: `spacing[6]` (24px)
 - Title at top-left, optional action/dropdown at top-right
 - In dark mode: use the `card` dark token (`hsl(222.2 84% 4.9%)`) — never hard-code a dark background
@@ -440,7 +443,10 @@ Shadows are used **sparingly**. The design references show a largely flat aesthe
 
 ### Charts & Data Visualisation
 
-- **Bar charts**: Use `cyan` for primary series, `orange` for secondary/goal. Bars have `lg` radius on top corners
+- **Bar charts**:
+  - Standard/Inactive bars use a "hollow" style: A solid 2px stroke in the primary/secondary color, with a very light tinted fill (e.g., 10-20% opacity of the same color).
+  - Active/Hover bars use a 100% solid fill in the primary/secondary color, often with a pill-shaped backdrop highlighting the column.
+  - Bars have `lg` radius on top and bottom corners.
 - **Line charts**: Thin (2px) stroke in `neutral.900`, with concentric circle markers (⊙) at data points. Highlight zones use a `cyan` or `orange` oval/pill overlay
 - **Spider/Radar charts**: Filled `cyan` with 40% opacity, outlined with `cyan` stroke
 - **Progress bars**: Thin horizontal bars with `full` radius. Use semantic colours (cyan for on-track, orange for at-risk)
@@ -483,11 +489,11 @@ Shadows are used **sparingly**. The design references show a largely flat aesthe
 
 ## Responsive Behaviour
 
-| Breakpoint | Layout |
-|---|---|
-| `< 768px` (mobile) | Single column. Sidebar collapses to hamburger menu. Right panel stacks below main |
-| `768–1024px` (tablet) | Two columns. Sidebar collapsed to icon-only rail. Right panel inline |
-| `> 1024px` (desktop) | Full three-column layout as shown in design references |
+| Breakpoint            | Layout                                                                            |
+| --------------------- | --------------------------------------------------------------------------------- |
+| `< 768px` (mobile)    | Single column. Sidebar collapses to hamburger menu. Right panel stacks below main |
+| `768–1024px` (tablet) | Two columns. Sidebar collapsed to icon-only rail. Right panel inline              |
+| `> 1024px` (desktop)  | Full three-column layout as shown in design references                            |
 
 - Cards should span full width on mobile and collapse gracefully
 - Data tables should use horizontal scroll on narrow screens
@@ -555,46 +561,53 @@ As seen in the reference designs (`Dashboard 1 Ref Light.jpg` and `Dashboard 2 R
 
 ## Tech Stack
 
-| Layer | Technology |
-|---|---|
-| Framework | React ≥ 18 |
-| Styling | Tailwind CSS v3 + CSS custom properties (HSL) |
-| Primitives | Radix UI |
-| Variant system | `class-variance-authority` (CVA) |
-| Class merging | `tailwind-merge` via `cn()` |
-| Charts | Recharts |
-| Icons | Lucide React |
-| Carousel | Embla Carousel |
-| Date handling | date-fns + react-day-picker |
-| Toast | Sonner |
-| Drawer | Vaul |
-| Build | tsup |
-| Testing | Vitest + Storybook v10 + Playwright |
-| Package manager | pnpm |
+| Layer           | Technology                                    |
+| --------------- | --------------------------------------------- |
+| Framework       | React ≥ 18                                    |
+| Styling         | Tailwind CSS v3 + CSS custom properties (HSL) |
+| Primitives      | Radix UI                                      |
+| Variant system  | `class-variance-authority` (CVA)              |
+| Class merging   | `tailwind-merge` via `cn()`                   |
+| Charts          | Recharts                                      |
+| Icons           | Lucide React                                  |
+| Carousel        | Embla Carousel                                |
+| Date handling   | date-fns + react-day-picker                   |
+| Toast           | Sonner                                        |
+| Drawer          | Vaul                                          |
+| Build           | tsup                                          |
+| Testing         | Vitest + Storybook v10 + Playwright           |
+| Package manager | pnpm                                          |
 
 ---
 
 ## Component Inventory (59 components)
 
 ### Primitives & Layout
+
 `Separator` · `AspectRatio` · `ScrollArea` · `Resizable` · `Direction` · `Collapsible`
 
 ### Typography & Feedback
+
 `Typography` · `Badge` · `Spinner` · `Skeleton` · `Empty` · `Kbd` · `Alert` · `Progress`
 
 ### Forms & Inputs
+
 `Button` · `ButtonGroup` · `Input` · `InputGroup` · `InputOTP` · `Label` · `Textarea` · `Checkbox` · `Switch` · `Slider` · `RadioGroup` · `Toggle` · `ToggleGroup` · `NativeSelect` · `Select` · `Combobox` · `Calendar` · `DatePicker` · `Field`
 
 ### Navigation
+
 `Breadcrumb` · `Tabs` · `Pagination` · `NavigationMenu` · `Menubar` · `Sidebar`
 
 ### Overlays & Popups
+
 `Dialog` · `AlertDialog` · `Sheet` · `Drawer` · `DropdownMenu` · `ContextMenu` · `Popover` · `HoverCard` · `Tooltip` · `Command`
 
 ### Data Display
+
 `Card` · `Table` · `DataTable` · `Accordion` · `Avatar` · `Item` · `Carousel` · `Chart`
 
 ### Notifications
+
 `Toast` · `Sonner`
 
 ---
