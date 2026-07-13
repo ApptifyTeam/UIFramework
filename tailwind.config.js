@@ -42,15 +42,15 @@ module.exports = {
   				foreground: 'hsl(var(--card-foreground))'
   			},
   			success: {
-  				DEFAULT: 'colors.success[500],',
+  				DEFAULT: colors.success[500],
   				foreground: '#ffffff'
   			},
   			warning: {
-  				DEFAULT: 'colors.warning[500],',
+  				DEFAULT: colors.warning[500],
   				foreground: '#ffffff'
   			},
   			info: {
-  				DEFAULT: 'colors.info[500],',
+  				DEFAULT: colors.info[500],
   				foreground: '#ffffff'
   			},
   			sidebar: {
