@@ -1,5 +1,5 @@
 import React from "react";
-import type { Preview, ReactRenderer } from "@storybook/react";
+import type { Preview, ReactRenderer } from "@storybook/react-vite";
 import "../src/styles.css";
 import MockDate from "mockdate";
 import { initialize, mswLoader } from "msw-storybook-addon";
@@ -28,7 +28,9 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
+
     msw: { handlers: mswHandlers },
+
     docs: {
       container: (props: any) => {
         // Read the current theme from the Storybook store globals
@@ -43,6 +45,13 @@ const preview: Preview = {
         );
       },
     },
+
+    a11y: {
+      // 'todo' - show a11y violations in the test UI only
+      // 'error' - fail CI on a11y violations
+      // 'off' - skip a11y checks entirely
+      test: "todo"
+    }
   },
   decorators: [
     withThemeByClassName<ReactRenderer>({

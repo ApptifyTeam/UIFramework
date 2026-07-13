@@ -73,7 +73,7 @@ colors:
   neutral-900: "#0F172A"
   neutral-950: "#020617"
 
-  # Theme surface & utility colors
+  # Theme surface & utility colors (Light)
   background: "#FFFFFF"
   foreground: "#030712"
   card: "#FFFFFF"
@@ -84,6 +84,72 @@ colors:
   ring: "#54C2DF"
   accent-cyan: "#54C2DF"
   accent-orange: "#F3B255"
+
+  # Theme surface & utility colors (Dark)
+  dark:
+    # Scale Inversions for Dark Mode Mapping
+    primary-50: "#1A4F5E"
+    primary-100: "#246F82"
+    primary-200: "#2D8FA6"
+    primary-300: "#3AADC9"
+    primary-400: "#54C2DF"
+    primary-600: "#80D2E4"
+    primary-700: "#ABE1ED"
+    primary-800: "#D5F0F6"
+    primary-900: "#EEF9FB"
+
+    secondary-50: "#70491A"
+    secondary-100: "#946324"
+    secondary-200: "#B87E2F"
+    secondary-300: "#DA9A3E"
+    secondary-400: "#F3B255"
+    secondary-600: "#F7C77C"
+    secondary-700: "#FBDAA3"
+    secondary-800: "#FDECD0"
+    secondary-900: "#FEF7EC"
+
+    success-50: "#047857"
+    success-100: "#059669"
+    success-600: "#D1FAE5"
+    success-700: "#ECFDF5"
+
+    warning-50: "#B45309"
+    warning-100: "#D97706"
+    warning-600: "#FEF3C7"
+    warning-700: "#FFFBEB"
+
+    danger-50: "#B91C1C"
+    danger-100: "#DC2626"
+    danger-600: "#FEE2E2"
+    danger-700: "#FEF2F2"
+
+    info-50: "#0369A1"
+    info-100: "#0284C7"
+    info-600: "#E0F2FE"
+    info-700: "#F0F9FF"
+
+    neutral-50: "#020617"
+    neutral-100: "#0F172A"
+    neutral-200: "#1E293B"
+    neutral-300: "#334155"
+    neutral-400: "#475569"
+    neutral-500: "#64748B"
+    neutral-600: "#94A3B8"
+    neutral-700: "#CBD5E1"
+    neutral-800: "#E2E8F0"
+    neutral-900: "#F1F5F9"
+    neutral-950: "#F8FAFC"
+
+    background: "#0B1437"
+    foreground: "#F8FAFC"
+    card: "#15224F"
+    border: "#1E293B"
+    muted: "#1E293B"
+    muted-foreground: "#94A3B8"
+    destructive: "#EF4444"
+    ring: "#54C2DF"
+    accent-cyan: "#54C2DF"
+    accent-orange: "#F3B255"
 
 # ── Typography ──────────────────────────────────────────────────
 typography:
@@ -335,7 +401,7 @@ Shadows are used **sparingly**. The design references show a largely flat aesthe
 
 ### Buttons
 
-- **Primary**: `primary.500` background, white text, `lg` radius. Hover: `primary.600`. Active: `primary.700`
+- **Primary**: `primary.500` background, dark text (e.g. `neutral.950` for minimum 4.5:1 contrast against bright cyan), `lg` radius. Hover: `primary.600`. Active: `primary.700`
 - **Secondary/Outline**: White background, `neutral.200` border, `secondary.700` text
 - **Ghost**: No background, no border. Appears on hover with `muted` background
 - **Destructive**: `danger.500` background, white text
@@ -429,17 +495,31 @@ Shadows are used **sparingly**. The design references show a largely flat aesthe
 
 ---
 
-## Dark Mode
+## Dark Mode & Theming
 
-Dark mode is activated by adding the `.dark` class to the root HTML element (class-based strategy via `next-themes`).
+The system supports a full dual-theme architecture (Light and Dark mode) using CSS custom properties on `:root` and `.dark`. Dark mode is activated via the `.dark` class on the HTML element (managed by `next-themes`).
+
+### Visual Contrast (Light vs. Dark)
+
+As seen in the reference designs (`Dashboard 1 Ref Light.jpg` and `Dashboard 2 Ref Dark.jpg`), the two themes maintain identical layouts but shift dramatically in mood and surface treatments to ensure visual accessibility and aesthetic appeal:
+
+- **Light Theme (`Dashboard 1 Ref Light.jpg`)**:
+  - **Surfaces**: Crisp white (`#FFFFFF`) cards and backgrounds.
+  - **Feel**: Airy, bright, and highly legible. It relies on subtle grey borders (`neutral-200`) and soft shadows (`sm`) to separate overlapping elements.
+  - **Text**: Deep slate/black (`foreground` `#030712`) for high contrast.
+
+- **Dark Theme (`Dashboard 2 Ref Dark.jpg`)**:
+  - **Surfaces**: Deep navy and slate tones (e.g., `#0B1437` or `neutral-900`/`neutral-950`). Cards use slightly lighter elevated surfaces (`card` token) to stand out from the canvas.
+  - **Feel**: Immersive, sleek, and focused. It reduces glare while keeping the data vibrant.
+  - **Text**: White and light slate (`muted-foreground` `#94A3B8`) text.
+  - **Borders & Shadows**: Shadows are minimized or removed entirely, replaced by very subtle, lighter borders (e.g., `hsl(217.2 32.6% 17.5%)` or `neutral-800`) to define edges and elevation.
 
 ### Dark Mode Rules
 
-- **Surface colours**: Use CSS variable tokens only — never hard-code hex values for backgrounds
-- **Text contrast**: Minimum WCAG AA (4.5:1 for body text, 3:1 for large text)
-- **Borders**: Become more subtle — `hsl(217.2 32.6% 17.5%)` instead of light grey
-- **Charts**: Accent colours (cyan, orange) remain the same in both themes for consistency
-- **Shadows**: Become less prominent or are replaced by a subtle lighter border in dark mode
+- **Surface colours**: Use CSS variable tokens only — never hard-code hex values for backgrounds. Rely on the `background`, `card`, and `popover` tokens.
+- **Data Accents**: Brand and data colors (`cyan` `#54C2DF` and `orange` `#F3B255`) **remain exactly the same** across both themes. Their high luminosity ensures they pop against both white and deep navy backgrounds.
+- **Text contrast**: Ensure minimum WCAG AA (4.5:1 for body text, 3:1 for large text).
+- **Elevation**: Do not use dark drop-shadows to separate layers in dark mode. Instead, use a lighter border or a slightly lighter background color to indicate elevation.
 
 ---
 
