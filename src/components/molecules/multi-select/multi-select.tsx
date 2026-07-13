@@ -52,7 +52,7 @@ function MultiSelect({
         <Button
           variant="outline"
           className={cn(
-            "w-[200px] justify-between text-left font-normal",
+            "w-auto h-10 px-4 rounded-full justify-between text-left font-normal shadow-none border-input",
             triggerClassName
           )}
         >

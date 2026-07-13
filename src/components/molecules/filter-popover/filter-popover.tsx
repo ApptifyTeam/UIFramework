@@ -25,7 +25,7 @@ function FilterPopover({
           variant="outline"
           size="icon"
           className={cn(
-            "h-10 w-10 rounded-md border-black/5 dark:border-white/5 bg-background shadow-none",
+            "h-10 w-10 rounded-full border-input bg-background shadow-none",
             className
           )}
         >
@@ -42,4 +42,36 @@ function FilterPopover({
   )
 }
 
-export { FilterPopover }
+function FilterPopoverHeader({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
+  return <div className={cn("space-y-2", className)} {...props} />
+}
+FilterPopoverHeader.displayName = "FilterPopoverHeader"
+
+function FilterPopoverTitle({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) {
+  return <h4 className={cn("font-semibold leading-none", className)} {...props} />
+}
+FilterPopoverTitle.displayName = "FilterPopoverTitle"
+
+function FilterPopoverDescription({ className, ...props }: React.HTMLAttributes<HTMLParagraphElement>) {
+  return <p className={cn("text-sm text-muted-foreground", className)} {...props} />
+}
+FilterPopoverDescription.displayName = "FilterPopoverDescription"
+
+function FilterPopoverSection({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
+  return <div className={cn("space-y-2", className)} {...props} />
+}
+FilterPopoverSection.displayName = "FilterPopoverSection"
+
+function FilterPopoverSectionLabel({ className, ...props }: React.HTMLAttributes<HTMLLabelElement>) {
+  return <label className={cn("text-xs font-semibold", className)} {...props} />
+}
+FilterPopoverSectionLabel.displayName = "FilterPopoverSectionLabel"
+
+export {
+  FilterPopover,
+  FilterPopoverHeader,
+  FilterPopoverTitle,
+  FilterPopoverDescription,
+  FilterPopoverSection,
+  FilterPopoverSectionLabel,
+}

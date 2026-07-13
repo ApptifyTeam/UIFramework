@@ -33,12 +33,12 @@ const SearchBar = React.forwardRef<HTMLInputElement, SearchBarProps>(
     return (
       <div
         className={cn(
-          "relative flex items-center h-10 transition-all duration-300 rounded-full border border-black/5 dark:border-white/5 bg-background",
+          "relative flex items-center h-10 transition-all duration-300 rounded-full border border-input bg-background shadow-none",
           expandable
             ? isFocused || value
-              ? "w-[240px] px-3 shadow-none"
+              ? "w-[240px] px-3"
               : "w-10 justify-center cursor-pointer hover:bg-accent"
-            : "w-full px-3 shadow-none",
+            : "w-full px-3",
           className
         )}
         onClick={handleContainerClick}
