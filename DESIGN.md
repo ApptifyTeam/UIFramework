@@ -399,6 +399,28 @@ Shadows are used **sparingly**. The design references show a largely flat aesthe
 
 ---
 
+## Component Architectural Pattern: Atomic Design
+
+To maintain strict architectural boundaries, the framework and applications must adhere to the **Atomic Design** philosophy. This keeps the design system organized, modular, and maintainable.
+
+### Layers
+
+1. **Atoms (Base UI Components)**
+   - These are the fundamental HTML tags or Radix primitives styled with our token system. They have a single responsibility and cannot be broken down further.
+   - Examples: `Button`, `Input`, `Label`, `Icon`, `Checkbox`, `Badge`, `Skeleton`, `Kbd`, `Separator`.
+   
+2. **Molecules & Organisms (Compound UI Components)**
+   - These are combinations of two or more Atoms or other Molecules designed to act as a unified, reusable control or widget.
+   - Molecules are simple combinations of a few atoms (e.g., `Field` combining `Label` + `Input`, `DatePicker` combining `Button` + `Calendar` + `Popover`, `MultiSelect` combining `Popover` + `Command` + `Checkbox`, `SearchBar` with expand focus transition).
+   - Organisms are more complex, distinct layout sections or widgets composed of multiple molecules and/or atoms (e.g., `Sidebar`, `DataTable`, `FilterPopover`).
+
+### Strict Rules
+- **Atoms** must not import or render **Molecules** or **Organisms**.
+- **Molecules & Organisms** should build upon and compose **Atoms** rather than implementing custom layouts from raw divs/primitives.
+- **Templates & Pages** (such as components inside the `example/` app) must only consume components from the framework. Direct composition of complex elements from raw buttons/popovers should be refactored into molecules/organisms within the framework to ensure design consistency and reusability.
+
+---
+
 ## Component Rules
 
 ### Buttons
