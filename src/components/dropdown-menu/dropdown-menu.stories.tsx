@@ -13,8 +13,19 @@ import {
   DropdownMenuSubContent,
 } from "./dropdown-menu";
 import { Button } from "@/components/button";
-import { User, Settings, Keyboard, Users, UserPlus, Mail, MessageSquare, PlusCircle, LogOut } from "lucide-react";
+import {
+  UserIcon,
+  Settings01Icon,
+  KeyboardIcon,
+  UserGroupIcon,
+  UserAdd01Icon,
+  Email,
+  MessageSquare,
+  AddCircleIcon,
+  Logout01Icon
+} from "@hugeicons/core-free-icons";
 import * as React from "react";
+import { Icon } from "@/components/icon"
 
 const meta = {
   title: "Components/DropdownMenu",
@@ -39,17 +50,17 @@ export const Default: Story = {
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuItem>
-            <User className="mr-2 h-4 w-4" />
+            <Icon icon={UserIcon} className="mr-2 h-4 w-4" />
             <span>Profile</span>
             <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <Settings className="mr-2 h-4 w-4" />
+            <Icon icon={Settings01Icon} className="mr-2 h-4 w-4" />
             <span>Settings</span>
             <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <Keyboard className="mr-2 h-4 w-4" />
+            <Icon icon={KeyboardIcon} className="mr-2 h-4 w-4" />
             <span>Keyboard shortcuts</span>
             <DropdownMenuShortcut>⌘K</DropdownMenuShortcut>
           </DropdownMenuItem>
@@ -57,26 +68,26 @@ export const Default: Story = {
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuItem>
-            <Users className="mr-2 h-4 w-4" />
+            <Icon icon={UserGroupIcon} className="mr-2 h-4 w-4" />
             <span>Team</span>
           </DropdownMenuItem>
           <DropdownMenuSub>
             <DropdownMenuSubTrigger>
-              <UserPlus className="mr-2 h-4 w-4" />
+              <Icon icon={UserAdd01Icon} className="mr-2 h-4 w-4" />
               <span>Invite users</span>
             </DropdownMenuSubTrigger>
             <DropdownMenuSubContent>
               <DropdownMenuItem>
-                <Mail className="mr-2 h-4 w-4" />
+                <Icon icon={Email} className="mr-2 h-4 w-4" />
                 <span>Email</span>
               </DropdownMenuItem>
               <DropdownMenuItem>
-                <MessageSquare className="mr-2 h-4 w-4" />
+                <Icon icon={MessageSquare} className="mr-2 h-4 w-4" />
                 <span>Message</span>
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem>
-                <PlusCircle className="mr-2 h-4 w-4" />
+                <Icon icon={AddCircleIcon} className="mr-2 h-4 w-4" />
                 <span>More...</span>
               </DropdownMenuItem>
             </DropdownMenuSubContent>
@@ -84,7 +95,7 @@ export const Default: Story = {
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuItem className="text-destructive focus:bg-destructive focus:text-destructive-foreground">
-          <LogOut className="mr-2 h-4 w-4" />
+          <Icon icon={Logout01Icon} className="mr-2 h-4 w-4" />
           <span>Log out</span>
           <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
         </DropdownMenuItem>

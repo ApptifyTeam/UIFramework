@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Toggle } from "./toggle";
-import { Bold } from "lucide-react";
+import { TextBoldIcon } from "@hugeicons/core-free-icons";
 import * as React from "react";
+import { Icon } from "@/components/icon"
 
 const meta = {
   title: "Components/Toggle",
@@ -18,7 +19,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   render: () => (
     <Toggle aria-label="Toggle bold">
-      <Bold className="h-4 w-4" />
+      <Icon icon={TextBoldIcon} className="h-4 w-4" />
     </Toggle>
   ),
 };
@@ -26,7 +27,7 @@ export const Default: Story = {
 export const Outline: Story = {
   render: () => (
     <Toggle variant="outline" aria-label="Toggle bold">
-      <Bold className="h-4 w-4" />
+      <Icon icon={TextBoldIcon} className="h-4 w-4" />
     </Toggle>
   ),
 };

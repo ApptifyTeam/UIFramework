@@ -57,5 +57,6 @@ export * from "./components/chart";
 export * from "./components/sidebar";
 export * from "./components/sonner";
 export * from "./components/toast";
+export * from "./components/icon";
 export * from "./utils/cn";
 export * from "./tokens";

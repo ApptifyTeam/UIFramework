@@ -1,8 +1,9 @@
 import * as React from "react"
-import { Loader2Icon } from "lucide-react"
+import { Loading01Icon } from "@hugeicons/core-free-icons"
 import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "@/utils/cn"
+import { Icon } from "@/components/icon"
 
 const spinnerVariants = cva(
   "animate-spin shrink-0",
@@ -30,15 +31,18 @@ const spinnerVariants = cva(
 )
 
 export interface SpinnerProps
-  extends React.ComponentProps<"svg">,
+  extends Omit<React.ComponentPropsWithoutRef<typeof Icon>, "size" | "variant">,
     VariantProps<typeof spinnerVariants> {}
 
-function Spinner({ className, variant, size, ...props }: SpinnerProps) {
+function Spinner({ className, variant, size, strokeWidth, ...props }: SpinnerProps) {
+  const strokeWidthNum = typeof strokeWidth === "string" ? parseFloat(strokeWidth) : strokeWidth;
   return (
-    <Loader2Icon
+    <Icon
+      icon={Loading01Icon}
       role="status"
       aria-label="Loading"
       className={cn(spinnerVariants({ variant, size }), className)}
+      strokeWidth={strokeWidthNum}
       {...props}
     />
   )

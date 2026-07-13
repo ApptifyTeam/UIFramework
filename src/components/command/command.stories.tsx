@@ -9,8 +9,9 @@ import {
   CommandSeparator,
   CommandShortcut,
 } from "./command";
-import { User, Settings, Calculator, Calendar, Smile } from "lucide-react";
+import { UserIcon, Settings01Icon, CalculatorIcon, Calendar01Icon, SmileIcon } from "@hugeicons/core-free-icons";
 import * as React from "react";
+import { Icon } from "@/components/icon"
 
 const meta = {
   title: "Components/Command",
@@ -33,28 +34,28 @@ export const Default: Story = {
           <CommandEmpty>No results found.</CommandEmpty>
           <CommandGroup heading="Suggestions">
             <CommandItem>
-              <Calendar className="mr-2 h-4 w-4" />
+              <Icon icon={Calendar01Icon} className="mr-2 h-4 w-4" />
               <span>Calendar</span>
             </CommandItem>
             <CommandItem>
-              <Smile className="mr-2 h-4 w-4" />
+              <Icon icon={SmileIcon} className="mr-2 h-4 w-4" />
               <span>Search Emoji</span>
               <CommandShortcut>⌘E</CommandShortcut>
             </CommandItem>
             <CommandItem>
-              <Calculator className="mr-2 h-4 w-4" />
+              <Icon icon={CalculatorIcon} className="mr-2 h-4 w-4" />
               <span>Calculator</span>
             </CommandItem>
           </CommandGroup>
           <CommandSeparator />
           <CommandGroup heading="Settings">
             <CommandItem>
-              <User className="mr-2 h-4 w-4" />
+              <Icon icon={UserIcon} className="mr-2 h-4 w-4" />
               <span>Profile</span>
               <CommandShortcut>⌘P</CommandShortcut>
             </CommandItem>
             <CommandItem>
-              <Settings className="mr-2 h-4 w-4" />
+              <Icon icon={Settings01Icon} className="mr-2 h-4 w-4" />
               <span>Settings</span>
               <CommandShortcut>⌘S</CommandShortcut>
             </CommandItem>

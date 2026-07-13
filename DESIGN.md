@@ -480,14 +480,14 @@ Shadows are used **sparingly**. The design references show a largely flat aesthe
 
 ## Iconography
 
-- **Icon library**: [Lucide React](https://lucide.dev/) (primary) and custom SVGs (e.g., HugeIcons stroke versions).
+- **Icon library**: [Hugeicons React](https://hugeicons.com/) (primary) and custom SVGs.
 - **Icon size**: Default `20px` (`spacing[5]`). In compact contexts use `16px` (`spacing[4]`)
 - **Icon style**: Stroke-based, 1.5–2px stroke width, matching the geometric clarity of Inter
 - **Icon colour**: Inherits `currentColor`. Use `secondary.500` for decorative icons, `primary.500` for interactive icons
 
 ### Icon Variants & Styling
 
-To maximise the utility of free, stroke-only icon sets (like HugeIcons or Lucide), the UI framework defines standard variants to dynamically alter their appearance via CSS and wrapper components:
+To maximise the utility of free, stroke-only icon sets (like HugeIcons), the UI framework defines standard variants to dynamically alter their appearance via CSS and wrapper components:
 
 1. **Default (Outline/Stroke)**:
    - Base state. `fill: none; stroke: currentColor;`
@@ -586,7 +586,7 @@ As seen in the reference designs (`Dashboard 1 Ref Light.jpg` and `Dashboard 2 R
 | Variant system  | `class-variance-authority` (CVA)              |
 | Class merging   | `tailwind-merge` via `cn()`                   |
 | Charts          | Recharts                                      |
-| Icons           | Lucide React                                  |
+| Icons           | Hugeicons React                                |
 | Carousel        | Embla Carousel                                |
 | Date handling   | date-fns + react-day-picker                   |
 | Toast           | Sonner                                        |

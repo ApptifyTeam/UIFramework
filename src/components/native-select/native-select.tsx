@@ -1,6 +1,7 @@
 import * as React from "react";
-import { ChevronDown } from "lucide-react";
+import { ChevronDownIcon } from "@hugeicons/core-free-icons";
 import { cn } from "@/utils/cn";
+import { Icon } from "@/components/icon"
 
 export interface NativeSelectProps
   extends React.SelectHTMLAttributes<HTMLSelectElement> {}
@@ -20,7 +21,7 @@ const NativeSelect = React.forwardRef<HTMLSelectElement, NativeSelectProps>(
           {children}
         </select>
         <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 opacity-50">
-          <ChevronDown className="h-4 w-4" />
+          <Icon icon={ChevronDownIcon} className="h-4 w-4" />
         </span>
       </div>
     );

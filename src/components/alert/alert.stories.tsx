@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Alert, AlertTitle, AlertDescription } from "./alert";
-import { Terminal, AlertCircle, CheckCircle2, AlertTriangle, Info } from "lucide-react";
+import { TerminalIcon, AlertCircleIcon, CheckmarkCircle02Icon, AlertTriangle, InformationCircleIcon } from "@hugeicons/core-free-icons";
 import * as React from "react";
+import { Icon } from "@/components/icon"
 
 const meta = {
   title: "Components/Alert",
@@ -24,7 +25,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   render: () => (
     <Alert className="max-w-[500px]">
-      <Terminal className="h-4 w-4" />
+      <Icon icon={TerminalIcon} className="h-4 w-4" />
       <div>
         <AlertTitle>Heads up!</AlertTitle>
         <AlertDescription>
@@ -38,7 +39,7 @@ export const Default: Story = {
 export const Destructive: Story = {
   render: () => (
     <Alert variant="destructive" className="max-w-[500px]">
-      <AlertCircle className="h-4 w-4" />
+      <Icon icon={AlertCircleIcon} className="h-4 w-4" />
       <div>
         <AlertTitle>Error</AlertTitle>
         <AlertDescription>
@@ -52,7 +53,7 @@ export const Destructive: Story = {
 export const Success: Story = {
   render: () => (
     <Alert variant="success" className="max-w-[500px]">
-      <CheckCircle2 className="h-4 w-4" />
+      <Icon icon={CheckmarkCircle02Icon} className="h-4 w-4" />
       <div>
         <AlertTitle>Success</AlertTitle>
         <AlertDescription>
@@ -66,7 +67,7 @@ export const Success: Story = {
 export const Warning: Story = {
   render: () => (
     <Alert variant="warning" className="max-w-[500px]">
-      <AlertTriangle className="h-4 w-4" />
+      <Icon icon={AlertTriangle} className="h-4 w-4" />
       <div>
         <AlertTitle>Warning</AlertTitle>
         <AlertDescription>
@@ -80,7 +81,7 @@ export const Warning: Story = {
 export const InfoAlert: Story = {
   render: () => (
     <Alert variant="info" className="max-w-[500px]">
-      <Info className="h-4 w-4" />
+      <Icon icon={InformationCircleIcon} className="h-4 w-4" />
       <div>
         <AlertTitle>Information</AlertTitle>
         <AlertDescription>

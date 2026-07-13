@@ -2,8 +2,8 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { InputGroup, InputGroupText } from "./input-group";
 import { Input } from "@/components/input";
 import { Button } from "@/components/button";
-import { Search } from "lucide-react";
-import * as React from "react";
+import { Search01Icon } from "@hugeicons/core-free-icons";
+import { Icon } from "@/components/icon";
 
 const meta = {
   title: "Components/InputGroup",
@@ -44,10 +44,13 @@ export const IconPrefixButtonSuffix: Story = {
     <div className="w-[350px]">
       <InputGroup>
         <InputGroupText className="px-2.5">
-          <Search className="h-4 w-4 text-muted-foreground" />
+          <Icon icon={Search01Icon} className="h-4 w-4 text-muted-foreground" />
         </InputGroupText>
         <Input placeholder="Search documents..." />
-        <Button variant="ghost" className="h-auto rounded-none border-l border-input">
+        <Button
+          variant="ghost"
+          className="h-auto rounded-none border-l border-input"
+        >
           Find
         </Button>
       </InputGroup>

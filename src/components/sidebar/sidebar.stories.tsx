@@ -13,8 +13,16 @@ import {
   SidebarMenuBadge,
   SidebarProvider,
 } from "./sidebar";
-import { LayoutDashboard, Users, Settings, Bell, HelpCircle, LogOut } from "lucide-react";
+import {
+  DashboardSquare01Icon,
+  UserGroupIcon,
+  Settings01Icon,
+  BellIcon,
+  HelpCircleIcon,
+  Logout01Icon
+} from "@hugeicons/core-free-icons";
 import * as React from "react";
+import { Icon } from "@/components/icon"
 
 const meta = {
   title: "Components/Sidebar",
@@ -54,19 +62,19 @@ export const Default: Story = {
               <SidebarMenu>
                 <SidebarMenuItem>
                   <SidebarMenuButton isActive>
-                    <LayoutDashboard className="h-4 w-4" />
+                    <Icon icon={DashboardSquare01Icon} className="h-4 w-4" />
                     <span>Dashboard</span>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
                 <SidebarMenuItem>
                   <SidebarMenuButton>
-                    <Users className="h-4 w-4" />
+                    <Icon icon={UserGroupIcon} className="h-4 w-4" />
                     <span>Users</span>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
                 <SidebarMenuItem>
                   <SidebarMenuButton>
-                    <Bell className="h-4 w-4" />
+                    <Icon icon={BellIcon} className="h-4 w-4" />
                     <span>Notifications</span>
                     <SidebarMenuBadge>12</SidebarMenuBadge>
                   </SidebarMenuButton>
@@ -80,13 +88,13 @@ export const Default: Story = {
               <SidebarMenu>
                 <SidebarMenuItem>
                   <SidebarMenuButton>
-                    <HelpCircle className="h-4 w-4" />
+                    <Icon icon={HelpCircleIcon} className="h-4 w-4" />
                     <span>Help Center</span>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
                 <SidebarMenuItem>
                   <SidebarMenuButton>
-                    <Settings className="h-4 w-4" />
+                    <Icon icon={Settings01Icon} className="h-4 w-4" />
                     <span>Settings</span>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
@@ -98,7 +106,7 @@ export const Default: Story = {
           <SidebarMenu>
             <SidebarMenuItem>
               <SidebarMenuButton className="text-destructive hover:bg-destructive/10">
-                <LogOut className="h-4 w-4" />
+                <Icon icon={Logout01Icon} className="h-4 w-4" />
                 <span>Log out</span>
               </SidebarMenuButton>
             </SidebarMenuItem>

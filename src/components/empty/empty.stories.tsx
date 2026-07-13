@@ -1,8 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Empty, EmptyMedia, EmptyTitle, EmptyDescription, EmptyContent } from "./empty";
 import { Button } from "@/components/button";
-import { FolderOpen } from "lucide-react";
+import { FolderOpenIcon } from "@hugeicons/core-free-icons";
 import * as React from "react";
+import { Icon } from "@/components/icon"
 
 const meta = {
   title: "Components/Empty",
@@ -20,7 +21,7 @@ export const Default: Story = {
   render: () => (
     <Empty>
       <EmptyMedia>
-        <FolderOpen className="h-10 w-10 text-muted-foreground" />
+        <Icon icon={FolderOpenIcon} className="h-10 w-10 text-muted-foreground" />
       </EmptyMedia>
       <EmptyTitle>No files uploaded</EmptyTitle>
       <EmptyDescription>

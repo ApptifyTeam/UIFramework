@@ -3,8 +3,9 @@ import { Popover, PopoverTrigger, PopoverContent } from "./popover";
 import { Button } from "@/components/button";
 import { Input } from "@/components/input";
 import { Label } from "@/components/label";
-import { Settings } from "lucide-react";
+import { Settings01Icon } from "@hugeicons/core-free-icons";
 import * as React from "react";
+import { Icon } from "@/components/icon"
 
 const meta = {
   title: "Components/Popover",
@@ -23,7 +24,7 @@ export const Default: Story = {
     <Popover>
       <PopoverTrigger asChild>
         <Button variant="outline" size="icon">
-          <Settings className="h-4 w-4" />
+          <Icon icon={Settings01Icon} className="h-4 w-4" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-80">

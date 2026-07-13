@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { HoverCard, HoverCardTrigger, HoverCardContent } from "./hover-card";
-import { CalendarDays } from "lucide-react";
+import { CalendarDaysIcon } from "@hugeicons/core-free-icons";
 import * as React from "react";
+import { Icon } from "@/components/icon"
 
 const meta = {
   title: "Components/HoverCard",
@@ -39,7 +40,7 @@ export const Default: Story = {
               The React Framework – created and maintained by @vercel.
             </p>
             <div className="flex items-center pt-2">
-              <CalendarDays className="mr-2 h-4 w-4 opacity-70" />
+              <Icon icon={CalendarDaysIcon} className="mr-2 h-4 w-4 opacity-70" />
               <span className="text-xs text-muted-foreground">
                 Joined December 2021
               </span>
