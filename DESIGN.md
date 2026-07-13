@@ -349,10 +349,10 @@ All spacing follows a **4px base unit**. Use only tokens from the spacing scale 
 
 ### Background & Container Hierarchy
 
-The fundamental principle of Apptify's layout is a completely flat hierarchy using borders rather than shadows.
-- **Main Background and Card Backgrounds MUST be identical.** (e.g., `#FFFFFF` or `#F8FAFC`).
-- Cards rely **exclusively** on a very faint, 1px semi-transparent border (e.g., `border-black/5` or `border-white/5`) for separation.
-- **No drop shadows** should be used on standard structural cards. Shadows are reserved for floating elements (popovers, dropdowns).
+Apptify's layout uses a clean, border-driven hierarchy, but adapts between themes:
+- **Light Mode**: Main Background and Card Backgrounds can be flat (same color), relying on subtle borders.
+- **Dark Mode**: Uses a rich blue-grey aesthetic. **Cards MUST have a distinct, lighter background color** compared to the main app background to create depth. For example, Background is a deep blue-grey (`#263851`) while Cards are slightly lighter (`#2D4461`).
+- No drop shadows are allowed on any standard structural elements.
 
 ### Layout Modules
 - **Sidebar**: Clean, left-aligned sidebar. The active state MUST use a light tint of the primary color for the background pill (e.g. `bg-primary/10`) and solid primary color for the text/icon (`text-primary`).

@@ -55,7 +55,7 @@ export const colors = {
     700: "#0369A1",
   },
 
-  // Neutral Scales (Sleek Slate)
+  // Neutral Scales (Blue-Grey for Dark Theme Support)
   neutral: {
     50: "#F8FAFC",
     100: "#F1F5F9",
@@ -64,9 +64,9 @@ export const colors = {
     400: "#94A3B8",
     500: "#64748B",
     600: "#475569",
-    700: "#334155",
-    800: "#1E293B",
-    900: "#0F172A",
-    950: "#020617",
+    700: "#3B567A", // Adapted for muted/border in dark mode
+    800: "#2D4461", // Adapted for card backgrounds in dark mode
+    900: "#263851", // Adapted for main app background in dark mode
+    950: "#1E2C40", // Deeper dark blue
   }
 } as const;
