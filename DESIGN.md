@@ -480,10 +480,27 @@ Shadows are used **sparingly**. The design references show a largely flat aesthe
 
 ## Iconography
 
-- **Icon library**: [Lucide React](https://lucide.dev/) — already integrated as a dependency
+- **Icon library**: [Lucide React](https://lucide.dev/) (primary) and custom SVGs (e.g., HugeIcons stroke versions).
 - **Icon size**: Default `20px` (`spacing[5]`). In compact contexts use `16px` (`spacing[4]`)
 - **Icon style**: Stroke-based, 1.5–2px stroke width, matching the geometric clarity of Inter
 - **Icon colour**: Inherits `currentColor`. Use `secondary.500` for decorative icons, `primary.500` for interactive icons
+
+### Icon Variants & Styling
+
+To maximise the utility of free, stroke-only icon sets (like HugeIcons or Lucide), the UI framework defines standard variants to dynamically alter their appearance via CSS and wrapper components:
+
+1. **Default (Outline/Stroke)**:
+   - Base state. `fill: none; stroke: currentColor;`
+2. **Solid (Simulated)**:
+   - Fills the vector paths via CSS: `fill: currentColor; stroke: currentColor;`
+   - *Note: This works well for simple, closed shapes (like circles, folders) but may look distorted on complex intersecting line-art.*
+3. **Duotone (Soft Container)**:
+   - Since true multi-color duotone is difficult on single-path SVGs, we simulate a "Duotone Apptify Style" by wrapping the stroke icon in a soft, tinted background pill/circle.
+   - Example: Icon is `text-primary-600`, placed inside a container with `bg-primary-100 rounded-lg p-2`.
+4. **Bold (Thick Stroke)**:
+   - Increases visual weight by overriding the stroke width via CSS: `stroke-width: 2.5px;` or `3px;`.
+5. **Glow (Neon Effect)**:
+   - Adds a coloured drop shadow matching the text colour: `filter: drop-shadow(0 0 4px currentColor);`
 
 ---
 

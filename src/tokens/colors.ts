@@ -64,9 +64,9 @@ export const colors = {
     400: "#94A3B8",
     500: "#64748B",
     600: "#475569",
-    700: "#3B567A", // Adapted for muted/border in dark mode
-    800: "#2D4461", // Adapted for card backgrounds in dark mode
-    900: "#263851", // Adapted for main app background in dark mode
-    950: "#1E2C40", // Deeper dark blue
+    700: "#384C66", // Lighter border / UI elements
+    800: "#27374D", // Adapted for card backgrounds in dark mode
+    900: "#1F2C3D", // Adapted for main app background in dark mode
+    950: "#151E2B", // Deepest dark for muted/hollow tracks
   }
 } as const;

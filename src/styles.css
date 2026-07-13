@@ -49,37 +49,46 @@
 
   /* ── Dark Theme ── */
   .dark {
-    --background: 215 36% 23%;
+    /* Deeper backgrounds to remove the 'washed out/alpha' feeling */
+    --background: 214 32% 18%;
     --foreground: 210 40% 98%;
-    --card: 214 36% 28%;
+    --card: 213 33% 23%;
     --card-foreground: 210 40% 98%;
-    --popover: 214 36% 28%;
+    --popover: 213 33% 23%;
     --popover-foreground: 210 40% 98%;
     --primary: 193 68% 60%;
     --primary-foreground: 0 0% 100%;
     --secondary: 35 88% 64%;
     --secondary-foreground: 0 0% 100%;
-    --muted: 214 35% 35%;
-    --muted-foreground: 215 20.2% 75.1%;
-    --accent: 214 35% 35%;
+    
+    /* Muted should recede (darker) rather than pop out (lighter) */
+    --muted: 214 32% 14%;
+    --muted-foreground: 215 20% 75%;
+    --accent: 214 32% 14%;
     --accent-foreground: 210 40% 98%;
+    
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 100%;
-    --border: 214 35% 35%;
-    --input: 214 35% 35%;
+    
+    /* Borders very subtle to avoid visual noise */
+    --border: 213 33% 28%;
+    --input: 213 33% 28%;
     --ring: 193 68% 60%;
+    
     --chart-1: 193 69% 60%;
     --chart-2: 35 88% 64%;
     --chart-3: 340 75% 55%;
     --chart-4: 160 60% 45%;
     --chart-5: 280 65% 60%;
-    --sidebar-background: 215 36% 23%;
+    
+    /* Sidebar slightly darker or matching bg */
+    --sidebar-background: 213 33% 20%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 193 68% 60%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 214 35% 35%;
+    --sidebar-accent: 214 32% 14%;
     --sidebar-accent-foreground: 210 40% 98%;
-    --sidebar-border: 214 35% 35%;
+    --sidebar-border: 213 33% 20%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
