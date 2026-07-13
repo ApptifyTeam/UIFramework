@@ -28,9 +28,11 @@
     "format": "prettier --write \"**/*.{ts,tsx,md,json}\"",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "release": "bash scripts/release.sh"
+    "release": "bash scripts/release.sh",
+    "design:lint": "designmd lint DESIGN.md"
   },
   "dependencies": {
+    "@google/design.md": "^0.3.0",
     "@radix-ui/react-accordion": "^1.2.12",
     "@radix-ui/react-alert-dialog": "^1.1.15",
     "@radix-ui/react-aspect-ratio": "^1.1.8",
