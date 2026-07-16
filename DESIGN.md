@@ -363,7 +363,7 @@ Apptify's layout uses a clean, border-driven hierarchy, but adapts between theme
    - `border-radius: radius.xl` (12px)
    - **No box-shadow.**
 
-3. **Filters Bar** — Appears at the top of data views with dropdowns for date range, location, and search. Uses pill-shaped inputs with `radius.full`.
+3. **Filters Bar** — Appears at the top of data views with dropdowns for date range, location, and search. Uses standard rounded-corner controls with `radius.lg`.
 
 ---
 
@@ -378,7 +378,7 @@ The default component radius (`--radius`) is **0.75rem (12px)**. This gives a mo
 | Inputs, Selects    | `lg` (8px)      |
 | Badges             | `full` (pill)   |
 | Avatars            | `full` (circle) |
-| Filter chips       | `full` (pill)   |
+| Filter chips       | `lg` (8px)      |
 | Charts/map markers | `full` (circle) |
 | Tooltips           | `md` (6px)      |
 

@@ -1,0 +1,5 @@
+allowBuilds:
+  sharp: set this to true or false
+  unrs-resolver: set this to true or false
+minimumReleaseAgeExclude:
+  - '@apptify-labs/ui@1.0.0'

@@ -25,7 +25,7 @@ function FilterPopover({
           variant="outline"
           size="icon"
           className={cn(
-            "h-10 w-10 rounded-full border-input bg-background shadow-none",
+            "h-10 w-10 rounded-lg border-input bg-background shadow-none",
             className
           )}
         >

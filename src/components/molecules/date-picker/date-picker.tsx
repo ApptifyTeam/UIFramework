@@ -26,7 +26,7 @@ function DatePicker({
         <Button
           variant={"outline"}
           className={cn(
-            "w-auto h-10 px-4 rounded-full justify-start text-left font-normal shadow-none border-input",
+            "w-auto h-10 px-4 rounded-lg justify-start text-left font-normal shadow-none border-input",
             !date && "text-muted-foreground",
             className
           )}
