@@ -369,18 +369,18 @@ Apptify's layout uses a clean, border-driven hierarchy, but adapts between theme
 
 ## Border Radius
 
-The default component radius (`--radius`) is **0.75rem (12px)**. This gives a modern, approachable feel.
+The design system implements a dual-radius strategy to separate structural elements from interactive controls:
 
-| Element            | Radius          |
-| ------------------ | --------------- |
-| Buttons            | `lg` (8px)      |
-| Cards, Dialogs     | `xl` (12px)     |
-| Inputs, Selects    | `lg` (8px)      |
-| Badges             | `full` (pill)   |
-| Avatars            | `full` (circle) |
-| Filter chips       | `lg` (8px)      |
-| Charts/map markers | `full` (circle) |
-| Tooltips           | `md` (6px)      |
+1. **Structural Radius (`--radius`)**: Used for containers, cards, popovers, and dialogs. This gives structural elements a consistent, approachable feel. (Mapped to `rounded-lg`, `rounded-xl`, etc.)
+2. **Interactive Radius (`--radius-button`)**: Used exclusively for clickable, highly interactive elements like buttons, search bars, and dropdown triggers. This allows the system to easily toggle between pill-shaped (`9999px`) or slightly rounded buttons without affecting structural containers. (Mapped to `rounded-button`)
+
+| Element                                 | Radius Token         | Tailwind Class     |
+| --------------------------------------- | -------------------- | ------------------ |
+| Buttons, Search Bars, Triggers          | `--radius-button`    | `rounded-button`   |
+| Cards, Dialogs                          | `--radius` + offset  | `rounded-xl`       |
+| Popovers, Dropdowns, Inputs, Selects    | `--radius`           | `rounded-lg`       |
+| Tooltips                                | `--radius` - offset  | `rounded-md`       |
+| Badges, Avatars, Charts/map markers     | Constant             | `rounded-full`     |
 
 ---
 
