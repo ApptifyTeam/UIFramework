@@ -1,13 +1,60 @@
 "use client";
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@apptify-labs/ui";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from "@apptify-labs/ui";
-import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@apptify-labs/ui";
-import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@apptify-labs/ui";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@apptify-labs/ui";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+  DialogFooter,
+} from "@apptify-labs/ui";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@apptify-labs/ui";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@apptify-labs/ui";
 import { Popover, PopoverContent, PopoverTrigger } from "@apptify-labs/ui";
-import { HoverCard, HoverCardContent, HoverCardTrigger } from "@apptify-labs/ui";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@apptify-labs/ui";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@apptify-labs/ui";
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@apptify-labs/ui";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@apptify-labs/ui";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@apptify-labs/ui";
 import { Button } from "@apptify-labs/ui";
 import { Input } from "@apptify-labs/ui";
 import { Label } from "@apptify-labs/ui";
@@ -16,12 +63,13 @@ export default function OverlaysPage() {
   return (
     <div className="space-y-6">
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        
         {/* Dialogs */}
         <Card>
           <CardHeader>
             <CardTitle>Dialog & Alert</CardTitle>
-            <CardDescription>Modal windows that interrupt user workflow.</CardDescription>
+            <CardDescription>
+              Modal windows that interrupt user workflow.
+            </CardDescription>
           </CardHeader>
           <CardContent className="flex flex-wrap gap-4">
             <Dialog>
@@ -32,13 +80,20 @@ export default function OverlaysPage() {
                 <DialogHeader>
                   <DialogTitle>Edit profile</DialogTitle>
                   <DialogDescription>
-                    Make changes to your profile here. Click save when you're done.
+                    Make changes to your profile here. Click save when
+                    you&apos;re done.
                   </DialogDescription>
                 </DialogHeader>
                 <div className="grid gap-4 py-4">
                   <div className="grid grid-cols-4 items-center gap-4">
-                    <Label htmlFor="name" className="text-right">Name</Label>
-                    <Input id="name" defaultValue="Pedro Duarte" className="col-span-3" />
+                    <Label htmlFor="name" className="text-right">
+                      Name
+                    </Label>
+                    <Input
+                      id="name"
+                      defaultValue="Pedro Duarte"
+                      className="col-span-3"
+                    />
                   </div>
                 </div>
                 <DialogFooter>
@@ -55,7 +110,8 @@ export default function OverlaysPage() {
                 <AlertDialogHeader>
                   <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
                   <AlertDialogDescription>
-                    This action cannot be undone. This will permanently delete your account and remove your data from our servers.
+                    This action cannot be undone. This will permanently delete
+                    your account and remove your data from our servers.
                   </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
@@ -71,7 +127,9 @@ export default function OverlaysPage() {
         <Card>
           <CardHeader>
             <CardTitle>Sheet</CardTitle>
-            <CardDescription>Extends from the edge of the screen.</CardDescription>
+            <CardDescription>
+              Extends from the edge of the screen.
+            </CardDescription>
           </CardHeader>
           <CardContent className="flex flex-wrap gap-4">
             <Sheet>
@@ -82,7 +140,8 @@ export default function OverlaysPage() {
                 <SheetHeader>
                   <SheetTitle>Edit profile</SheetTitle>
                   <SheetDescription>
-                    Make changes to your profile here. Click save when you're done.
+                    Make changes to your profile here. Click save when
+                    you&apos;re done.
                   </SheetDescription>
                 </SheetHeader>
                 <div className="py-4">
@@ -108,7 +167,9 @@ export default function OverlaysPage() {
                 <div className="grid gap-4">
                   <div className="space-y-2">
                     <h4 className="font-medium leading-none">Dimensions</h4>
-                    <p className="text-sm text-muted-foreground">Set the dimensions for the layer.</p>
+                    <p className="text-sm text-muted-foreground">
+                      Set the dimensions for the layer.
+                    </p>
                   </div>
                 </div>
               </PopoverContent>
@@ -131,7 +192,9 @@ export default function OverlaysPage() {
         <Card>
           <CardHeader>
             <CardTitle>Menus & Hover Cards</CardTitle>
-            <CardDescription>Interactive menus and rich tooltips.</CardDescription>
+            <CardDescription>
+              Interactive menus and rich tooltips.
+            </CardDescription>
           </CardHeader>
           <CardContent className="flex flex-wrap items-center gap-4">
             <DropdownMenu>
@@ -158,7 +221,6 @@ export default function OverlaysPage() {
             </HoverCard>
           </CardContent>
         </Card>
-
       </div>
     </div>
   );

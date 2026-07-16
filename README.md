@@ -125,18 +125,31 @@ const buttonStyle = {
 
 ## Development
 
-See the [monorepo development guide](../../README.md#development) for the basic setup.
-
 Inside this folder:
 
 ```bash
-pnpm dev               # watch build
-pnpm build             # one-shot build
-pnpm lint              # type-check
-pnpm storybook         # run Storybook on port 6006
-pnpm build-storybook   # build static storybook
-pnpm release patch     # release new patch version
+bun dev               # watch and build automatically when files change (recommended for development)
+bun run build         # one-shot build
+bun lint              # type-check
+bun storybook         # run Storybook on port 6006
+bun build-storybook   # build static storybook
 ```
+
+### Running the Example App
+
+Since the `example` app references `@apptify-labs/ui` locally via `"file:.."`, any changes you make in `src/` must be built into the `dist/` directory to reflect in the example app.
+
+1. **Start the build watcher** in the `framework` directory:
+   ```bash
+   bun dev
+   ```
+2. **Start the Next.js development server** in the `framework/example` directory:
+   ```bash
+   bun dev
+   ```
+
+Now, any changes you make in the component files (`src/`) will be rebuilt automatically by `tsup` and reflected in the example app.
+
 
 ## Release
 

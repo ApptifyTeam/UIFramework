@@ -36,7 +36,8 @@
     --chart-3: 340 75% 55%; /* Pink/Red */
     --chart-4: 160 60% 45%; /* Green */
     --chart-5: 280 65% 60%; /* Purple */
-    --radius: 9999px;
+    --radius: 0.5rem;
+    --radius-button: 9999px;
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
     --sidebar-primary: 240 5.9% 10%;

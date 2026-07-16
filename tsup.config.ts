@@ -4,7 +4,7 @@ import pkg from "./package.json";
 export default defineConfig({
   entry: ["src/index.ts", "src/styles.css"],
   format: ["cjs", "esm"],
-  dts: true,
+  dts: { entry: ["src/index.ts"] },
   splitting: false,
   sourcemap: true,
   clean: true,
