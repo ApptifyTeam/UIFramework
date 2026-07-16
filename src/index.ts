@@ -61,5 +61,7 @@ export * from "./components/atoms/icon";
 export * from "./components/molecules/multi-select";
 export * from "./components/molecules/search-bar";
 export * from "./components/molecules/filter-popover";
+export * from "./components/organisms/page";
+export * from "./components/atoms/grid";
 export * from "./utils/cn";
 export * from "./tokens";
