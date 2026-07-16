@@ -1,4 +1,6 @@
 import * as React from "react";
+import { Slot } from "@radix-ui/react-slot";
+import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/utils/cn";
 
 export const H1 = React.forwardRef<
@@ -146,3 +148,59 @@ export const Muted = React.forwardRef<
   />
 ));
 Muted.displayName = "Muted";
+
+export const textVariants = cva("m-0", {
+  variants: {
+    variant: {
+      default: "text-foreground",
+      muted: "text-muted-foreground",
+      destructive: "text-destructive",
+    },
+    size: {
+      default: "text-base",
+      xs: "text-xs",
+      sm: "text-sm",
+      lg: "text-lg",
+      xl: "text-xl",
+      "2xl": "text-2xl",
+      "3xl": "text-3xl",
+      "4xl": "text-4xl",
+    },
+    weight: {
+      default: "font-normal",
+      medium: "font-medium",
+      semibold: "font-semibold",
+      bold: "font-bold",
+    },
+    align: {
+      left: "text-left",
+      center: "text-center",
+      right: "text-right",
+    },
+  },
+  defaultVariants: {
+    variant: "default",
+    size: "default",
+    weight: "default",
+  },
+});
+
+export interface TextProps
+  extends React.HTMLAttributes<HTMLSpanElement>,
+    VariantProps<typeof textVariants> {
+  asChild?: boolean;
+}
+
+export const Text = React.forwardRef<HTMLSpanElement, TextProps>(
+  ({ className, variant, size, weight, align, asChild = false, ...props }, ref) => {
+    const Comp = asChild ? Slot : "span";
+    return (
+      <Comp
+        ref={ref}
+        className={cn(textVariants({ variant, size, weight, align, className }))}
+        {...props}
+      />
+    );
+  }
+);
+Text.displayName = "Text";

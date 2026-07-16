@@ -18,6 +18,8 @@ import {
   NoteIcon,
   ComponentIcon,
   LayersIcon,
+  LifebuoyIcon,
+  HelpCircleIcon,
 } from "@hugeicons/core-free-icons";
 import { useLang } from "../providers/lang-provider";
 import {
@@ -32,6 +34,14 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   Icon,
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  Avatar,
+  AvatarImage,
+  AvatarFallback,
+  Text,
   type NavGroupData,
 } from "@apptify-labs/ui";
 
@@ -53,9 +63,18 @@ export function AppSidebar() {
           url: "/dashboard/analytics",
           icon: Analytics01Icon,
           items: [
-            { title: t.sidebar.salesReports, url: "/dashboard/analytics/sales" },
-            { title: t.sidebar.productReports, url: "/dashboard/analytics/products" },
-            { title: t.sidebar.customerReports, url: "/dashboard/analytics/customers" },
+            {
+              title: t.sidebar.salesReports,
+              url: "/dashboard/analytics/sales",
+            },
+            {
+              title: t.sidebar.productReports,
+              url: "/dashboard/analytics/products",
+            },
+            {
+              title: t.sidebar.customerReports,
+              url: "/dashboard/analytics/customers",
+            },
           ],
         },
       ],
@@ -127,8 +146,14 @@ export function AppSidebar() {
           icon: LayersIcon,
           items: [
             { title: t.sidebar.stock, url: "/dashboard/inventory/stock" },
-            { title: t.sidebar.warehouses, url: "/dashboard/inventory/warehouses" },
-            { title: t.sidebar.stockMovements, url: "/dashboard/inventory/movements" },
+            {
+              title: t.sidebar.warehouses,
+              url: "/dashboard/inventory/warehouses",
+            },
+            {
+              title: t.sidebar.stockMovements,
+              url: "/dashboard/inventory/movements",
+            },
           ],
         },
         {
@@ -217,29 +242,11 @@ export function AppSidebar() {
           icon: Message01Icon,
           badge: "9+",
         },
-        {
-          title: t.sidebar.helpdesk,
-          url: "/dashboard/helpdesk",
-          icon: Message01Icon,
-        },
       ],
     },
     {
       group: t.sidebar.system,
       items: [
-        {
-          title: t.sidebar.settings,
-          url: "/dashboard/settings",
-          icon: Settings01Icon,
-          items: [
-            { title: t.sidebar.general, url: "/dashboard/settings/general" },
-            {
-              title: t.sidebar.paymentGateways,
-              url: "/dashboard/settings/payments",
-            },
-            { title: t.sidebar.taxes, url: "/dashboard/settings/taxes" },
-          ],
-        },
         {
           title: t.sidebar.staff,
           url: "/dashboard/staff",
@@ -300,12 +307,67 @@ export function AppSidebar() {
       <SidebarFooter>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton asChild tooltip={t.common.logout}>
-              <Link href="/">
-                <Icon icon={Logout01Icon} />
-                <span>{t.common.logout}</span>
+            <SidebarMenuButton asChild tooltip={t.sidebar.helpdesk}>
+              <Link href="/dashboard/helpdesk">
+                <Icon icon={LifebuoyIcon || HelpCircleIcon} />
+                <span>{t.sidebar.helpdesk}</span>
               </Link>
             </SidebarMenuButton>
+          </SidebarMenuItem>
+          <SidebarMenuItem>
+            <SidebarMenuButton asChild tooltip={t.sidebar.settings}>
+              <Link href="/dashboard/settings">
+                <Icon icon={Settings01Icon} />
+                <span>{t.sidebar.settings}</span>
+              </Link>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
+
+        <div className="h-px bg-border my-2 mx-4 group-data-[collapsible=icon]:mx-2" />
+
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <SidebarMenuButton size="lg">
+                  <Avatar>
+                    <AvatarImage
+                      src="https://github.com/shadcn.png"
+                      alt="Shahin Ahmed"
+                    />
+                    <AvatarFallback>SA</AvatarFallback>
+                  </Avatar>
+                  <div className="flex flex-col items-start ml-2 flex-1 overflow-hidden group-data-[collapsible=icon]:hidden">
+                    <Text
+                      size="sm"
+                      weight="semibold"
+                      className="truncate w-full leading-none mb-1"
+                    >
+                      Shahin Ahmed
+                    </Text>
+                    <Text
+                      size="xs"
+                      variant="muted"
+                      className="truncate w-full leading-none"
+                    >
+                      Ahmed@gmail.com
+                    </Text>
+                  </div>
+                </SidebarMenuButton>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent
+                side="right"
+                align="end"
+                className="w-56"
+                sideOffset={8}
+              >
+                <DropdownMenuItem>
+                  <Icon icon={Logout01Icon} className="mr-2 h-4 w-4" />
+                  <span>{t.common.logout}</span>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarFooter>
