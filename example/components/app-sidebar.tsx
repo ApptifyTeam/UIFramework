@@ -22,37 +22,81 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarMenuBadge,
   Icon,
+  type NavGroupData,
 } from "@apptify-labs/ui";
 
 export function AppSidebar() {
   const { t } = useLang();
   const pathname = usePathname();
 
-  const navItems = [
+  const navGroups: NavGroupData[] = [
     {
-      title: t.common.dashboard,
-      url: "/dashboard",
-      icon: DashboardSquare01Icon,
-    },
-    {
-      title: t.common.forms,
-      url: "/dashboard/forms",
-      icon: NoteIcon,
-      badge: "5",
-    },
-    {
-      title: t.common.uiElements,
-      url: "/dashboard/components",
-      icon: ComponentIcon,
-    },
-    {
-      title: t.common.overlays,
-      url: "/dashboard/overlays",
-      icon: LayersIcon,
+      group: t.common.overview,
+      items: [
+        {
+          title: t.common.dashboard,
+          url: "/dashboard",
+          icon: DashboardSquare01Icon,
+        },
+        {
+          title: "Bank Profile",
+          url: "/dashboard/bank-profile",
+          icon: ComponentIcon,
+          items: [
+            {
+              title: "Bank Information",
+              url: "/dashboard/bank-profile/info",
+            },
+            {
+              title: "Bank Products",
+              url: "/dashboard/bank-profile/products",
+            },
+          ],
+        },
+        {
+          title: "Orders",
+          url: "/dashboard/orders",
+          icon: NoteIcon,
+          items: [
+            {
+              title: "Order Management",
+              url: "/dashboard/orders/management",
+            },
+            {
+              title: "Order Setting",
+              url: "/dashboard/orders/setting",
+            },
+          ],
+        },
+        {
+          title: t.common.forms,
+          url: "/dashboard/forms",
+          icon: NoteIcon,
+          badge: "5",
+        },
+        {
+          title: t.common.uiElements,
+          url: "/dashboard/components",
+          icon: ComponentIcon,
+        },
+        {
+          title: t.common.overlays,
+          url: "/dashboard/overlays",
+          icon: LayersIcon,
+        },
+      ],
     },
   ];
+
+  const groupsWithLinks = navGroups.map((group) => ({
+    ...group,
+    items: group.items.map((item) => ({
+      ...item,
+      as: Link,
+      items: item.items?.map((sub) => ({ ...sub, as: Link })),
+    })),
+  }));
 
   return (
     <Sidebar>
@@ -67,36 +111,16 @@ export function AppSidebar() {
         </div>
       </SidebarHeader>
       <SidebarContent>
-        <SidebarGroup>
-          <SidebarGroupLabel>{t.common.overview}</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              {navItems.map((item) => {
-                const isActive = pathname === item.url;
-                return (
-                  <SidebarMenuItem key={item.url}>
-                    <SidebarMenuButton
-                      asChild
-                      isActive={isActive}
-                      tooltip={item.title}
-                    >
-                      <Link href={item.url}>
-                        <Icon
-                          icon={item.icon}
-                          variant={isActive ? "bold" : "default"}
-                        />
-                        <span>{item.title}</span>
-                      </Link>
-                    </SidebarMenuButton>
-                    {item.badge && (
-                      <SidebarMenuBadge>{item.badge}</SidebarMenuBadge>
-                    )}
-                  </SidebarMenuItem>
-                );
-              })}
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
+        {groupsWithLinks.map((group, index) => (
+          <SidebarGroup key={index}>
+            {group.group && (
+              <SidebarGroupLabel>{group.group}</SidebarGroupLabel>
+            )}
+            <SidebarGroupContent>
+              <SidebarMenu items={group.items} currentPath={pathname} />
+            </SidebarGroupContent>
+          </SidebarGroup>
+        ))}
       </SidebarContent>
       <SidebarFooter>
         <SidebarMenu>

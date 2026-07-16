@@ -4,6 +4,18 @@ import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 import { PanelLeftIcon } from "@hugeicons/core-free-icons";
+import { ChevronRight } from "lucide-react";
+import {
+  Collapsible,
+  CollapsibleTrigger,
+  CollapsibleContent,
+} from "@/components/atoms/collapsible";
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+} from "@/components/molecules/dropdown-menu";
 
 import { useIsMobile } from "@/hooks/use-mobile";
 import { cn } from "@/utils/cn";
@@ -25,6 +37,25 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/atoms/tooltip";
+
+export type NavItemData = {
+  title: string;
+  url: string;
+  icon?: React.ElementType | unknown;
+  badge?: string;
+  items?: {
+    title: string;
+    url: string;
+    icon?: React.ElementType | unknown;
+    as?: React.ElementType;
+  }[];
+  as?: React.ElementType;
+};
+
+export type NavGroupData = {
+  group?: string;
+  items: NavItemData[];
+};
 
 const SIDEBAR_COOKIE_NAME = "sidebar_state";
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7;
@@ -509,15 +540,144 @@ SidebarGroupContent.displayName = "SidebarGroupContent";
 
 const SidebarMenu = React.forwardRef<
   HTMLUListElement,
-  React.ComponentProps<"ul">
->(({ className, ...props }, ref) => (
-  <ul
-    ref={ref}
-    data-sidebar="menu"
-    className={cn("flex w-full min-w-0 flex-col gap-1", className)}
-    {...props}
-  />
-));
+  React.ComponentProps<"ul"> & {
+    items?: NavItemData[];
+    currentPath?: string;
+  }
+>(({ className, items, currentPath, children, ...props }, ref) => {
+  const { state } = useSidebar();
+
+  if (!items) {
+    return (
+      <ul
+        ref={ref}
+        data-sidebar="menu"
+        className={cn("flex w-full min-w-0 flex-col gap-1", className)}
+        {...props}
+      >
+        {children}
+      </ul>
+    );
+  }
+
+  return (
+    <ul
+      ref={ref}
+      data-sidebar="menu"
+      className={cn("flex w-full min-w-0 flex-col gap-1", className)}
+      {...props}
+    >
+      {items.map((item) => {
+        const isChildActive = item.items?.some(
+          (subItem) => currentPath === subItem.url,
+        );
+        const isActive = currentPath === item.url || isChildActive;
+        const LinkComponent = item.as || "a";
+
+        if (item.items) {
+          if (state === "collapsed") {
+            return (
+              <SidebarMenuItem key={item.title}>
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <SidebarMenuButton tooltip={item.title} isActive={isActive}>
+                      {!!item.icon && (
+                        <Icon
+                          icon={item.icon}
+                          variant={isActive ? "bold" : "default"}
+                        />
+                      )}
+                      <span>{item.title}</span>
+                    </SidebarMenuButton>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent side="right" align="start">
+                    {item.items.map((subItem) => {
+                      const SubLinkComponent = subItem.as || "a";
+                      return (
+                        <DropdownMenuItem asChild key={subItem.url}>
+                          <SubLinkComponent href={subItem.url}>
+                            {!!subItem.icon && <Icon icon={subItem.icon} />}
+                            <span>{subItem.title}</span>
+                          </SubLinkComponent>
+                        </DropdownMenuItem>
+                      );
+                    })}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </SidebarMenuItem>
+            );
+          }
+
+          return (
+            <Collapsible
+              key={item.title}
+              asChild
+              defaultOpen={isChildActive}
+              className="group/collapsible"
+            >
+              <SidebarMenuItem>
+                <CollapsibleTrigger asChild>
+                  <SidebarMenuButton
+                    tooltip={item.title}
+                    className={
+                      isChildActive
+                        ? "text-sidebar-accent-foreground font-medium"
+                        : ""
+                    }
+                  >
+                    {!!item.icon && (
+                      <Icon
+                        icon={item.icon}
+                        variant={isChildActive ? "bold" : "default"}
+                      />
+                    )}
+                    <span>{item.title}</span>
+                    <ChevronRight className="ml-auto w-4 h-4 transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+                  </SidebarMenuButton>
+                </CollapsibleTrigger>
+                <CollapsibleContent>
+                  <SidebarMenuSub>
+                    {item.items.map((subItem) => {
+                      const isSubActive = currentPath === subItem.url;
+                      const SubLinkComponent = subItem.as || "a";
+                      return (
+                        <SidebarMenuSubItem key={subItem.url}>
+                          <SidebarMenuSubButton asChild isActive={isSubActive}>
+                            <SubLinkComponent href={subItem.url}>
+                              {!!subItem.icon && <Icon icon={subItem.icon} />}
+                              <span>{subItem.title}</span>
+                            </SubLinkComponent>
+                          </SidebarMenuSubButton>
+                        </SidebarMenuSubItem>
+                      );
+                    })}
+                  </SidebarMenuSub>
+                </CollapsibleContent>
+              </SidebarMenuItem>
+            </Collapsible>
+          );
+        }
+
+        return (
+          <SidebarMenuItem key={item.url || item.title}>
+            <SidebarMenuButton asChild isActive={isActive} tooltip={item.title}>
+              <LinkComponent href={item.url || "#"}>
+                {!!item.icon && (
+                  <Icon
+                    icon={item.icon}
+                    variant={isActive ? "bold" : "default"}
+                  />
+                )}
+                <span>{item.title}</span>
+              </LinkComponent>
+            </SidebarMenuButton>
+            {item.badge && <SidebarMenuBadge>{item.badge}</SidebarMenuBadge>}
+          </SidebarMenuItem>
+        );
+      })}
+    </ul>
+  );
+});
 SidebarMenu.displayName = "SidebarMenu";
 
 const SidebarMenuItem = React.forwardRef<
