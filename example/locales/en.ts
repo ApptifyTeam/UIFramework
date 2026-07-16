@@ -21,7 +21,7 @@ export const en = {
     password: "Password",
     rememberMe: "Remember me",
     forgotPassword: "Forgot Password?",
-    overview: "Overview",
+    overview: "OVERVIEW",
     recentActivity: "Recent Activity",
   },
   dashboard: {
@@ -31,5 +31,5 @@ export const en = {
     activeNow: "Active Now",
     recentSales: "Recent Sales",
     revenueOverTime: "Revenue Over Time",
-  }
+  },
 };

@@ -8,7 +8,7 @@ import {
   NoteIcon,
   ComponentIcon,
   LayersIcon,
-  Logout01Icon
+  Logout01Icon,
 } from "@hugeicons/core-free-icons";
 import { useLang } from "../providers/lang-provider";
 import {
@@ -22,6 +22,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarMenuBadge,
   Icon,
 } from "@apptify-labs/ui";
 
@@ -39,6 +40,7 @@ export function AppSidebar() {
       title: t.common.forms,
       url: "/dashboard/forms",
       icon: NoteIcon,
+      badge: "5",
     },
     {
       title: t.common.uiElements,
@@ -54,12 +56,14 @@ export function AppSidebar() {
 
   return (
     <Sidebar>
-      <SidebarHeader className="p-4">
-        <div className="font-bold text-xl flex items-center gap-2">
-          <div className="w-8 h-8 bg-primary text-primary-foreground rounded-lg flex items-center justify-center font-black">
+      <SidebarHeader>
+        <div className="font-bold text-xl flex items-center gap-2 min-w-0 group-data-[collapsible=icon]:justify-center">
+          <div className="w-8 h-8 shrink-0 bg-primary text-primary-foreground rounded-lg flex items-center justify-center font-black">
             A
           </div>
-          Apptify UI
+          <span className="truncate group-data-[collapsible=icon]:hidden">
+            Apptify UI
+          </span>
         </div>
       </SidebarHeader>
       <SidebarContent>
@@ -71,12 +75,22 @@ export function AppSidebar() {
                 const isActive = pathname === item.url;
                 return (
                   <SidebarMenuItem key={item.url}>
-                    <SidebarMenuButton asChild isActive={isActive}>
+                    <SidebarMenuButton
+                      asChild
+                      isActive={isActive}
+                      tooltip={item.title}
+                    >
                       <Link href={item.url}>
-                        <Icon icon={item.icon} variant={isActive ? "duotone" : "default"} />
+                        <Icon
+                          icon={item.icon}
+                          variant={isActive ? "bold" : "default"}
+                        />
                         <span>{item.title}</span>
                       </Link>
                     </SidebarMenuButton>
+                    {item.badge && (
+                      <SidebarMenuBadge>{item.badge}</SidebarMenuBadge>
+                    )}
                   </SidebarMenuItem>
                 );
               })}
@@ -87,7 +101,7 @@ export function AppSidebar() {
       <SidebarFooter>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton asChild>
+            <SidebarMenuButton asChild tooltip={t.common.logout}>
               <Link href="/">
                 <Icon icon={Logout01Icon} />
                 <span>{t.common.logout}</span>
