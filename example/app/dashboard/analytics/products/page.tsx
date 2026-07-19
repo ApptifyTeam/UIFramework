@@ -336,7 +336,7 @@ export default function ProductReportsPage() {
                     data={inventoryStatusData}
                     dataKey="value"
                     nameKey="name"
-                    innerRadius={80}
+                    innerRadius={84}
                     outerRadius={100}
                     strokeWidth={2}
                     paddingAngle={3}
