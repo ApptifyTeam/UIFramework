@@ -66,25 +66,74 @@ Even though this is the consumer application, it must respect the design tokens 
 2. **Copy Patterns**: Find a page that looks similar to what you need to build, copy the structure, and replace the data/content.
 3. **Verify Compliance**: Ensure your new pages only import UI components from `@apptify-labs/ui` and do not contain inline styles or custom UI widgets that belong in the framework.
 
+### 4. Page Composition Guidelines
+
+When constructing new pages in the `/app` directory, you must strictly follow these structural patterns to ensure 100% consistency:
+
+1. **Use the Standard Page Wrapper**:
+   - Always wrap the entire page in the `<Page>` component. Do **not** add custom padding or spacing classes (e.g. `className="p-4"`) to `<Page>`, as it handles standard layout spacing by default.
+
+2. **Standardized Page Header**:
+   - Use `<PageHeader>` at the top of the page.
+   - The title and description must be wrapped in a standard `<div>` using `<PageTitle>` and `<PageDescription>`.
+   - Actions should be wrapped in `<PageActions>`. Always include an `<Icon>` (from `@hugeicons/core-free-icons`) in important Call-to-Action buttons for better UX.
+
+3. **Standardized Page Content**:
+   - Use `<PageContent>` as the main container for cards, tables, and grids. It automatically provides the correct top margin and vertical gap spacing (`mt-6 space-y-6`). Do not use raw `<div>` tags for this level of the layout.
+
+4. **Status Badges**:
+   - When displaying states or statuses (e.g., "In Stock", "Pending", "Failed"), you **must** use the semantic soft-colored Badge variants (`success`, `warning`, `info`, `destructive`). Do not mix them with solid variants (`default`, `secondary`) for status indicators, as it breaks the visual harmony.
+
+5. **Charts Consistency**:
+   - For Horizontal Bar Charts, ensure bars are styled consistently with vertical charts (pill-shaped). Use props like `radius={8}`, `barSize={16}`, and `background={{ fill: "hsl(var(--muted))", radius: 8 }}` on the `<Bar />` component.
+
 ### Example Page Composition
 
-To build a page in this application, simply import the required components from the framework and assemble them:
+To build a page in this application, simply import the required components from the framework and assemble them exactly like this:
 
 ```tsx
-import { Card, Typography, Button } from "@apptify-labs/ui";
+import { 
+  Page, 
+  PageHeader, 
+  PageTitle, 
+  PageDescription, 
+  PageActions, 
+  PageContent,
+  Button,
+  Icon,
+  Card 
+} from "@apptify-labs/ui";
+import { PlusSignIcon, Upload01Icon } from "@hugeicons/core-free-icons";
 
-export default function DashboardPage() {
+export default function ExampleDashboardPage() {
   return (
-    <div className="flex flex-col gap-6 p-6">
-      <Typography variant="h1">Dashboard</Typography>
+    <Page>
+      <PageHeader>
+        <div>
+          <PageTitle>Dashboard Overview</PageTitle>
+          <PageDescription>
+            A detailed view of your current metrics and activities.
+          </PageDescription>
+        </div>
+        <PageActions>
+          <Button variant="outline">
+            <Icon icon={Upload01Icon} />
+            Export
+          </Button>
+          <Button>
+            <Icon icon={PlusSignIcon} />
+            Create New
+          </Button>
+        </PageActions>
+      </PageHeader>
       
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <Card className="p-6">
-          <Typography variant="h3">Welcome back</Typography>
-          <Button variant="primary" className="mt-4">View Analytics</Button>
-        </Card>
-      </div>
-    </div>
+      <PageContent>
+        {/* Your Grid, Cards, DataTables, and Charts go here */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <Card className="p-6">Content</Card>
+        </div>
+      </PageContent>
+    </Page>
   );
 }
 ```

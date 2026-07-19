@@ -26,6 +26,7 @@ import {
   Page,
   PageHeader,
   PageTitle,
+  PageDescription,
   PageActions,
   PageContent,
   Grid,
@@ -186,7 +187,12 @@ export default function DashboardPage() {
   return (
     <Page>
       <PageHeader>
-        <PageTitle>Sales Insights</PageTitle>
+        <div>
+          <PageTitle>Sales Insights</PageTitle>
+          <PageDescription>
+            Overview of your store&apos;s revenue and conversion metrics.
+          </PageDescription>
+        </div>
         <PageActions>
           <DatePicker date={selectedDate} onDateChange={setSelectedDate} />
           <MultiSelect
@@ -400,7 +406,7 @@ export default function DashboardPage() {
                     <div className="w-2 h-[60%] rounded-full bg-muted"></div>
                   </div>
                   <div className="flex justify-between items-center text-sm pt-2">
-                    <span className="text-muted-foreground">Insights</span>
+                    <span className="text-muted-foreground">Conversion Rate Growth</span>
                     <span className="text-chart-1 font-medium">+20%</span>
                   </div>
                 </div>
@@ -433,7 +439,7 @@ export default function DashboardPage() {
                   </div>
                   <div className="flex justify-between items-center text-sm pt-2 border-b border-border/50 pb-4">
                     <span className="text-muted-foreground">
-                      Show new top items by month
+                      New Customer Acquisition
                     </span>
                     <span className="text-chart-1 font-medium">+18%</span>
                   </div>
@@ -441,7 +447,7 @@ export default function DashboardPage() {
 
                 <div className="flex justify-between items-center text-sm">
                   <span className="text-muted-foreground">
-                    Show me breakdown by trend
+                    Returning Customer Growth
                   </span>
                   <span className="text-chart-1 font-medium">+12%</span>
                 </div>
@@ -455,7 +461,7 @@ export default function DashboardPage() {
             <Card>
               <CardHeader className="pb-4">
                 <CardDescription className="text-xs">
-                  Division / Campaigns
+                  Active Campaigns
                 </CardDescription>
                 <CardTitle className="text-lg font-medium">
                   Goals Performance
@@ -468,8 +474,8 @@ export default function DashboardPage() {
                       #1
                     </div>
                     <div>
-                      <p className="text-sm font-medium">Friday</p>
-                      <p className="text-xs text-muted-foreground">Burger</p>
+                      <p className="text-sm font-medium">Summer Sale</p>
+                      <p className="text-xs text-muted-foreground">Social Media</p>
                     </div>
                   </div>
                   <div className="text-right">
@@ -481,12 +487,12 @@ export default function DashboardPage() {
                 <div className="flex items-center justify-between p-4 rounded-xl border border-border">
                   <div className="flex items-center gap-3">
                     <div className="w-8 h-8 rounded-full border border-chart-2 flex items-center justify-center text-xs font-medium text-chart-2">
-                      J
+                      EM
                     </div>
                     <div>
-                      <p className="text-sm font-medium">Friday</p>
+                      <p className="text-sm font-medium">Email Retargeting</p>
                       <p className="text-xs text-muted-foreground">
-                        Lunch menu
+                        Cart Recovery
                       </p>
                     </div>
                   </div>
