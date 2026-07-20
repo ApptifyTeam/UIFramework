@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Item, ItemMedia, ItemContent, ItemTitle, ItemDescription, ItemActions } from "./item";
-import { UserIcon, ShieldIcon, ChevronRightIcon } from "@hugeicons/core-free-icons";
+import { UserIcon, ShieldIcon } from "@hugeicons/core-free-icons";
+import { ChevronRight } from "lucide-react";
 import * as React from "react";
 import { Icon } from "@/components/atoms/icon"
 
@@ -28,7 +29,7 @@ export const Default: Story = {
           <ItemDescription>Manage settings & verification</ItemDescription>
         </ItemContent>
         <ItemActions>
-          <Icon icon={ChevronRightIcon} className="h-4 w-4" />
+          <ChevronRight className="h-4 w-4" />
         </ItemActions>
       </Item>
       <Item>
@@ -40,7 +41,7 @@ export const Default: Story = {
           <ItemDescription>Access permissions & 2FA</ItemDescription>
         </ItemContent>
         <ItemActions>
-          <Icon icon={ChevronRightIcon} className="h-4 w-4" />
+          <ChevronRight className="h-4 w-4" />
         </ItemActions>
       </Item>
     </div>

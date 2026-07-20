@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "./collapsible";
 import { Button } from "@/components/atoms/button";
-import { ChevronsUpDown } from "@hugeicons/core-free-icons";
+import { ChevronsUpDown } from "lucide-react";
 import * as React from "react";
 import { Icon } from "@/components/atoms/icon"
 
@@ -33,7 +33,7 @@ export const Default: Story = {
           </h4>
           <CollapsibleTrigger asChild>
             <Button variant="ghost" size="sm" className="w-9 p-0">
-              <Icon icon={ChevronsUpDown} className="h-4 w-4" />
+              <ChevronsUpDown className="h-4 w-4" />
               <span className="sr-only">Toggle</span>
             </Button>
           </CollapsibleTrigger>

@@ -502,7 +502,8 @@ To maintain strict architectural boundaries, the framework and applications must
 
 ## Iconography
 
-- **Icon library**: [Hugeicons React](https://hugeicons.com/) (primary) and custom SVGs.
+- **Icon library**: [Hugeicons React](https://hugeicons.com/) (primary) for general icons, and [Lucide React](https://lucide.dev/) for directional/arrow icons.
+- **Rule for Arrows and Basic Marks**: For arrows, chevrons, and basic marks like check/tick and cross/cancel (e.g., `ChevronRight`, `ArrowLeft`, `Check`, `X`) that require strict geometric simplicity, straightness, and formality, always use `lucide-react`. For all other general icons, use `@hugeicons/react` / `@hugeicons/core-free-icons`.
 - **Icon size**: Default `20px` (`spacing[5]`). In compact contexts use `16px` (`spacing[4]`)
 - **Icon style**: Stroke-based, 1.5–2px stroke width, matching the geometric clarity of Inter
 - **Icon colour**: Inherits `currentColor`. Use `secondary.500` for decorative icons, `primary.500` for interactive icons
@@ -581,6 +582,7 @@ As seen in the reference designs (`Dashboard 1 Ref Light.jpg` and `Dashboard 2 R
 - Use Radix UI primitives for all interactive components (dialog, popover, dropdown)
 - Use `class-variance-authority` (CVA) for component variant definitions
 - Use `tailwind-merge` via the `cn()` utility to merge class names
+- Use `lucide-react` for formal, straight arrows/chevrons and check/cross marks. Use Hugeicons for all other general icons
 - Maintain a clear visual hierarchy: hero number → section title → body → caption
 
 ### ❌ DON'T

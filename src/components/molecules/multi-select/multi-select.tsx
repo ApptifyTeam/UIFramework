@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Tick01Icon, ChevronDownIcon } from "@hugeicons/core-free-icons"
+import { Check, ChevronDown } from "lucide-react"
 import { cn } from "@/utils/cn"
 import { Button } from "@/components/atoms/button"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/atoms/popover"
@@ -57,7 +57,7 @@ function MultiSelect({
           )}
         >
           <span className="truncate">{displayText}</span>
-          <Icon icon={ChevronDownIcon} className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+          <ChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-[200px] p-0" align="start">
@@ -82,7 +82,7 @@ function MultiSelect({
                           : "opacity-50 [&_svg]:invisible"
                       )}
                     >
-                      <Icon icon={Tick01Icon} className="h-3 w-3" />
+                      <Check className="h-3 w-3" />
                     </div>
                     <span>{option.label}</span>
                   </CommandItem>

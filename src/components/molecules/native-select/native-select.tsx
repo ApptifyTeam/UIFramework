@@ -1,5 +1,5 @@
 import * as React from "react";
-import { ChevronDownIcon } from "@hugeicons/core-free-icons";
+import { ChevronDown } from "lucide-react";
 import { cn } from "@/utils/cn";
 import { Icon } from "@/components/atoms/icon"
 
@@ -21,7 +21,7 @@ const NativeSelect = React.forwardRef<HTMLSelectElement, NativeSelectProps>(
           {children}
         </select>
         <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 opacity-50">
-          <Icon icon={ChevronDownIcon} className="h-4 w-4" />
+          <ChevronDown className="h-4 w-4" />
         </span>
       </div>
     );
