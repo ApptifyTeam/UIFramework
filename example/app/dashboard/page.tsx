@@ -31,8 +31,21 @@ import {
   PageContent,
   Grid,
   GridCol,
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
 } from "@apptify-labs/ui";
-import { Bar, BarChart, XAxis, LineChart, Line, ReferenceLine } from "recharts";
+import {
+  Bar,
+  BarChart,
+  XAxis,
+  LineChart,
+  Line,
+  ReferenceLine,
+  Cell,
+} from "recharts";
 import {
   ChevronDownIcon,
   SlidersHorizontalIcon,
@@ -66,6 +79,28 @@ const lineData = [
   { day: "4", val: 3800 },
   { day: "5", val: 3500 },
   { day: "6", val: 4200 },
+];
+
+const conversionData = [
+  { day: "1", value: 80, active: true },
+  { day: "2", value: 100, active: true },
+  { day: "3", value: 60, active: false },
+  { day: "4", value: 70, active: true },
+  { day: "5", value: 50, active: false },
+  { day: "6", value: 80, active: true },
+  { day: "7", value: 100, active: true },
+  { day: "8", value: 60, active: false },
+];
+
+const acquisitionData = [
+  { day: "1", value: 90, active: true },
+  { day: "2", value: 40, active: false },
+  { day: "3", value: 60, active: true },
+  { day: "4", value: 80, active: true },
+  { day: "5", value: 50, active: false },
+  { day: "6", value: 70, active: false },
+  { day: "7", value: 60, active: true },
+  { day: "8", value: 90, active: true },
 ];
 
 const CustomBar = (props: {
@@ -370,72 +405,78 @@ export default function DashboardPage() {
                 <CardTitle className="text-lg font-medium">
                   Performance
                 </CardTitle>
-                <span className="text-xs text-muted-foreground">
-                  12 Months{" "}
-                  <Icon
-                    icon={ChevronDownIcon}
-                    className="inline w-3 h-3 ml-1"
-                  />
-                </span>
+                <Select defaultValue="12m">
+                  <SelectTrigger className="h-8 w-auto">
+                    <SelectValue placeholder="Select duration" />
+                  </SelectTrigger>
+                  <SelectContent align="end">
+                    <SelectItem value="12m">12 Months</SelectItem>
+                    <SelectItem value="6m">6 Months</SelectItem>
+                    <SelectItem value="30d">30 Days</SelectItem>
+                    <SelectItem value="7d">7 Days</SelectItem>
+                  </SelectContent>
+                </Select>
               </CardHeader>
               <CardContent className="space-y-8">
                 <div className="space-y-2">
-                  <div className="flex h-[80px] gap-2 items-end justify-between">
-                    <div
-                      className="w-2 h-[80%] rounded-full"
-                      style={{ backgroundColor: "hsl(var(--chart-1))" }}
-                    ></div>
-                    <div
-                      className="w-2 h-[100%] rounded-full"
-                      style={{ backgroundColor: "hsl(var(--chart-1))" }}
-                    ></div>
-                    <div className="w-2 h-[60%] rounded-full bg-muted"></div>
-                    <div
-                      className="w-2 h-[70%] rounded-full"
-                      style={{ backgroundColor: "hsl(var(--chart-1))" }}
-                    ></div>
-                    <div className="w-2 h-[50%] rounded-full bg-muted"></div>
-                    <div
-                      className="w-2 h-[80%] rounded-full"
-                      style={{ backgroundColor: "hsl(var(--chart-1))" }}
-                    ></div>
-                    <div
-                      className="w-2 h-[100%] rounded-full"
-                      style={{ backgroundColor: "hsl(var(--chart-1))" }}
-                    ></div>
-                    <div className="w-2 h-[60%] rounded-full bg-muted"></div>
+                  <div className="h-[80px] w-full">
+                    <ChartContainer
+                      config={{ value: { color: "hsl(var(--chart-1))" } }}
+                      className="h-full w-full"
+                    >
+                      <BarChart
+                        data={conversionData}
+                        margin={{ top: 0, right: 0, left: 0, bottom: 0 }}
+                        barSize={8}
+                      >
+                        <Bar dataKey="value" radius={4}>
+                          {conversionData.map((entry, index) => (
+                            <Cell
+                              key={`cell-${index}`}
+                              fill={
+                                entry.active
+                                  ? "hsl(var(--chart-1))"
+                                  : "hsl(var(--muted))"
+                              }
+                            />
+                          ))}
+                        </Bar>
+                      </BarChart>
+                    </ChartContainer>
                   </div>
                   <div className="flex justify-between items-center text-sm pt-2">
-                    <span className="text-muted-foreground">Conversion Rate Growth</span>
+                    <span className="text-muted-foreground">
+                      Conversion Rate Growth
+                    </span>
                     <span className="text-chart-1 font-medium">+20%</span>
                   </div>
                 </div>
 
                 <div className="space-y-2">
-                  <div className="flex h-[80px] gap-2 items-end justify-between">
-                    <div
-                      className="w-2 h-[90%] rounded-full"
-                      style={{ backgroundColor: "hsl(var(--chart-1))" }}
-                    ></div>
-                    <div className="w-2 h-[40%] rounded-full bg-muted"></div>
-                    <div
-                      className="w-2 h-[60%] rounded-full"
-                      style={{ backgroundColor: "hsl(var(--chart-1))" }}
-                    ></div>
-                    <div
-                      className="w-2 h-[80%] rounded-full"
-                      style={{ backgroundColor: "hsl(var(--chart-1))" }}
-                    ></div>
-                    <div className="w-2 h-[50%] rounded-full bg-muted"></div>
-                    <div className="w-2 h-[70%] rounded-full bg-muted"></div>
-                    <div
-                      className="w-2 h-[60%] rounded-full"
-                      style={{ backgroundColor: "hsl(var(--chart-1))" }}
-                    ></div>
-                    <div
-                      className="w-2 h-[90%] rounded-full"
-                      style={{ backgroundColor: "hsl(var(--chart-1))" }}
-                    ></div>
+                  <div className="h-[80px] w-full">
+                    <ChartContainer
+                      config={{ value: { color: "hsl(var(--chart-1))" } }}
+                      className="h-full w-full"
+                    >
+                      <BarChart
+                        data={acquisitionData}
+                        margin={{ top: 0, right: 0, left: 0, bottom: 0 }}
+                        barSize={8}
+                      >
+                        <Bar dataKey="value" radius={4}>
+                          {acquisitionData.map((entry, index) => (
+                            <Cell
+                              key={`cell-${index}`}
+                              fill={
+                                entry.active
+                                  ? "hsl(var(--chart-1))"
+                                  : "hsl(var(--muted))"
+                              }
+                            />
+                          ))}
+                        </Bar>
+                      </BarChart>
+                    </ChartContainer>
                   </div>
                   <div className="flex justify-between items-center text-sm pt-2 border-b border-border/50 pb-4">
                     <span className="text-muted-foreground">
@@ -475,7 +516,9 @@ export default function DashboardPage() {
                     </div>
                     <div>
                       <p className="text-sm font-medium">Summer Sale</p>
-                      <p className="text-xs text-muted-foreground">Social Media</p>
+                      <p className="text-xs text-muted-foreground">
+                        Social Media
+                      </p>
                     </div>
                   </div>
                   <div className="text-right">
