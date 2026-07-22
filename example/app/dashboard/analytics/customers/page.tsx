@@ -7,12 +7,6 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
   Badge,
   Button,
   ChartContainer,
@@ -29,7 +23,9 @@ import {
   AvatarFallback,
   AvatarImage,
   StatCard,
+  DataTable,
 } from "@apptify-labs/ui";
+import type { ColumnDef } from "@tanstack/react-table";
 import { Download01Icon, Upload01Icon, UserGroupIcon, SlidersHorizontalIcon, ShoppingBag01Icon } from "@hugeicons/core-free-icons";
 import {
   Area,
@@ -106,6 +102,80 @@ const topCustomersData = [
     status: "Active",
     totalSpent: "$1,240.20",
     lastOrder: "2026-06-28",
+  },
+];
+
+type TopCustomer = (typeof topCustomersData)[number];
+
+const topCustomersColumns: ColumnDef<TopCustomer>[] = [
+  {
+    accessorKey: "name",
+    header: "Customer",
+    cell: ({ row }) => {
+      const customer = row.original;
+      return (
+        <div className="flex items-center gap-3">
+          <Avatar className="h-9 w-9">
+            <AvatarFallback className="bg-primary/10 text-primary">
+              {customer.avatar}
+            </AvatarFallback>
+          </Avatar>
+          <div className="flex flex-col">
+            <span className="font-medium">{customer.name}</span>
+            <span className="text-xs text-muted-foreground">
+              {customer.email}
+            </span>
+          </div>
+        </div>
+      );
+    },
+  },
+  {
+    accessorKey: "status",
+    header: "Status",
+    cell: ({ row }) => {
+      const status = row.getValue("status") as string;
+      const variant = (
+        status === "VIP"
+          ? "info"
+          : status === "Active"
+            ? "success"
+            : "warning"
+      ) as "info" | "success" | "warning";
+      return <Badge variant={variant}>{status}</Badge>;
+    },
+  },
+  {
+    accessorKey: "orders",
+    header: () => <div className="text-right">Orders</div>,
+    cell: ({ row }) => (
+      <div className="text-right">{row.getValue("orders")}</div>
+    ),
+  },
+  {
+    accessorKey: "totalSpent",
+    header: () => <div className="text-right">Total Spent</div>,
+    cell: ({ row }) => (
+      <div className="text-right font-medium">
+        {row.getValue("totalSpent")}
+      </div>
+    ),
+  },
+  {
+    accessorKey: "lastOrder",
+    header: () => <div className="text-right">Last Order</div>,
+    cell: ({ row }) => {
+      const lastOrder = row.getValue("lastOrder") as string;
+      return (
+        <div className="text-right text-muted-foreground">
+          {new Date(lastOrder).toLocaleDateString("en-US", {
+            month: "short",
+            day: "numeric",
+            year: "numeric",
+          })}
+        </div>
+      );
+    },
   },
 ];
 
@@ -301,68 +371,10 @@ export default function CustomerAnalyticsPage() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Customer</TableHead>
-                  <TableHead>Status</TableHead>
-                  <TableHead className="text-right">Orders</TableHead>
-                  <TableHead className="text-right">Total Spent</TableHead>
-                  <TableHead className="text-right">Last Order</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {topCustomersData.map((customer) => (
-                  <TableRow key={customer.id}>
-                    <TableCell>
-                      <div className="flex items-center gap-3">
-                        <Avatar className="h-9 w-9">
-                          <AvatarFallback className="bg-primary/10 text-primary">
-                            {customer.avatar}
-                          </AvatarFallback>
-                        </Avatar>
-                        <div className="flex flex-col">
-                          <span className="font-medium">{customer.name}</span>
-                          <span className="text-xs text-muted-foreground">
-                            {customer.email}
-                          </span>
-                        </div>
-                      </div>
-                    </TableCell>
-                    <TableCell>
-                      <Badge
-                        className=""
-                        variant={
-                          (customer.status === "VIP"
-                            ? "info"
-                            : customer.status === "Active"
-                              ? "success"
-                              : "warning") as "info" | "success" | "warning"
-                        }
-                      >
-                        {customer.status}
-                      </Badge>
-                    </TableCell>
-                    <TableCell className="text-right">
-                      {customer.orders}
-                    </TableCell>
-                    <TableCell className="text-right font-medium">
-                      {customer.totalSpent}
-                    </TableCell>
-                    <TableCell className="text-right text-muted-foreground">
-                      {new Date(customer.lastOrder).toLocaleDateString(
-                        "en-US",
-                        {
-                          month: "short",
-                          day: "numeric",
-                          year: "numeric",
-                        },
-                      )}
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
+            <DataTable
+              columns={topCustomersColumns}
+              data={topCustomersData}
+            />
           </CardContent>
         </Card>
       </PageContent>

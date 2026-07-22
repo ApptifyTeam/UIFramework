@@ -7,12 +7,6 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
   Badge,
   Button,
   ChartContainer,
@@ -27,7 +21,9 @@ import {
   Icon,
   StatCard,
   Grid,
+  DataTable,
 } from "@apptify-labs/ui";
+import type { ColumnDef } from "@tanstack/react-table";
 import { Download01Icon, Upload01Icon, ShoppingBag01Icon, ShoppingCart01Icon, PackageIcon, SlidersHorizontalIcon } from "@hugeicons/core-free-icons";
 import {
   Area,
@@ -82,6 +78,49 @@ const topProducts = [
     sales: 1530,
     revenue: "$45,900",
     status: "Out of Stock",
+  },
+];
+
+type TopProduct = (typeof topProducts)[number];
+
+const topProductsColumns: ColumnDef<TopProduct>[] = [
+  {
+    accessorKey: "name",
+    header: "Product",
+    cell: ({ row }) => (
+      <span className="font-medium">{row.getValue("name")}</span>
+    ),
+  },
+  {
+    accessorKey: "category",
+    header: "Category",
+  },
+  {
+    accessorKey: "status",
+    header: "Status",
+    cell: ({ row }) => {
+      const status = row.getValue("status") as string;
+      const variant = (
+        status === "In Stock"
+          ? "success"
+          : status === "Low Stock"
+            ? "warning"
+            : "destructive"
+      ) as "success" | "warning" | "destructive";
+      return <Badge variant={variant}>{status}</Badge>;
+    },
+  },
+  {
+    accessorKey: "sales",
+    header: () => <div className="text-right">Sales</div>,
+    cell: ({ row }) => <div className="text-right">{row.getValue("sales")}</div>,
+  },
+  {
+    accessorKey: "revenue",
+    header: () => <div className="text-right">Revenue</div>,
+    cell: ({ row }) => (
+      <div className="text-right">{row.getValue("revenue")}</div>
+    ),
   },
 ];
 
@@ -261,47 +300,7 @@ export default function SalesAnalyticsPage() {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead>Product</TableHead>
-                    <TableHead>Category</TableHead>
-                    <TableHead>Status</TableHead>
-                    <TableHead className="text-right">Sales</TableHead>
-                    <TableHead className="text-right">Revenue</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {topProducts.map((product) => (
-                    <TableRow key={product.id}>
-                      <TableCell className="font-medium">
-                        {product.name}
-                      </TableCell>
-                      <TableCell>{product.category}</TableCell>
-                      <TableCell>
-                        <Badge
-                          className=""
-                          variant={
-                            (product.status === "In Stock"
-                              ? "success"
-                              : product.status === "Low Stock"
-                                ? "warning"
-                                : "destructive") as "success" | "warning" | "destructive"
-                          }
-                        >
-                          {product.status}
-                        </Badge>
-                      </TableCell>
-                      <TableCell className="text-right">
-                        {product.sales}
-                      </TableCell>
-                      <TableCell className="text-right">
-                        {product.revenue}
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
+              <DataTable columns={topProductsColumns} data={topProducts} />
             </CardContent>
           </Card>
 

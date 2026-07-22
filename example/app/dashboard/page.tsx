@@ -49,7 +49,9 @@ import {
   TableRow,
   StatCard,
   GridCol,
+  DataTable,
 } from "@apptify-labs/ui";
+import type { ColumnDef } from "@tanstack/react-table";
 import {
   Bar,
   BarChart,
@@ -287,6 +289,97 @@ const recentOrders = [
     fulfillment: "Delivered",
     amount: "$145.00",
     date: "8 hours ago",
+  },
+];
+
+type RecentOrder = (typeof recentOrders)[number];
+
+const recentOrdersColumns: ColumnDef<RecentOrder>[] = [
+  {
+    accessorKey: "id",
+    header: "Order ID",
+    cell: ({ row }) => (
+      <span className="font-medium font-mono text-xs">
+        {row.getValue("id")}
+      </span>
+    ),
+  },
+  {
+    accessorKey: "customer",
+    header: "Customer",
+    cell: ({ row }) => {
+      const order = row.original;
+      return (
+        <div className="flex items-center gap-2.5">
+          <Avatar className="h-7 w-7">
+            <AvatarImage src={order.avatar} alt={order.customer} />
+            <AvatarFallback className="text-[10px]">
+              {order.initials}
+            </AvatarFallback>
+          </Avatar>
+          <div>
+            <p className="text-xs font-medium leading-none">{order.customer}</p>
+            <p className="text-[10px] text-muted-foreground mt-0.5">
+              {order.email}
+            </p>
+          </div>
+        </div>
+      );
+    },
+  },
+  {
+    accessorKey: "items",
+    header: "Items",
+    cell: ({ row }) => (
+      <span className="text-xs text-muted-foreground">
+        {row.getValue("items")}
+      </span>
+    ),
+  },
+  {
+    accessorKey: "payment",
+    header: "Payment",
+    cell: ({ row }) => {
+      const payment = row.getValue("payment") as string;
+      return (
+        <Badge
+          variant={payment === "Paid" ? "default" : "secondary"}
+          className="text-[10px] px-2 py-0.5"
+        >
+          {payment}
+        </Badge>
+      );
+    },
+  },
+  {
+    accessorKey: "fulfillment",
+    header: "Fulfillment",
+    cell: ({ row }) => {
+      const fulfillment = row.getValue("fulfillment") as string;
+      return (
+        <Badge
+          variant={
+            fulfillment === "Delivered"
+              ? "default"
+              : fulfillment === "Shipped"
+                ? "outline"
+                : "secondary"
+          }
+          className="text-[10px] px-2 py-0.5"
+        >
+          {fulfillment}
+        </Badge>
+      );
+    },
+  },
+  {
+    accessorKey: "amount",
+    header: () => <div className="text-right">Total Amount</div>,
+    cell: ({ row }) => (
+      <div className="text-right font-semibold text-xs">
+        {row.getValue("amount")}
+      </div>
+    ),
   },
 ];
 
@@ -915,78 +1008,10 @@ export default function DashboardPage() {
                 </CardAction>
               </CardHeader>
               <CardContent>
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead>Order ID</TableHead>
-                      <TableHead>Customer</TableHead>
-                      <TableHead>Items</TableHead>
-                      <TableHead>Payment</TableHead>
-                      <TableHead>Fulfillment</TableHead>
-                      <TableHead className="text-right">Total Amount</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {recentOrders.map((order) => (
-                      <TableRow key={order.id}>
-                        <TableCell className="font-medium font-mono text-xs">
-                          {order.id}
-                        </TableCell>
-                        <TableCell>
-                          <div className="flex items-center gap-2.5">
-                            <Avatar className="h-7 w-7">
-                              <AvatarImage
-                                src={order.avatar}
-                                alt={order.customer}
-                              />
-                              <AvatarFallback className="text-[10px]">
-                                {order.initials}
-                              </AvatarFallback>
-                            </Avatar>
-                            <div>
-                              <p className="text-xs font-medium leading-none">
-                                {order.customer}
-                              </p>
-                              <p className="text-[10px] text-muted-foreground mt-0.5">
-                                {order.email}
-                              </p>
-                            </div>
-                          </div>
-                        </TableCell>
-                        <TableCell className="text-xs text-muted-foreground">
-                          {order.items}
-                        </TableCell>
-                        <TableCell>
-                          <Badge
-                            variant={
-                              order.payment === "Paid" ? "default" : "secondary"
-                            }
-                            className="text-[10px] px-2 py-0.5"
-                          >
-                            {order.payment}
-                          </Badge>
-                        </TableCell>
-                        <TableCell>
-                          <Badge
-                            variant={
-                              order.fulfillment === "Delivered"
-                                ? "default"
-                                : order.fulfillment === "Shipped"
-                                  ? "outline"
-                                  : "secondary"
-                            }
-                            className="text-[10px] px-2 py-0.5"
-                          >
-                            {order.fulfillment}
-                          </Badge>
-                        </TableCell>
-                        <TableCell className="text-right font-semibold text-xs">
-                          {order.amount}
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
+                <DataTable
+                  columns={recentOrdersColumns}
+                  data={recentOrders}
+                />
               </CardContent>
             </Card>
           </GridCol>

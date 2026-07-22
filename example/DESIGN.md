@@ -87,6 +87,15 @@ When constructing new pages in the `/app` directory, you must strictly follow th
 5. **Charts Consistency**:
    - For Horizontal Bar Charts, ensure bars are styled consistently with vertical charts (pill-shaped). Use props like `radius={8}`, `barSize={16}`, and `background={{ fill: "hsl(var(--muted))", radius: 8 }}` on the `<Bar />` component.
 
+6. **Standardized Grid Layouts (`Grid` & `GridCol`)**:
+   - **Always Use `GridCol` Under `Grid`**: Every direct child of a `<Grid>` component **MUST** be wrapped in a `<GridCol>` component (e.g. `<GridCol colSpan={{ base: 1, lg: 4 }}>`). Do not use raw `<div>` tags directly under `<Grid>`.
+   - **Equal Height Columns & Cards**: To ensure cards across multi-column grids stretch to identical heights, apply `className="flex-1 flex flex-col justify-between"` to each `<Card>` inside a `<GridCol>`, and `className="flex-1 flex flex-col justify-between"` (or `flex-1`) to `<CardContent>`.
+
+7. **Standardized Data Tables (`DataTable` via TanStack Table)**:
+   - **Use `DataTable` for Tabular Data**: When displaying tabular logs, transactions, or list datasets, you **MUST** use the `<DataTable>` organism from `@apptify-labs/ui` powered by `@tanstack/react-table`.
+   - **Type-Safe Column Definitions**: Define `columns: ColumnDef<TData>[]` with explicit cell renderers (using components like `<Avatar>`, `<Badge>`, and formatted text).
+   - **Do Not Build Raw Tables**: Avoid manually iterating `<TableBody>` / `<TableRow>` / `<TableCell>` in page files when presenting structured tables.
+
 ### Example Page Composition
 
 To build a page in this application, simply import the required components from the framework and assemble them exactly like this:
@@ -99,11 +108,47 @@ import {
   PageDescription, 
   PageActions, 
   PageContent,
+  Grid,
+  GridCol,
+  DataTable,
   Button,
   Icon,
-  Card 
+  Card,
+  CardHeader,
+  CardTitle,
+  CardContent,
+  Badge
 } from "@apptify-labs/ui";
+import type { ColumnDef } from "@tanstack/react-table";
 import { PlusSignIcon, Upload01Icon } from "@hugeicons/core-free-icons";
+
+type OrderItem = {
+  id: string;
+  customer: string;
+  amount: string;
+  status: string;
+};
+
+const columns: ColumnDef<OrderItem>[] = [
+  { accessorKey: "id", header: "Order ID" },
+  { accessorKey: "customer", header: "Customer" },
+  { 
+    accessorKey: "status", 
+    header: "Status",
+    cell: ({ row }) => (
+      <Badge variant="outline">{row.getValue("status")}</Badge>
+    ) 
+  },
+  { 
+    accessorKey: "amount", 
+    header: () => <div className="text-right">Amount</div>,
+    cell: ({ row }) => <div className="text-right font-semibold">{row.getValue("amount")}</div> 
+  },
+];
+
+const data: OrderItem[] = [
+  { id: "#ORD-001", customer: "John Doe", amount: "$150.00", status: "Paid" },
+];
 
 export default function ExampleDashboardPage() {
   return (
@@ -128,10 +173,30 @@ export default function ExampleDashboardPage() {
       </PageHeader>
       
       <PageContent>
-        {/* Your Grid, Cards, DataTables, and Charts go here */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <Card className="p-6">Content</Card>
-        </div>
+        {/* Standardized Grid Layout with GridCol & DataTable */}
+        <Grid columns={{ base: 1, lg: 3 }} gap={6}>
+          <GridCol colSpan={{ base: 1, lg: 1 }}>
+            <Card>
+              <CardHeader>
+                <CardTitle>Analytics Widget</CardTitle>
+              </CardHeader>
+              <CardContent className="flex-1">
+                Content
+              </CardContent>
+            </Card>
+          </GridCol>
+
+          <GridCol colSpan={{ base: 1, lg: 2 }}>
+            <Card>
+              <CardHeader>
+                <CardTitle>Recent Orders</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <DataTable columns={columns} data={data} />
+              </CardContent>
+            </Card>
+          </GridCol>
+        </Grid>
       </PageContent>
     </Page>
   );

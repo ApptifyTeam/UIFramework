@@ -7,12 +7,6 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
   Badge,
   Button,
   ChartContainer,
@@ -26,7 +20,9 @@ import {
   PageContent,
   Icon,
   StatCard,
+  DataTable,
 } from "@apptify-labs/ui";
+import type { ColumnDef } from "@tanstack/react-table";
 import { Download01Icon, Upload01Icon, PackageIcon, ShoppingBag01Icon, SlidersHorizontalIcon, AlertCircleIcon } from "@hugeicons/core-free-icons";
 import {
   Area,
@@ -95,6 +91,62 @@ const productPerformanceData = [
     status: "In Stock",
     unitsSold: 480,
     revenue: "$71,520",
+  },
+];
+
+type ProductPerformance = (typeof productPerformanceData)[number];
+
+const productPerformanceColumns: ColumnDef<ProductPerformance>[] = [
+  {
+    accessorKey: "name",
+    header: "Product",
+    cell: ({ row }) => {
+      const item = row.original;
+      return (
+        <div className="flex flex-col">
+          <span className="font-medium">{item.name}</span>
+          <span className="text-xs text-muted-foreground">{item.id}</span>
+        </div>
+      );
+    },
+  },
+  {
+    accessorKey: "category",
+    header: "Category",
+  },
+  {
+    accessorKey: "status",
+    header: "Status",
+    cell: ({ row }) => {
+      const status = row.getValue("status") as string;
+      const variant = (
+        status === "In Stock"
+          ? "success"
+          : status === "Low Stock"
+            ? "warning"
+            : "destructive"
+      ) as "success" | "warning" | "destructive";
+      return <Badge variant={variant}>{status}</Badge>;
+    },
+  },
+  {
+    accessorKey: "stock",
+    header: () => <div className="text-right">Stock</div>,
+    cell: ({ row }) => <div className="text-right">{row.getValue("stock")}</div>,
+  },
+  {
+    accessorKey: "unitsSold",
+    header: () => <div className="text-right">Units Sold</div>,
+    cell: ({ row }) => (
+      <div className="text-right">{row.getValue("unitsSold")}</div>
+    ),
+  },
+  {
+    accessorKey: "revenue",
+    header: () => <div className="text-right">Revenue</div>,
+    cell: ({ row }) => (
+      <div className="text-right">{row.getValue("revenue")}</div>
+    ),
   },
 ];
 
@@ -283,52 +335,10 @@ export default function ProductReportsPage() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Product</TableHead>
-                  <TableHead>Category</TableHead>
-                  <TableHead>Status</TableHead>
-                  <TableHead className="text-right">Stock</TableHead>
-                  <TableHead className="text-right">Units Sold</TableHead>
-                  <TableHead className="text-right">Revenue</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {productPerformanceData.map((product) => (
-                  <TableRow key={product.id}>
-                    <TableCell>
-                      <div className="flex flex-col">
-                        <span className="font-medium">{product.name}</span>
-                        <span className="text-xs text-muted-foreground">{product.id}</span>
-                      </div>
-                    </TableCell>
-                    <TableCell>{product.category}</TableCell>
-                    <TableCell>
-                      <Badge
-                        className=""
-                        variant={
-                          (product.status === "In Stock"
-                            ? "success"
-                            : product.status === "Low Stock"
-                              ? "warning"
-                              : "destructive")
-                        }
-                      >
-                        {product.status}
-                      </Badge>
-                    </TableCell>
-                    <TableCell className="text-right">{product.stock}</TableCell>
-                    <TableCell className="text-right">
-                      {product.unitsSold}
-                    </TableCell>
-                    <TableCell className="text-right">
-                      {product.revenue}
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
+            <DataTable
+              columns={productPerformanceColumns}
+              data={productPerformanceData}
+            />
           </CardContent>
         </Card>
 
