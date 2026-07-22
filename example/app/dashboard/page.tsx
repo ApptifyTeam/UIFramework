@@ -210,6 +210,84 @@ const recentOrders = [
     amount: "$89.99",
     date: "2 hours ago",
   },
+  {
+    id: "#ORD-9538",
+    customer: "David Kim",
+    email: "david.k@example.com",
+    avatar:
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=64&h=64&fit=crop&crop=faces",
+    initials: "DK",
+    items: "4 items",
+    payment: "Paid",
+    fulfillment: "Delivered",
+    amount: "$512.00",
+    date: "3 hours ago",
+  },
+  {
+    id: "#ORD-9537",
+    customer: "Emma Watson",
+    email: "emma.w@example.com",
+    avatar:
+      "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=64&h=64&fit=crop&crop=faces",
+    initials: "EW",
+    items: "2 items",
+    payment: "Paid",
+    fulfillment: "Shipped",
+    amount: "$175.40",
+    date: "4 hours ago",
+  },
+  {
+    id: "#ORD-9536",
+    customer: "Liam O'Connor",
+    email: "liam.o@example.com",
+    avatar:
+      "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=64&h=64&fit=crop&crop=faces",
+    initials: "LO",
+    items: "1 item",
+    payment: "Pending",
+    fulfillment: "Processing",
+    amount: "$64.50",
+    date: "5 hours ago",
+  },
+  {
+    id: "#ORD-9535",
+    customer: "Olivia Taylor",
+    email: "olivia.t@example.com",
+    avatar:
+      "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=64&h=64&fit=crop&crop=faces",
+    initials: "OT",
+    items: "5 items",
+    payment: "Paid",
+    fulfillment: "Delivered",
+    amount: "$890.00",
+    date: "6 hours ago",
+  },
+  {
+    id: "#ORD-9534",
+    customer: "James Wilson",
+    email: "james.w@example.com",
+    avatar:
+      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=64&h=64&fit=crop&crop=faces",
+    initials: "JW",
+    items: "2 items",
+    payment: "Paid",
+    fulfillment: "Shipped",
+    amount: "$210.00",
+    date: "7 hours ago",
+  },
+  {
+    id: "#ORD-9533",
+    customer: "Isabella Martinez",
+    email: "isabella.m@example.com",
+    avatar:
+      "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=64&h=64&fit=crop&crop=faces",
+    initials: "IM",
+    items: "1 item",
+    payment: "Paid",
+    fulfillment: "Delivered",
+    amount: "$145.00",
+    date: "8 hours ago",
+  },
 ];
 
 const salesChannels = [
@@ -416,86 +494,93 @@ export default function DashboardPage() {
 
         {/* Main Dashboard Body */}
         <Grid columns={{ base: 1, lg: 12 }} gap={6}>
-          {/* Left Column: Revenue & Sales Charts */}
+          {/* Left Column: Equal Height Revenue & Sales Charts */}
           <div className="flex flex-col gap-6 lg:col-span-7 xl:col-span-8">
-            <Card className="flex-1">
-              <CardHeader className="flex flex-row items-start justify-between pb-8">
-                <div className="space-y-1">
-                  <CardTitle>$33,500</CardTitle>
-                  <CardDescription>Total Net Profit</CardDescription>
+            <Card>
+              <CardHeader>
+                <div>
+                  <CardTitle className="text-3xl font-bold tracking-tight">
+                    $33,500
+                  </CardTitle>
+                  <CardDescription className="text-sm font-medium">
+                    Total Net Profit
+                  </CardDescription>
                 </div>
-                <Tabs defaultValue="j">
-                  <TabsList>
-                    <TabsTrigger value="j">Jan</TabsTrigger>
-                    <TabsTrigger value="m">Feb</TabsTrigger>
-                    <TabsTrigger value="a">Mar</TabsTrigger>
-                  </TabsList>
-                </Tabs>
+                <CardAction>
+                  <Tabs defaultValue="j">
+                    <TabsList>
+                      <TabsTrigger value="j">Jan</TabsTrigger>
+                      <TabsTrigger value="m">Feb</TabsTrigger>
+                      <TabsTrigger value="a">Mar</TabsTrigger>
+                    </TabsList>
+                  </Tabs>
+                </CardAction>
               </CardHeader>
               <CardContent>
-                <div className="h-[260px] w-full">
-                  <ChartContainer
-                    config={chartConfig}
-                    className="h-full w-full pl-[80px]"
+                <ChartContainer config={chartConfig} className="h-full w-full">
+                  <BarChart
+                    data={profitData}
+                    margin={{ top: 0, right: 0, left: 0, bottom: 40 }}
+                    barGap={0}
+                    barSize={16}
                   >
-                    <BarChart
-                      data={profitData}
-                      margin={{ top: 0, right: 0, left: 0, bottom: 40 }}
-                      barGap={0}
-                      barSize={16}
-                    >
-                      <ReferenceLine
-                        y={2000}
-                        stroke="#cbd5e1"
-                        strokeDasharray="3 3"
-                        label={{
-                          position: "left",
-                          value: "Monthly Target",
-                          fill: "#94a3b8",
-                          fontSize: 12,
-                        }}
-                      />
-                      <XAxis
-                        dataKey="day"
-                        tickLine={false}
-                        axisLine={false}
-                        tick={
-                          <CustomTick
-                            activeDay="35"
-                            activeColor="hsl(var(--chart-1))"
-                          />
-                        }
-                      />
-                      <ChartTooltip
-                        content={<ChartTooltipContent />}
-                        cursor={false}
-                      />
-                      <Bar
-                        dataKey="profit"
-                        shape={<CustomBar activeColor="hsl(var(--chart-1))" />}
-                      />
-                    </BarChart>
-                  </ChartContainer>
-                </div>
+                    <ReferenceLine
+                      y={2000}
+                      stroke="#cbd5e1"
+                      strokeDasharray="3 3"
+                      label={{
+                        position: "left",
+                        value: "Monthly Target",
+                        fill: "#94a3b8",
+                        fontSize: 12,
+                      }}
+                    />
+                    <XAxis
+                      dataKey="day"
+                      tickLine={false}
+                      axisLine={false}
+                      tick={
+                        <CustomTick
+                          activeDay="35"
+                          activeColor="hsl(var(--chart-1))"
+                        />
+                      }
+                    />
+                    <ChartTooltip
+                      content={<ChartTooltipContent />}
+                      cursor={false}
+                    />
+                    <Bar
+                      dataKey="profit"
+                      shape={<CustomBar activeColor="hsl(var(--chart-1))" />}
+                    />
+                  </BarChart>
+                </ChartContainer>
               </CardContent>
             </Card>
 
-            <Card className="flex-1">
-              <CardHeader className="flex flex-row items-start justify-between pb-8">
-                <div className="space-y-1">
-                  <CardTitle>2,242</CardTitle>
-                  <CardDescription>Total Order Volume</CardDescription>
+            <Card>
+              <CardHeader>
+                <div>
+                  <CardTitle className="text-3xl font-bold tracking-tight">
+                    2,242
+                  </CardTitle>
+                  <CardDescription className="text-sm font-medium">
+                    Total Order Volume
+                  </CardDescription>
                 </div>
-                <Tabs defaultValue="j">
-                  <TabsList>
-                    <TabsTrigger value="j">Jan</TabsTrigger>
-                    <TabsTrigger value="m">Feb</TabsTrigger>
-                    <TabsTrigger value="a">Mar</TabsTrigger>
-                  </TabsList>
-                </Tabs>
+                <CardAction>
+                  <Tabs defaultValue="j">
+                    <TabsList>
+                      <TabsTrigger value="j">Jan</TabsTrigger>
+                      <TabsTrigger value="m">Feb</TabsTrigger>
+                      <TabsTrigger value="a">Mar</TabsTrigger>
+                    </TabsList>
+                  </Tabs>
+                </CardAction>
               </CardHeader>
               <CardContent>
-                <div className="h-[260px] w-full">
+                <div className="w-full">
                   <ChartContainer
                     config={chartConfig}
                     className="h-full w-full"
@@ -543,24 +628,24 @@ export default function DashboardPage() {
             </Card>
           </div>
 
-          {/* Right Column: Performance & Sales Channels */}
+          {/* Right Column: Natural Height Cards */}
           <div className="flex flex-col gap-6 lg:col-span-5 xl:col-span-4">
             <Card>
               <CardHeader>
-                <CardTitle>
-                  Conversion & Growth
-                </CardTitle>
-                <Select defaultValue="30d">
-                  <SelectTrigger className="h-8 w-auto">
-                    <SelectValue placeholder="Select duration" />
-                  </SelectTrigger>
-                  <SelectContent align="end">
-                    <SelectItem value="12m">12 Months</SelectItem>
-                    <SelectItem value="6m">6 Months</SelectItem>
-                    <SelectItem value="30d">30 Days</SelectItem>
-                    <SelectItem value="7d">7 Days</SelectItem>
-                  </SelectContent>
-                </Select>
+                <CardTitle>Conversion & Growth</CardTitle>
+                <CardAction>
+                  <Select defaultValue="30d">
+                    <SelectTrigger className="h-8 w-auto">
+                      <SelectValue placeholder="Select duration" />
+                    </SelectTrigger>
+                    <SelectContent align="end">
+                      <SelectItem value="12m">12 Months</SelectItem>
+                      <SelectItem value="6m">6 Months</SelectItem>
+                      <SelectItem value="30d">30 Days</SelectItem>
+                      <SelectItem value="7d">7 Days</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </CardAction>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="space-y-2">
@@ -691,210 +776,217 @@ export default function DashboardPage() {
             </Card>
           </div>
         </Grid>
-        <Grid columns={{ base: 1, lg: 2 }} gap={6}>
-          <Card>
-            <CardHeader>
-              <div className="flex items-center gap-2">
-                <div>
-                  <CardTitle>Weekly Report</CardTitle>
-                  <CardDescription>Jul 15 – Jul 21 (Week 29)</CardDescription>
-                </div>
-              </div>
-              <CardAction>
-                <Badge variant="outline" className="text-[10px] font-mono">
-                  WoW Digest
-                </Badge>
-                <Button variant="outline" size="sm" className="gap-2">
-                  <Icon icon={Download01Icon} className="w-4 h-4" />
-                  Download Full Weekly PDF
-                </Button>
-              </CardAction>
-            </CardHeader>
 
-            <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
-                {/* Revenue Sparkline */}
-                <div>
-                  <span className="text-xs font-medium text-muted-foreground">
-                    Weekly Revenue Trend
-                  </span>
-                  <div className="flex items-end justify-between mt-1">
-                    <p className="text-3xl font-bold tracking-tight">$12,450</p>
-                    <div className="w-24 h-10">
-                      <ChartContainer
-                        config={chartConfig}
-                        className="w-full h-full"
-                      >
-                        <LineChart data={lineData}>
-                          <Line
-                            type="monotone"
-                            dataKey="val"
-                            stroke="hsl(var(--chart-1))"
-                            strokeWidth={2.5}
-                            dot={false}
-                          />
-                        </LineChart>
-                      </ChartContainer>
-                    </div>
+        {/* Middle Section */}
+        <Grid columns={{ base: 1, lg: 3 }} gap={6}>
+          {/* Left Column: Weekly Report (1/3 width) */}
+          <GridCol colSpan={{ base: 1, lg: 1 }}>
+            <Card className="h-full flex flex-col justify-between">
+              <CardHeader>
+                <div className="flex items-center gap-2">
+                  <div>
+                    <CardTitle>Weekly Report</CardTitle>
+                    <CardDescription>Jul 15 – Jul 21 (Week 29)</CardDescription>
                   </div>
-                  <p className="text-xs text-green-500 font-medium mt-1 flex items-center gap-1">
-                    <Icon icon={ArrowUp01Icon} className="w-3.5 h-3.5" />
-                    +12.5% WoW{" "}
-                    <span className="text-muted-foreground font-normal">
-                      (vs $11,060 last week)
+                </div>
+                <CardAction>
+                  <Badge variant="outline" className="text-[10px] font-mono">
+                    WoW Digest
+                  </Badge>
+                  <Button variant="outline" size="sm" className="gap-2">
+                    <Icon icon={Download01Icon} className="w-4 h-4" />
+                    <span className="hidden sm:inline">Download PDF</span>
+                  </Button>
+                </CardAction>
+              </CardHeader>
+
+              <CardContent className="space-y-6 flex-1 flex flex-col justify-between">
+                <div className="space-y-6">
+                  {/* Revenue Sparkline */}
+                  <div>
+                    <span className="text-xs font-medium text-muted-foreground">
+                      Weekly Revenue Trend
                     </span>
-                  </p>
-                </div>
+                    <div className="flex items-end justify-between mt-1">
+                      <p className="text-3xl font-bold tracking-tight">$12,450</p>
+                      <div className="w-24 h-10">
+                        <ChartContainer
+                          config={chartConfig}
+                          className="w-full h-full"
+                        >
+                          <LineChart data={lineData}>
+                            <Line
+                              type="monotone"
+                              dataKey="val"
+                              stroke="hsl(var(--chart-1))"
+                              strokeWidth={2.5}
+                              dot={false}
+                            />
+                          </LineChart>
+                        </ChartContainer>
+                      </div>
+                    </div>
+                    <p className="text-xs text-green-500 font-medium mt-1 flex items-center gap-1">
+                      <Icon icon={ArrowUp01Icon} className="w-3.5 h-3.5" />
+                      +12.5% WoW{" "}
+                      <span className="text-muted-foreground font-normal">
+                        (vs $11,060 last week)
+                      </span>
+                    </p>
+                  </div>
 
-                {/* Highlights Grid */}
-                <div className="md:col-span-2 space-y-3">
-                  <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                    Weekly Operational Stats
-                  </h4>
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-sm">
-                    <div className="p-3 bg-muted/40 rounded-xl border border-border/40">
-                      <p className="text-xs text-muted-foreground">
-                        Orders Completed
-                      </p>
-                      <p className="text-lg font-semibold mt-0.5">348</p>
-                      <span className="text-[10px] text-green-500 font-medium">
-                        +8.2% WoW
-                      </span>
-                    </div>
-                    <div className="p-3 bg-muted/40 rounded-xl border border-border/40">
-                      <p className="text-xs text-muted-foreground">
-                        Avg Order Value
-                      </p>
-                      <p className="text-lg font-semibold mt-0.5">$78.20</p>
-                      <span className="text-[10px] text-green-500 font-medium">
-                        +$2.40 WoW
-                      </span>
-                    </div>
-                    <div className="p-3 bg-muted/40 rounded-xl border border-border/40">
-                      <p className="text-xs text-muted-foreground">
-                        Return / Refund
-                      </p>
-                      <p className="text-lg font-semibold mt-0.5">1.2%</p>
-                      <span className="text-[10px] text-green-500 font-medium">
-                        -0.3% WoW
-                      </span>
-                    </div>
-                    <div className="p-3 bg-muted/40 rounded-xl border border-border/40">
-                      <p className="text-xs text-muted-foreground">
-                        Top Category
-                      </p>
-                      <p className="text-sm font-semibold mt-0.5 line-clamp-1">
-                        Electronics
-                      </p>
-                      <span className="text-[10px] text-muted-foreground">
-                        42% total sales
-                      </span>
+                  {/* Highlights Grid */}
+                  <div className="space-y-3">
+                    <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                      Weekly Operational Stats
+                    </h4>
+                    <div className="grid grid-cols-2 gap-3 text-sm">
+                      <div className="p-3 bg-muted/40 rounded-xl border border-border/40">
+                        <p className="text-xs text-muted-foreground">
+                          Orders Completed
+                        </p>
+                        <p className="text-lg font-semibold mt-0.5">348</p>
+                        <span className="text-[10px] text-green-500 font-medium">
+                          +8.2% WoW
+                        </span>
+                      </div>
+                      <div className="p-3 bg-muted/40 rounded-xl border border-border/40">
+                        <p className="text-xs text-muted-foreground">
+                          Avg Order Value
+                        </p>
+                        <p className="text-lg font-semibold mt-0.5">$78.20</p>
+                        <span className="text-[10px] text-green-500 font-medium">
+                          +$2.40 WoW
+                        </span>
+                      </div>
+                      <div className="p-3 bg-muted/40 rounded-xl border border-border/40">
+                        <p className="text-xs text-muted-foreground">
+                          Return / Refund
+                        </p>
+                        <p className="text-lg font-semibold mt-0.5">1.2%</p>
+                        <span className="text-[10px] text-green-500 font-medium">
+                          -0.3% WoW
+                        </span>
+                      </div>
+                      <div className="p-3 bg-muted/40 rounded-xl border border-border/40">
+                        <p className="text-xs text-muted-foreground">
+                          Top Category
+                        </p>
+                        <p className="text-sm font-semibold mt-0.5 line-clamp-1">
+                          Electronics
+                        </p>
+                        <span className="text-[10px] text-muted-foreground">
+                          42% total sales
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
 
-              {/* Weekly Insight Quote */}
-              <div className="p-3 bg-chart-1/5 rounded-xl border border-chart-1/20 text-xs text-muted-foreground">
-                <span className="font-semibold text-foreground">
-                  💡 Insight:
-                </span>{" "}
-                Social media ad spend drove a +24% increase in weekend traffic.
-                Wireless audio category holds highest margin.
-              </div>
-            </CardContent>
-          </Card>
+                {/* Weekly Insight Quote */}
+                <div className="p-3 bg-chart-1/5 rounded-xl border border-chart-1/20 text-xs text-muted-foreground">
+                  <span className="font-semibold text-foreground">
+                    💡 Insight:
+                  </span>{" "}
+                  Social media ad spend drove a +24% increase in weekend traffic.
+                  Wireless audio category holds highest margin.
+                </div>
+              </CardContent>
+            </Card>
+          </GridCol>
 
-          {/* Right Column: Live Recent Orders Table */}
-          <Card>
-            <CardHeader>
-              <div>
-                <CardTitle>Recent Orders & Fulfillment</CardTitle>
-                <CardDescription>
-                  Real-time transaction log across all connected sales channels.
-                </CardDescription>
-              </div>
-              <CardAction>
-                <Button variant="outline" size="sm">
-                  View All Orders
-                </Button>
-              </CardAction>
-            </CardHeader>
-            <CardContent>
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead>Order ID</TableHead>
-                    <TableHead>Customer</TableHead>
-                    <TableHead>Items</TableHead>
-                    <TableHead>Payment</TableHead>
-                    <TableHead>Fulfillment</TableHead>
-                    <TableHead className="text-right">Total Amount</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {recentOrders.map((order) => (
-                    <TableRow key={order.id}>
-                      <TableCell className="font-medium font-mono text-xs">
-                        {order.id}
-                      </TableCell>
-                      <TableCell>
-                        <div className="flex items-center gap-2.5">
-                          <Avatar className="h-7 w-7">
-                            <AvatarImage
-                              src={order.avatar}
-                              alt={order.customer}
-                            />
-                            <AvatarFallback className="text-[10px]">
-                              {order.initials}
-                            </AvatarFallback>
-                          </Avatar>
-                          <div>
-                            <p className="text-xs font-medium leading-none">
-                              {order.customer}
-                            </p>
-                            <p className="text-[10px] text-muted-foreground mt-0.5">
-                              {order.email}
-                            </p>
-                          </div>
-                        </div>
-                      </TableCell>
-                      <TableCell className="text-xs text-muted-foreground">
-                        {order.items}
-                      </TableCell>
-                      <TableCell>
-                        <Badge
-                          variant={
-                            order.payment === "Paid" ? "default" : "secondary"
-                          }
-                          className="text-[10px] px-2 py-0.5"
-                        >
-                          {order.payment}
-                        </Badge>
-                      </TableCell>
-                      <TableCell>
-                        <Badge
-                          variant={
-                            order.fulfillment === "Delivered"
-                              ? "default"
-                              : order.fulfillment === "Shipped"
-                                ? "outline"
-                                : "secondary"
-                          }
-                          className="text-[10px] px-2 py-0.5"
-                        >
-                          {order.fulfillment}
-                        </Badge>
-                      </TableCell>
-                      <TableCell className="text-right font-semibold text-xs">
-                        {order.amount}
-                      </TableCell>
+          {/* Right Column: Live Recent Orders Table (2/3 width) */}
+          <GridCol colSpan={{ base: 1, lg: 2 }}>
+            <Card className="h-full">
+              <CardHeader>
+                <div>
+                  <CardTitle>Recent Orders & Fulfillment</CardTitle>
+                  <CardDescription>
+                    Real-time transaction log across all connected sales channels.
+                  </CardDescription>
+                </div>
+                <CardAction>
+                  <Button variant="outline" size="sm">
+                    View All Orders
+                  </Button>
+                </CardAction>
+              </CardHeader>
+              <CardContent>
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>Order ID</TableHead>
+                      <TableHead>Customer</TableHead>
+                      <TableHead>Items</TableHead>
+                      <TableHead>Payment</TableHead>
+                      <TableHead>Fulfillment</TableHead>
+                      <TableHead className="text-right">Total Amount</TableHead>
                     </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </CardContent>
-          </Card>
+                  </TableHeader>
+                  <TableBody>
+                    {recentOrders.map((order) => (
+                      <TableRow key={order.id}>
+                        <TableCell className="font-medium font-mono text-xs">
+                          {order.id}
+                        </TableCell>
+                        <TableCell>
+                          <div className="flex items-center gap-2.5">
+                            <Avatar className="h-7 w-7">
+                              <AvatarImage
+                                src={order.avatar}
+                                alt={order.customer}
+                              />
+                              <AvatarFallback className="text-[10px]">
+                                {order.initials}
+                              </AvatarFallback>
+                            </Avatar>
+                            <div>
+                              <p className="text-xs font-medium leading-none">
+                                {order.customer}
+                              </p>
+                              <p className="text-[10px] text-muted-foreground mt-0.5">
+                                {order.email}
+                              </p>
+                            </div>
+                          </div>
+                        </TableCell>
+                        <TableCell className="text-xs text-muted-foreground">
+                          {order.items}
+                        </TableCell>
+                        <TableCell>
+                          <Badge
+                            variant={
+                              order.payment === "Paid" ? "default" : "secondary"
+                            }
+                            className="text-[10px] px-2 py-0.5"
+                          >
+                            {order.payment}
+                          </Badge>
+                        </TableCell>
+                        <TableCell>
+                          <Badge
+                            variant={
+                              order.fulfillment === "Delivered"
+                                ? "default"
+                                : order.fulfillment === "Shipped"
+                                  ? "outline"
+                                  : "secondary"
+                            }
+                            className="text-[10px] px-2 py-0.5"
+                          >
+                            {order.fulfillment}
+                          </Badge>
+                        </TableCell>
+                        <TableCell className="text-right font-semibold text-xs">
+                          {order.amount}
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </CardContent>
+            </Card>
+          </GridCol>
         </Grid>
       </PageContent>
     </Page>
