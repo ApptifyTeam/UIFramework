@@ -39,10 +39,10 @@ To maintain a systemic and scalable architecture, all AI assistants and coding a
 - If the user asks for a new UI feature (e.g., a "Pricing Card" or a "User Avatar Stack"), you **must** build the component inside the `/framework/` package and export it, then import it into the `example` app.
 - Every piece of the UI must be rendered using components imported from `@apptify-labs/ui`. Avoid using raw HTML tags (`<div>`, `<span>`) for complex UI structures in pages.
 
-### 2. Absolute Visual Consistency
-- **No Inline Styles or Custom Classes:** Do not invent new Tailwind classes that deviate from the design system. Never use arbitrary pixel values (e.g., `w-[325px]`, `text-[#ff0000]`).
-- **Use Defined Tokens:** Always map spacing, colors, and typography to the framework's existing design tokens (e.g., `p-6`, `text-primary-500`, `rounded-xl`).
-- Ensure that paddings, margins, grid gaps, and card styles are identical across every page in the application.
+### 2. Absolute Visual Consistency & Component Defaults
+- **Rely on Framework Defaults:** When invoking components (e.g., `Grid`, `Card`, `CardHeader`, `CardTitle`, `CardDescription`, `CardAction`, etc.), **do not** add redundant `className` props. The framework components already define standardized paddings, margins, gaps, fonts, and flex layouts out-of-the-box.
+- **No Unnecessary Class Overrides:** Only pass a `className` prop when specifying truly unique/custom requirements that cannot be handled by props (such as setting an explicit custom height like `h-[260px]`).
+- **No Inline Styles or Custom Colors:** Do not invent new Tailwind classes that deviate from the design system. Never use arbitrary pixel values (e.g., `w-[325px]`, `text-[#ff0000]`). Always map spacing, colors, and typography to the framework's existing design tokens (e.g., `p-6`, `text-primary-500`, `rounded-xl`).
 
 ### 3. Systemic Thinking
 - Before generating code for a page, **analyze the existing framework components**. Reuse existing abstractions rather than building bespoke solutions.

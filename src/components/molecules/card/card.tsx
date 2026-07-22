@@ -22,11 +22,27 @@ const CardHeader = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn("flex flex-col space-y-1.5 p-6", className)}
+    className={cn(
+      "flex flex-col space-y-1.5 p-6 has-[[data-slot=card-action]]:flex-row has-[[data-slot=card-action]]:items-center has-[[data-slot=card-action]]:justify-between",
+      className,
+    )}
     {...props}
   />
 ));
 CardHeader.displayName = "CardHeader";
+
+const CardAction = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    data-slot="card-action"
+    className={cn("ml-auto flex items-center gap-2", className)}
+    {...props}
+  />
+));
+CardAction.displayName = "CardAction";
 
 const CardTitle = React.forwardRef<
   HTMLParagraphElement,
@@ -79,4 +95,5 @@ export {
   CardTitle,
   CardDescription,
   CardContent,
+  CardAction,
 };

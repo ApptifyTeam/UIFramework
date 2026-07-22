@@ -2,6 +2,7 @@
 
 import {
   Card,
+  CardAction,
   CardContent,
   CardDescription,
   CardHeader,
@@ -30,7 +31,6 @@ import {
   PageActions,
   PageContent,
   Grid,
-  GridCol,
   Select,
   SelectContent,
   SelectItem,
@@ -47,6 +47,8 @@ import {
   TableHead,
   TableHeader,
   TableRow,
+  StatCard,
+  GridCol,
 } from "@apptify-labs/ui";
 import {
   Bar,
@@ -58,11 +60,9 @@ import {
   Cell,
 } from "recharts";
 import {
-  ChevronDownIcon,
   SlidersHorizontalIcon,
   Download01Icon,
   ArrowUp01Icon,
-  ArrowDown01Icon,
   ShoppingBag01Icon,
   PackageIcon,
   ShoppingCart01Icon,
@@ -162,7 +162,8 @@ const recentOrders = [
     id: "#ORD-9542",
     customer: "Alex Morgan",
     email: "alex.m@example.com",
-    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=64&h=64&fit=crop&crop=faces",
+    avatar:
+      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=64&h=64&fit=crop&crop=faces",
     initials: "AM",
     items: "2 items",
     payment: "Paid",
@@ -174,7 +175,8 @@ const recentOrders = [
     id: "#ORD-9541",
     customer: "Sophia Chen",
     email: "sophia.c@example.com",
-    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=64&h=64&fit=crop&crop=faces",
+    avatar:
+      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=64&h=64&fit=crop&crop=faces",
     initials: "SC",
     items: "1 item",
     payment: "Paid",
@@ -186,7 +188,8 @@ const recentOrders = [
     id: "#ORD-9540",
     customer: "Marcus Vance",
     email: "marcus.v@example.com",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=64&h=64&fit=crop&crop=faces",
+    avatar:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=64&h=64&fit=crop&crop=faces",
     initials: "MV",
     items: "3 items",
     payment: "Pending",
@@ -198,7 +201,8 @@ const recentOrders = [
     id: "#ORD-9539",
     customer: "Elena Rostova",
     email: "elena.r@example.com",
-    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=64&h=64&fit=crop&crop=faces",
+    avatar:
+      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=64&h=64&fit=crop&crop=faces",
     initials: "ER",
     items: "1 item",
     payment: "Paid",
@@ -334,7 +338,8 @@ export default function DashboardPage() {
         <div>
           <PageTitle>E-Commerce Sales & Operations</PageTitle>
           <PageDescription>
-            Live overview of store revenue, order fulfillment, weekly insights, and customer acquisition.
+            Live overview of store revenue, order fulfillment, weekly insights,
+            and customer acquisition.
           </PageDescription>
         </div>
         <PageActions>
@@ -370,103 +375,54 @@ export default function DashboardPage() {
         </PageActions>
       </PageHeader>
 
-      <PageContent className="space-y-6">
+      <PageContent>
         {/* Quick KPI Stat Cards Header */}
-        <Grid columns={{ base: 1, sm: 2, lg: 4 }} gap="4">
-          <Card className="p-4">
-            <div className="flex items-center justify-between">
-              <span className="text-xs font-medium text-muted-foreground">
-                Total Revenue (This Month)
-              </span>
-              <div className="p-2 bg-primary/10 text-primary rounded-lg">
-                <Icon icon={ShoppingBag01Icon} className="w-4 h-4" />
-              </div>
-            </div>
-            <div className="mt-2 flex items-baseline justify-between">
-              <span className="text-2xl font-bold tracking-tight">$36,358</span>
-              <span className="text-xs font-medium text-green-500 flex items-center gap-0.5">
-                <Icon icon={ArrowUp01Icon} className="w-3 h-3" /> +14.2%
-              </span>
-            </div>
-            <p className="text-[11px] text-muted-foreground mt-1">
-              vs $31,840 last month
-            </p>
-          </Card>
+        <Grid columns={{ base: 1, sm: 2, lg: 4 }} gap={4}>
+          <StatCard
+            title="Total Revenue (This Month)"
+            value="36,358"
+            prefix_unit="$"
+            icon={ShoppingBag01Icon}
+            change="+14.2%"
+            desc="vs $31,840 last month"
+          />
 
-          <Card className="p-4">
-            <div className="flex items-center justify-between">
-              <span className="text-xs font-medium text-muted-foreground">
-                Total Orders
-              </span>
-              <div className="p-2 bg-chart-2/10 text-chart-2 rounded-lg">
-                <Icon icon={ShoppingCart01Icon} className="w-4 h-4" />
-              </div>
-            </div>
-            <div className="mt-2 flex items-baseline justify-between">
-              <span className="text-2xl font-bold tracking-tight">1,142</span>
-              <span className="text-xs font-medium text-green-500 flex items-center gap-0.5">
-                <Icon icon={ArrowUp01Icon} className="w-3 h-3" /> +8.5%
-              </span>
-            </div>
-            <p className="text-[11px] text-muted-foreground mt-1">
-              98.2% fulfillment rate
-            </p>
-          </Card>
+          <StatCard
+            title="Total Orders"
+            value="1,142"
+            icon={ShoppingCart01Icon}
+            change="+8.5%"
+            desc="98.2% fulfillment rate"
+          />
 
-          <Card className="p-4">
-            <div className="flex items-center justify-between">
-              <span className="text-xs font-medium text-muted-foreground">
-                Avg. Order Value (AOV)
-              </span>
-              <div className="p-2 bg-chart-1/10 text-chart-1 rounded-lg">
-                <Icon icon={PackageIcon} className="w-4 h-4" />
-              </div>
-            </div>
-            <div className="mt-2 flex items-baseline justify-between">
-              <span className="text-2xl font-bold tracking-tight">$84.50</span>
-              <span className="text-xs font-medium text-green-500 flex items-center gap-0.5">
-                <Icon icon={ArrowUp01Icon} className="w-3 h-3" /> +3.8%
-              </span>
-            </div>
-            <p className="text-[11px] text-muted-foreground mt-1">
-              +$3.10 vs last week
-            </p>
-          </Card>
+          <StatCard
+            title="Avg. Order Value (AOV)"
+            value="84.50"
+            prefix_unit="$"
+            icon={PackageIcon}
+            change="+3.8%"
+            desc="+$3.10 vs last week"
+          />
 
-          <Card className="p-4">
-            <div className="flex items-center justify-between">
-              <span className="text-xs font-medium text-muted-foreground">
-                Conversion Rate
-              </span>
-              <div className="p-2 bg-purple-500/10 text-purple-500 rounded-lg">
-                <Icon icon={SlidersHorizontalIcon} className="w-4 h-4" />
-              </div>
-            </div>
-            <div className="mt-2 flex items-baseline justify-between">
-              <span className="text-2xl font-bold tracking-tight">3.42%</span>
-              <span className="text-xs font-medium text-red-500 flex items-center gap-0.5">
-                <Icon icon={ArrowDown01Icon} className="w-3 h-3" /> -0.4%
-              </span>
-            </div>
-            <p className="text-[11px] text-muted-foreground mt-1">
-              Cart abandonment: 64.1%
-            </p>
-          </Card>
+          <StatCard
+            title="Conversion Rate"
+            value="3.42"
+            suffix_unit="%"
+            icon={SlidersHorizontalIcon}
+            change="-0.4%"
+            desc="Cart abandonment: 64.1%"
+          />
         </Grid>
 
         {/* Main Dashboard Body */}
-        <Grid columns={{ base: 1, lg: 8, xl: 12 }}>
+        <Grid columns={{ base: 1, lg: 12 }} gap={6}>
           {/* Left Column: Revenue & Sales Charts */}
-          <GridCol colSpan={{ lg: 8, xl: 6 }}>
-            <Card className="flex-1 min-h-[380px]">
+          <div className="flex flex-col gap-6 lg:col-span-7 xl:col-span-8">
+            <Card className="flex-1">
               <CardHeader className="flex flex-row items-start justify-between pb-8">
                 <div className="space-y-1">
-                  <CardTitle className="text-3xl font-bold tracking-tight">
-                    $33,500
-                  </CardTitle>
-                  <CardDescription className="text-sm font-medium">
-                    Total Net Profit
-                  </CardDescription>
+                  <CardTitle>$33,500</CardTitle>
+                  <CardDescription>Total Net Profit</CardDescription>
                 </div>
                 <Tabs defaultValue="j">
                   <TabsList>
@@ -524,15 +480,11 @@ export default function DashboardPage() {
               </CardContent>
             </Card>
 
-            <Card className="flex-1 min-h-[380px]">
+            <Card className="flex-1">
               <CardHeader className="flex flex-row items-start justify-between pb-8">
                 <div className="space-y-1">
-                  <CardTitle className="text-3xl font-bold tracking-tight">
-                    2,242
-                  </CardTitle>
-                  <CardDescription className="text-sm font-medium">
-                    Total Order Volume
-                  </CardDescription>
+                  <CardTitle>2,242</CardTitle>
+                  <CardDescription>Total Order Volume</CardDescription>
                 </div>
                 <Tabs defaultValue="j">
                   <TabsList>
@@ -546,7 +498,7 @@ export default function DashboardPage() {
                 <div className="h-[260px] w-full">
                   <ChartContainer
                     config={chartConfig}
-                    className="h-full w-full pl-[80px]"
+                    className="h-full w-full"
                   >
                     <BarChart
                       data={salesData}
@@ -589,13 +541,13 @@ export default function DashboardPage() {
                 </div>
               </CardContent>
             </Card>
-          </GridCol>
+          </div>
 
-          {/* Middle Column: Performance & Sales Channels */}
-          <GridCol colSpan={{ lg: 4, xl: 3 }}>
+          {/* Right Column: Performance & Sales Channels */}
+          <div className="flex flex-col gap-6 lg:col-span-5 xl:col-span-4">
             <Card>
-              <CardHeader className="flex flex-row items-center justify-between pb-6">
-                <CardTitle className="text-lg font-medium">
+              <CardHeader>
+                <CardTitle>
                   Conversion & Growth
                 </CardTitle>
                 <Select defaultValue="30d">
@@ -612,7 +564,7 @@ export default function DashboardPage() {
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="space-y-2">
-                  <div className="h-[75px] w-full">
+                  <div className="w-full">
                     <ChartContainer
                       config={{ value: { color: "hsl(var(--chart-1))" } }}
                       className="h-full w-full"
@@ -701,13 +653,9 @@ export default function DashboardPage() {
 
             {/* Top Selling Products */}
             <Card>
-              <CardHeader className="pb-4">
-                <CardDescription className="text-xs font-semibold uppercase tracking-wider">
-                  Best Sellers
-                </CardDescription>
-                <CardTitle className="text-lg font-medium">
-                  Top Selling Products
-                </CardTitle>
+              <CardHeader>
+                <CardDescription>Best Sellers</CardDescription>
+                <CardTitle>Top Selling Products</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 {topProducts.map((item, idx) => (
@@ -729,7 +677,10 @@ export default function DashboardPage() {
                       </div>
                     </div>
                     <div className="text-right flex flex-col items-end gap-1">
-                      <Badge variant={item.stockVariant} className="text-[10px] px-1.5 py-0">
+                      <Badge
+                        variant={item.stockVariant}
+                        className="text-[10px] px-1.5 py-0"
+                      >
                         {item.stockStatus}
                       </Badge>
                       <p className="text-xs font-bold">{item.revenue}</p>
@@ -738,211 +689,214 @@ export default function DashboardPage() {
                 ))}
               </CardContent>
             </Card>
-          </GridCol>
-
-          {/* Right Column: Weekly Report Card */}
-          <GridCol colSpan={{ lg: 4, xl: 3 }}>
-            <Card className="h-full border-border shadow-sm flex flex-col justify-between">
-              <div>
-                <CardHeader className="pb-4 border-b border-border/60">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <div className="p-2 bg-chart-1/10 rounded-lg text-chart-1">
-                        <Icon icon={SlidersHorizontalIcon} className="w-4 h-4" />
-                      </div>
-                      <div>
-                        <CardTitle className="text-base font-semibold">
-                          Weekly Report
-                        </CardTitle>
-                        <CardDescription className="text-xs">
-                          Jul 15 – Jul 21 (Week 29)
-                        </CardDescription>
-                      </div>
-                    </div>
-                    <Badge variant="outline" className="text-[10px] font-mono">
-                      WoW Digest
-                    </Badge>
-                  </div>
-                </CardHeader>
-
-                <CardContent className="pt-5 space-y-5">
-                  {/* Revenue Sparkline */}
-                  <div>
-                    <span className="text-xs font-medium text-muted-foreground">
-                      Weekly Revenue Trend
-                    </span>
-                    <div className="flex items-end justify-between mt-1">
-                      <p className="text-3xl font-bold tracking-tight">$12,450</p>
-                      <div className="w-24 h-10">
-                        <ChartContainer
-                          config={chartConfig}
-                          className="w-full h-full"
-                        >
-                          <LineChart data={lineData}>
-                            <Line
-                              type="monotone"
-                              dataKey="val"
-                              stroke="hsl(var(--chart-1))"
-                              strokeWidth={2.5}
-                              dot={false}
-                            />
-                          </LineChart>
-                        </ChartContainer>
-                      </div>
-                    </div>
-                    <p className="text-xs text-green-500 font-medium mt-1 flex items-center gap-1">
-                      <Icon icon={ArrowUp01Icon} className="w-3.5 h-3.5" />
-                      +12.5% WoW{" "}
-                      <span className="text-muted-foreground font-normal">
-                        (vs $11,060 last week)
-                      </span>
-                    </p>
-                  </div>
-
-                  {/* Highlights Grid */}
-                  <div className="space-y-3 pt-3 border-t border-border/50">
-                    <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                      Weekly Operational Stats
-                    </h4>
-                    <div className="grid grid-cols-2 gap-3 text-sm">
-                      <div className="p-3 bg-muted/40 rounded-xl border border-border/40">
-                        <p className="text-xs text-muted-foreground">Orders Completed</p>
-                        <p className="text-lg font-semibold mt-0.5">348</p>
-                        <span className="text-[10px] text-green-500 font-medium">
-                          +8.2% WoW
-                        </span>
-                      </div>
-                      <div className="p-3 bg-muted/40 rounded-xl border border-border/40">
-                        <p className="text-xs text-muted-foreground">Avg Order Value</p>
-                        <p className="text-lg font-semibold mt-0.5">$78.20</p>
-                        <span className="text-[10px] text-green-500 font-medium">
-                          +$2.40 WoW
-                        </span>
-                      </div>
-                      <div className="p-3 bg-muted/40 rounded-xl border border-border/40">
-                        <p className="text-xs text-muted-foreground">Return / Refund</p>
-                        <p className="text-lg font-semibold mt-0.5">1.2%</p>
-                        <span className="text-[10px] text-green-500 font-medium">
-                          -0.3% WoW
-                        </span>
-                      </div>
-                      <div className="p-3 bg-muted/40 rounded-xl border border-border/40">
-                        <p className="text-xs text-muted-foreground">Top Category</p>
-                        <p className="text-sm font-semibold mt-0.5 line-clamp-1">
-                          Electronics
-                        </p>
-                        <span className="text-[10px] text-muted-foreground">
-                          42% total sales
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Weekly Insight Quote */}
-                  <div className="p-3 bg-chart-1/5 rounded-xl border border-chart-1/20 text-xs text-muted-foreground">
-                    <span className="font-semibold text-foreground">💡 Insight:</span>{" "}
-                    Social media ad spend drove a +24% increase in weekend traffic. Wireless audio category holds highest margin.
-                  </div>
-                </CardContent>
+          </div>
+        </Grid>
+        <Grid columns={{ base: 1, lg: 2 }} gap={6}>
+          <Card>
+            <CardHeader>
+              <div className="flex items-center gap-2">
+                <div>
+                  <CardTitle>Weekly Report</CardTitle>
+                  <CardDescription>Jul 15 – Jul 21 (Week 29)</CardDescription>
+                </div>
               </div>
-
-              <div className="p-5 pt-0">
-                <Button variant="outline" className="w-full justify-center gap-2">
+              <CardAction>
+                <Badge variant="outline" className="text-[10px] font-mono">
+                  WoW Digest
+                </Badge>
+                <Button variant="outline" size="sm" className="gap-2">
                   <Icon icon={Download01Icon} className="w-4 h-4" />
                   Download Full Weekly PDF
                 </Button>
-              </div>
-            </Card>
-          </GridCol>
-        </Grid>
+              </CardAction>
+            </CardHeader>
 
-        {/* Bottom Full-width Section: Live Recent Orders Table */}
-        <Card className="mt-6">
-          <CardHeader className="flex flex-row items-center justify-between pb-4">
-            <div>
-              <CardTitle className="text-lg font-semibold">
-                Recent Orders & Fulfillment
-              </CardTitle>
-              <CardDescription className="text-xs">
-                Real-time transaction log across all connected sales channels.
-              </CardDescription>
-            </div>
-            <Button variant="outline" size="sm">
-              View All Orders
-            </Button>
-          </CardHeader>
-          <CardContent>
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Order ID</TableHead>
-                  <TableHead>Customer</TableHead>
-                  <TableHead>Items</TableHead>
-                  <TableHead>Payment</TableHead>
-                  <TableHead>Fulfillment</TableHead>
-                  <TableHead className="text-right">Total Amount</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {recentOrders.map((order) => (
-                  <TableRow key={order.id}>
-                    <TableCell className="font-medium font-mono text-xs">
-                      {order.id}
-                    </TableCell>
-                    <TableCell>
-                      <div className="flex items-center gap-2.5">
-                        <Avatar className="h-7 w-7">
-                          <AvatarImage src={order.avatar} alt={order.customer} />
-                          <AvatarFallback className="text-[10px]">
-                            {order.initials}
-                          </AvatarFallback>
-                        </Avatar>
-                        <div>
-                          <p className="text-xs font-medium leading-none">
-                            {order.customer}
-                          </p>
-                          <p className="text-[10px] text-muted-foreground mt-0.5">
-                            {order.email}
-                          </p>
-                        </div>
-                      </div>
-                    </TableCell>
-                    <TableCell className="text-xs text-muted-foreground">
-                      {order.items}
-                    </TableCell>
-                    <TableCell>
-                      <Badge
-                        variant={order.payment === "Paid" ? "default" : "secondary"}
-                        className="text-[10px] px-2 py-0.5"
+            <CardContent>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+                {/* Revenue Sparkline */}
+                <div>
+                  <span className="text-xs font-medium text-muted-foreground">
+                    Weekly Revenue Trend
+                  </span>
+                  <div className="flex items-end justify-between mt-1">
+                    <p className="text-3xl font-bold tracking-tight">$12,450</p>
+                    <div className="w-24 h-10">
+                      <ChartContainer
+                        config={chartConfig}
+                        className="w-full h-full"
                       >
-                        {order.payment}
-                      </Badge>
-                    </TableCell>
-                    <TableCell>
-                      <Badge
-                        variant={
-                          order.fulfillment === "Delivered"
-                            ? "default"
-                            : order.fulfillment === "Shipped"
-                            ? "outline"
-                            : "secondary"
-                        }
-                        className="text-[10px] px-2 py-0.5"
-                      >
-                        {order.fulfillment}
-                      </Badge>
-                    </TableCell>
-                    <TableCell className="text-right font-semibold text-xs">
-                      {order.amount}
-                    </TableCell>
+                        <LineChart data={lineData}>
+                          <Line
+                            type="monotone"
+                            dataKey="val"
+                            stroke="hsl(var(--chart-1))"
+                            strokeWidth={2.5}
+                            dot={false}
+                          />
+                        </LineChart>
+                      </ChartContainer>
+                    </div>
+                  </div>
+                  <p className="text-xs text-green-500 font-medium mt-1 flex items-center gap-1">
+                    <Icon icon={ArrowUp01Icon} className="w-3.5 h-3.5" />
+                    +12.5% WoW{" "}
+                    <span className="text-muted-foreground font-normal">
+                      (vs $11,060 last week)
+                    </span>
+                  </p>
+                </div>
+
+                {/* Highlights Grid */}
+                <div className="md:col-span-2 space-y-3">
+                  <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                    Weekly Operational Stats
+                  </h4>
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-sm">
+                    <div className="p-3 bg-muted/40 rounded-xl border border-border/40">
+                      <p className="text-xs text-muted-foreground">
+                        Orders Completed
+                      </p>
+                      <p className="text-lg font-semibold mt-0.5">348</p>
+                      <span className="text-[10px] text-green-500 font-medium">
+                        +8.2% WoW
+                      </span>
+                    </div>
+                    <div className="p-3 bg-muted/40 rounded-xl border border-border/40">
+                      <p className="text-xs text-muted-foreground">
+                        Avg Order Value
+                      </p>
+                      <p className="text-lg font-semibold mt-0.5">$78.20</p>
+                      <span className="text-[10px] text-green-500 font-medium">
+                        +$2.40 WoW
+                      </span>
+                    </div>
+                    <div className="p-3 bg-muted/40 rounded-xl border border-border/40">
+                      <p className="text-xs text-muted-foreground">
+                        Return / Refund
+                      </p>
+                      <p className="text-lg font-semibold mt-0.5">1.2%</p>
+                      <span className="text-[10px] text-green-500 font-medium">
+                        -0.3% WoW
+                      </span>
+                    </div>
+                    <div className="p-3 bg-muted/40 rounded-xl border border-border/40">
+                      <p className="text-xs text-muted-foreground">
+                        Top Category
+                      </p>
+                      <p className="text-sm font-semibold mt-0.5 line-clamp-1">
+                        Electronics
+                      </p>
+                      <span className="text-[10px] text-muted-foreground">
+                        42% total sales
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Weekly Insight Quote */}
+              <div className="p-3 bg-chart-1/5 rounded-xl border border-chart-1/20 text-xs text-muted-foreground">
+                <span className="font-semibold text-foreground">
+                  💡 Insight:
+                </span>{" "}
+                Social media ad spend drove a +24% increase in weekend traffic.
+                Wireless audio category holds highest margin.
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Right Column: Live Recent Orders Table */}
+          <Card>
+            <CardHeader>
+              <div>
+                <CardTitle>Recent Orders & Fulfillment</CardTitle>
+                <CardDescription>
+                  Real-time transaction log across all connected sales channels.
+                </CardDescription>
+              </div>
+              <CardAction>
+                <Button variant="outline" size="sm">
+                  View All Orders
+                </Button>
+              </CardAction>
+            </CardHeader>
+            <CardContent>
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Order ID</TableHead>
+                    <TableHead>Customer</TableHead>
+                    <TableHead>Items</TableHead>
+                    <TableHead>Payment</TableHead>
+                    <TableHead>Fulfillment</TableHead>
+                    <TableHead className="text-right">Total Amount</TableHead>
                   </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </CardContent>
-        </Card>
+                </TableHeader>
+                <TableBody>
+                  {recentOrders.map((order) => (
+                    <TableRow key={order.id}>
+                      <TableCell className="font-medium font-mono text-xs">
+                        {order.id}
+                      </TableCell>
+                      <TableCell>
+                        <div className="flex items-center gap-2.5">
+                          <Avatar className="h-7 w-7">
+                            <AvatarImage
+                              src={order.avatar}
+                              alt={order.customer}
+                            />
+                            <AvatarFallback className="text-[10px]">
+                              {order.initials}
+                            </AvatarFallback>
+                          </Avatar>
+                          <div>
+                            <p className="text-xs font-medium leading-none">
+                              {order.customer}
+                            </p>
+                            <p className="text-[10px] text-muted-foreground mt-0.5">
+                              {order.email}
+                            </p>
+                          </div>
+                        </div>
+                      </TableCell>
+                      <TableCell className="text-xs text-muted-foreground">
+                        {order.items}
+                      </TableCell>
+                      <TableCell>
+                        <Badge
+                          variant={
+                            order.payment === "Paid" ? "default" : "secondary"
+                          }
+                          className="text-[10px] px-2 py-0.5"
+                        >
+                          {order.payment}
+                        </Badge>
+                      </TableCell>
+                      <TableCell>
+                        <Badge
+                          variant={
+                            order.fulfillment === "Delivered"
+                              ? "default"
+                              : order.fulfillment === "Shipped"
+                                ? "outline"
+                                : "secondary"
+                          }
+                          className="text-[10px] px-2 py-0.5"
+                        >
+                          {order.fulfillment}
+                        </Badge>
+                      </TableCell>
+                      <TableCell className="text-right font-semibold text-xs">
+                        {order.amount}
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </CardContent>
+          </Card>
+        </Grid>
       </PageContent>
     </Page>
   );
 }
-

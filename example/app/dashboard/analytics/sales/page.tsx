@@ -25,8 +25,10 @@ import {
   PageActions,
   PageContent,
   Icon,
+  StatCard,
+  Grid,
 } from "@apptify-labs/ui";
-import { Download01Icon, Upload01Icon } from "@hugeicons/core-free-icons";
+import { Download01Icon, Upload01Icon, ShoppingBag01Icon, ShoppingCart01Icon, PackageIcon, SlidersHorizontalIcon } from "@hugeicons/core-free-icons";
 import {
   Area,
   AreaChart,
@@ -81,22 +83,40 @@ const topProducts = [
     revenue: "$45,900",
     status: "Out of Stock",
   },
-  {
-    id: "5",
-    name: "Smart Watch Series 5",
-    category: "Electronics",
-    sales: 600,
-    revenue: "$240,000",
-    status: "In Stock",
-  },
 ];
 
-const categoryData = [
-  { category: "Electronics", sales: 4500 },
-  { category: "Fashion", sales: 3200 },
-  { category: "Home", sales: 2800 },
-  { category: "Fitness", sales: 1900 },
-  { category: "Books", sales: 1200 },
+const salesOverviewData = [
+  { name: "Mon", revenue: 4200, orders: 120 },
+  { name: "Tue", revenue: 5800, orders: 145 },
+  { name: "Wed", revenue: 4900, orders: 132 },
+  { name: "Thu", revenue: 7200, orders: 180 },
+  { name: "Fri", revenue: 8500, orders: 210 },
+  { name: "Sat", revenue: 9100, orders: 240 },
+  { name: "Sun", revenue: 6400, orders: 165 },
+];
+
+const categorySalesData = [
+  { category: "Electronics", sales: 18400, share: "40.6%" },
+  { category: "Clothing", sales: 12200, share: "26.9%" },
+  { category: "Home & Garden", sales: 8100, share: "17.9%" },
+  { category: "Sports & Outdoors", sales: 4500, share: "9.9%" },
+  { category: "Books & Media", sales: 2100, share: "4.6%" },
+];
+
+const topProductsData = [
+  { name: "Wireless Earbuds Pro", sku: "SKU-8921", sales: 342, revenue: "$44,118" },
+  { name: "Ergonomic Desk Chair", sku: "SKU-4412", sales: 189, revenue: "$37,611" },
+  { name: "Smart Fitness Watch", sku: "SKU-7729", sales: 256, revenue: "$33,024" },
+  { name: "Mechanical Keyboard", sku: "SKU-1029", sales: 198, revenue: "$25,542" },
+  { name: "USB-C Docking Station", sku: "SKU-3310", sales: 412, revenue: "$24,308" },
+];
+
+const recentSalesData = [
+  { id: "ORD-9421", customer: "Sarah Connor", product: "Wireless Earbuds Pro", amount: "$129.00", status: "Completed", date: "2 mins ago" },
+  { id: "ORD-9420", customer: "John Doe", product: "Smart Fitness Watch", amount: "$129.00", status: "Completed", date: "15 mins ago" },
+  { id: "ORD-9419", customer: "Emily Watson", product: "Ergonomic Desk Chair", amount: "$199.00", status: "Processing", date: "32 mins ago" },
+  { id: "ORD-9418", customer: "Michael Brown", product: "Mechanical Keyboard", amount: "$129.00", status: "Completed", date: "1 hour ago" },
+  { id: "ORD-9417", customer: "Lisa Ray", product: "USB-C Docking Station", amount: "$59.00", status: "Shipped", date: "2 hours ago" },
 ];
 
 const chartConfig = {
@@ -117,14 +137,14 @@ const categoryChartConfig = {
   },
 };
 
-export default function SalesReportPage() {
+export default function SalesAnalyticsPage() {
   return (
     <Page>
       <PageHeader>
         <div>
-          <PageTitle>Sales Reports</PageTitle>
+          <PageTitle>Sales Analytics</PageTitle>
           <PageDescription>
-            Detailed analysis of your store&apos;s sales performance.
+            Detailed performance breakdown of store revenue, order volume, and top products.
           </PageDescription>
         </div>
         <PageActions>
@@ -141,115 +161,39 @@ export default function SalesReportPage() {
 
       <PageContent>
         {/* KPI Cards */}
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">
-                Total Revenue
-              </CardTitle>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                className="h-4 w-4 text-muted-foreground"
-              >
-                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-              </svg>
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">$45,231.89</div>
-              <p className="text-xs text-muted-foreground">
-                <span className="text-emerald-500 font-medium">+20.1%</span>{" "}
-                from last month
-              </p>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">
-                Total Orders
-              </CardTitle>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                className="h-4 w-4 text-muted-foreground"
-              >
-                <rect width="20" height="14" x="2" y="5" rx="2" />
-                <path d="M2 10h20" />
-              </svg>
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">+2,350</div>
-              <p className="text-xs text-muted-foreground">
-                <span className="text-emerald-500 font-medium">+15.2%</span>{" "}
-                from last month
-              </p>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">
-                Average Order Value
-              </CardTitle>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                className="h-4 w-4 text-muted-foreground"
-              >
-                <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
-              </svg>
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">$124.50</div>
-              <p className="text-xs text-muted-foreground">
-                <span className="text-rose-500 font-medium">-2.1%</span> from
-                last month
-              </p>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">
-                Conversion Rate
-              </CardTitle>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                className="h-4 w-4 text-muted-foreground"
-              >
-                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-                <circle cx="9" cy="7" r="4" />
-                <path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
-              </svg>
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">3.24%</div>
-              <p className="text-xs text-muted-foreground">
-                <span className="text-emerald-500 font-medium">+1.2%</span> from
-                last month
-              </p>
-            </CardContent>
-          </Card>
-        </div>
+        <Grid columns={{ base: 1, md: 2, lg: 4 }} gap={4}>
+          <StatCard
+            title="Total Revenue"
+            value="45,231.89"
+            prefix_unit="$"
+            icon={ShoppingBag01Icon}
+            change="+20.1%"
+            desc="from last month"
+          />
+          <StatCard
+            title="Total Orders"
+            value="2,350"
+            icon={ShoppingCart01Icon}
+            change="+15.2%"
+            desc="from last month"
+          />
+          <StatCard
+            title="Average Order Value"
+            value="124.50"
+            prefix_unit="$"
+            icon={PackageIcon}
+            change="-2.1%"
+            desc="from last month"
+          />
+          <StatCard
+            title="Conversion Rate"
+            value="3.24"
+            suffix_unit="%"
+            icon={SlidersHorizontalIcon}
+            change="+1.2%"
+            desc="from last month"
+          />
+        </Grid>
 
         {/* Main Chart */}
         <Card>
@@ -336,12 +280,13 @@ export default function SalesReportPage() {
                       <TableCell>{product.category}</TableCell>
                       <TableCell>
                         <Badge
+                          className=""
                           variant={
-                            product.status === "In Stock"
+                            (product.status === "In Stock"
                               ? "success"
                               : product.status === "Low Stock"
                                 ? "warning"
-                                : "destructive"
+                                : "destructive") as "success" | "warning" | "destructive"
                           }
                         >
                           {product.status}
@@ -370,10 +315,10 @@ export default function SalesReportPage() {
             <CardContent>
               <ChartContainer
                 config={categoryChartConfig}
-                className="h-[300px] w-full"
+                className="w-full"
               >
                 <BarChart
-                  data={categoryData}
+                  data={categorySalesData}
                   layout="vertical"
                   margin={{ top: 0, right: 0, left: 30, bottom: 0 }}
                 >

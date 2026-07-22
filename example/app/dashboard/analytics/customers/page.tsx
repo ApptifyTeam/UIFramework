@@ -28,8 +28,9 @@ import {
   Avatar,
   AvatarFallback,
   AvatarImage,
+  StatCard,
 } from "@apptify-labs/ui";
-import { Download01Icon, Upload01Icon } from "@hugeicons/core-free-icons";
+import { Download01Icon, Upload01Icon, UserGroupIcon, SlidersHorizontalIcon, ShoppingBag01Icon } from "@hugeicons/core-free-icons";
 import {
   Area,
   AreaChart,
@@ -142,21 +143,20 @@ const segmentChartConfig = {
     label: "VIP",
     color: "hsl(var(--chart-3))",
   },
-  inactive: {
-    label: "Inactive",
-    color: "hsl(var(--muted))",
+  returning: {
+    label: "Returning Customers",
+    color: "hsl(var(--chart-2))",
   },
 };
 
-export default function CustomerReportsPage() {
+export default function CustomerAnalyticsPage() {
   return (
     <Page>
       <PageHeader>
         <div>
-          <PageTitle>Customer Reports</PageTitle>
+          <PageTitle>Customer Analytics</PageTitle>
           <PageDescription>
-            Gain insights into customer acquisition, retention, and
-            segmentation.
+            In-depth metrics on customer acquisition, retention, lifetime value, and churn rates.
           </PageDescription>
         </div>
         <PageActions>
@@ -174,111 +174,37 @@ export default function CustomerReportsPage() {
       <PageContent>
         {/* KPI Cards */}
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">
-                Total Customers
-              </CardTitle>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                className="h-4 w-4 text-muted-foreground"
-              >
-                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-                <circle cx="9" cy="7" r="4" />
-                <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-              </svg>
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">8,000</div>
-              <p className="text-xs text-muted-foreground">
-                <span className="text-emerald-500 font-medium">+12.5%</span>{" "}
-                from last month
-              </p>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">
-                Active Users
-              </CardTitle>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                className="h-4 w-4 text-muted-foreground"
-              >
-                <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
-              </svg>
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">4,231</div>
-              <p className="text-xs text-muted-foreground">
-                <span className="text-emerald-500 font-medium">+5.2%</span>{" "}
-                active in last 30 days
-              </p>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">
-                Customer Lifetime Value
-              </CardTitle>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                className="h-4 w-4 text-muted-foreground"
-              >
-                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-              </svg>
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">$385.20</div>
-              <p className="text-xs text-muted-foreground">
-                <span className="text-emerald-500 font-medium">+$12.50</span>{" "}
-                from last quarter
-              </p>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Churn Rate</CardTitle>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                className="h-4 w-4 text-muted-foreground"
-              >
-                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
-              </svg>
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">2.4%</div>
-              <p className="text-xs text-muted-foreground">
-                <span className="text-emerald-500 font-medium">-0.3%</span>{" "}
-                decrease from last month
-              </p>
-            </CardContent>
-          </Card>
+          <StatCard
+            title="Total Customers"
+            value="8,000"
+            icon={UserGroupIcon}
+            change="+12.5%"
+            desc="from last month"
+          />
+          <StatCard
+            title="Active Users"
+            value="4,231"
+            icon={SlidersHorizontalIcon}
+            change="+5.2%"
+            desc="active in last 30 days"
+          />
+          <StatCard
+            title="Customer Lifetime Value"
+            value="385.20"
+            prefix_unit="$"
+            icon={ShoppingBag01Icon}
+            change="+$12.50"
+            desc="from last quarter"
+          />
+          <StatCard
+            title="Churn Rate"
+            value="2.4"
+            suffix_unit="%"
+            icon={SlidersHorizontalIcon}
+            change="-0.3%"
+            invertTrend={true}
+            desc="decrease from last month"
+          />
         </div>
 
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
@@ -405,12 +331,13 @@ export default function CustomerReportsPage() {
                     </TableCell>
                     <TableCell>
                       <Badge
+                        className=""
                         variant={
-                          customer.status === "VIP"
+                          (customer.status === "VIP"
                             ? "info"
                             : customer.status === "Active"
                               ? "success"
-                              : "warning"
+                              : "warning") as "info" | "success" | "warning"
                         }
                       >
                         {customer.status}

@@ -25,8 +25,9 @@ import {
   PageActions,
   PageContent,
   Icon,
+  StatCard,
 } from "@apptify-labs/ui";
-import { Download01Icon, Upload01Icon } from "@hugeicons/core-free-icons";
+import { Download01Icon, Upload01Icon, PackageIcon, ShoppingBag01Icon, SlidersHorizontalIcon, AlertCircleIcon } from "@hugeicons/core-free-icons";
 import {
   Area,
   AreaChart,
@@ -153,114 +154,35 @@ export default function ProductReportsPage() {
       <PageContent>
         {/* KPI Cards */}
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">
-                Total Units Sold
-              </CardTitle>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                className="h-4 w-4 text-muted-foreground"
-              >
-                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
-                <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
-                <line x1="12" y1="22.08" x2="12" y2="12" />
-              </svg>
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">12,450</div>
-              <p className="text-xs text-muted-foreground">
-                <span className="text-emerald-500 font-medium">+8.2%</span>{" "}
-                from last month
-              </p>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">
-                Active Products
-              </CardTitle>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                className="h-4 w-4 text-muted-foreground"
-              >
-                <circle cx="12" cy="12" r="10" />
-                <line x1="12" y1="8" x2="12" y2="16" />
-                <line x1="8" y1="12" x2="16" y2="12" />
-              </svg>
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">1,024</div>
-              <p className="text-xs text-muted-foreground">
-                <span className="text-emerald-500 font-medium">+24</span> new products this week
-              </p>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">
-                Avg. Conversion Rate
-              </CardTitle>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                className="h-4 w-4 text-muted-foreground"
-              >
-                <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
-              </svg>
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">4.6%</div>
-              <p className="text-xs text-muted-foreground">
-                <span className="text-emerald-500 font-medium">+0.4%</span> from
-                last month
-              </p>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">
-                Out of Stock Items
-              </CardTitle>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                className="h-4 w-4 text-muted-foreground"
-              >
-                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
-                <line x1="12" y1="9" x2="12" y2="13" />
-                <line x1="12" y1="17" x2="12.01" y2="17" />
-              </svg>
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold text-destructive">45</div>
-              <p className="text-xs text-muted-foreground">
-                Requires immediate attention
-              </p>
-            </CardContent>
-          </Card>
+          <StatCard
+            title="Total Units Sold"
+            value="12,450"
+            icon={PackageIcon}
+            change="+8.2%"
+            desc="from last month"
+          />
+          <StatCard
+            title="Active Products"
+            value="1,024"
+            icon={ShoppingBag01Icon}
+            change="+24"
+            desc="new products this week"
+          />
+          <StatCard
+            title="Avg. Conversion Rate"
+            value="4.6"
+            suffix_unit="%"
+            icon={SlidersHorizontalIcon}
+            change="+0.4%"
+            desc="from last month"
+          />
+          <StatCard
+            title="Out of Stock Items"
+            value="45"
+            valueVariant="destructive"
+            icon={AlertCircleIcon}
+            desc="Requires immediate attention"
+          />
         </div>
 
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
@@ -384,12 +306,13 @@ export default function ProductReportsPage() {
                     <TableCell>{product.category}</TableCell>
                     <TableCell>
                       <Badge
+                        className=""
                         variant={
-                          product.status === "In Stock"
+                          (product.status === "In Stock"
                             ? "success"
                             : product.status === "Low Stock"
                               ? "warning"
-                              : "destructive"
+                              : "destructive")
                         }
                       >
                         {product.status}
