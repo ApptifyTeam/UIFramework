@@ -495,8 +495,8 @@ export default function DashboardPage() {
         {/* Main Dashboard Body */}
         <Grid columns={{ base: 1, lg: 12 }} gap={6}>
           {/* Left Column: Equal Height Revenue & Sales Charts */}
-          <div className="flex flex-col gap-6 lg:col-span-7 xl:col-span-8">
-            <Card>
+          <GridCol colSpan={{ base: 1, lg: 7, xl: 8 }}>
+            <Card className="flex-1 flex flex-col justify-between">
               <CardHeader>
                 <div>
                   <CardTitle className="text-3xl font-bold tracking-tight">
@@ -516,7 +516,7 @@ export default function DashboardPage() {
                   </Tabs>
                 </CardAction>
               </CardHeader>
-              <CardContent>
+              <CardContent className="flex-1 flex flex-col justify-center">
                 <ChartContainer config={chartConfig} className="h-full w-full">
                   <BarChart
                     data={profitData}
@@ -559,7 +559,7 @@ export default function DashboardPage() {
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="flex-1 flex flex-col justify-between">
               <CardHeader>
                 <div>
                   <CardTitle className="text-3xl font-bold tracking-tight">
@@ -579,8 +579,8 @@ export default function DashboardPage() {
                   </Tabs>
                 </CardAction>
               </CardHeader>
-              <CardContent>
-                <div className="w-full">
+              <CardContent className="flex-1 flex flex-col justify-center">
+                <div className="w-full h-full">
                   <ChartContainer
                     config={chartConfig}
                     className="h-full w-full"
@@ -626,11 +626,11 @@ export default function DashboardPage() {
                 </div>
               </CardContent>
             </Card>
-          </div>
+          </GridCol>
 
           {/* Right Column: Natural Height Cards */}
-          <div className="flex flex-col gap-6 lg:col-span-5 xl:col-span-4">
-            <Card>
+          <GridCol colSpan={{ base: 1, lg: 5, xl: 4 }}>
+            <Card className="flex-1 flex flex-col justify-between">
               <CardHeader>
                 <CardTitle>Conversion & Growth</CardTitle>
                 <CardAction>
@@ -647,7 +647,7 @@ export default function DashboardPage() {
                   </Select>
                 </CardAction>
               </CardHeader>
-              <CardContent className="space-y-6">
+              <CardContent className="space-y-6 flex-1 flex flex-col justify-between">
                 <div className="space-y-2">
                   <div className="w-full">
                     <ChartContainer
@@ -737,12 +737,12 @@ export default function DashboardPage() {
             </Card>
 
             {/* Top Selling Products */}
-            <Card>
+            <Card className="flex-1 flex flex-col justify-between">
               <CardHeader>
                 <CardDescription>Best Sellers</CardDescription>
                 <CardTitle>Top Selling Products</CardTitle>
               </CardHeader>
-              <CardContent className="space-y-4">
+              <CardContent className="space-y-4 flex-1 flex flex-col justify-between">
                 {topProducts.map((item, idx) => (
                   <div
                     key={item.name}
@@ -774,7 +774,7 @@ export default function DashboardPage() {
                 ))}
               </CardContent>
             </Card>
-          </div>
+          </GridCol>
         </Grid>
 
         {/* Middle Section */}
@@ -808,7 +808,9 @@ export default function DashboardPage() {
                       Weekly Revenue Trend
                     </span>
                     <div className="flex items-end justify-between mt-1">
-                      <p className="text-3xl font-bold tracking-tight">$12,450</p>
+                      <p className="text-3xl font-bold tracking-tight">
+                        $12,450
+                      </p>
                       <div className="w-24 h-10">
                         <ChartContainer
                           config={chartConfig}
@@ -888,8 +890,8 @@ export default function DashboardPage() {
                   <span className="font-semibold text-foreground">
                     💡 Insight:
                   </span>{" "}
-                  Social media ad spend drove a +24% increase in weekend traffic.
-                  Wireless audio category holds highest margin.
+                  Social media ad spend drove a +24% increase in weekend
+                  traffic. Wireless audio category holds highest margin.
                 </div>
               </CardContent>
             </Card>
@@ -902,7 +904,8 @@ export default function DashboardPage() {
                 <div>
                   <CardTitle>Recent Orders & Fulfillment</CardTitle>
                   <CardDescription>
-                    Real-time transaction log across all connected sales channels.
+                    Real-time transaction log across all connected sales
+                    channels.
                   </CardDescription>
                 </div>
                 <CardAction>
